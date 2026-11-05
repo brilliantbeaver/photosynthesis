@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Photosynthesis CER Cheat Sheet</title><style>
+:root{--acc:#00695C;--accl:#E0F2F1;--ink:#263238;--muted:#607D8B;--fs:17px;--maxw:860px}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--tb,60px) + 12px)}
+body{margin:0;font-family:Calibri,Carlito,"Segoe UI",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:var(--fs);line-height:1.55;color:var(--ink);background:#F4F6F7}
+a{color:var(--acc)}
+.topbar{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:8px 14px;background:#fff;border-bottom:3px solid var(--acc);box-shadow:0 1px 6px rgba(0,0,0,.06)}
+.topbar .dt{font-weight:700;color:var(--acc);margin-right:auto;font-size:1.02em}
+.topbar button,.topbar a.btn{font:inherit;font-size:.82em;padding:5px 10px;border-radius:7px;border:1px solid #CFD8DC;background:#fff;color:var(--ink);cursor:pointer;text-decoration:none;white-space:nowrap}
+.topbar button:hover,.topbar a.btn:hover{border-color:var(--acc);color:var(--acc)}
+#navToggle{display:none}
+.layout{display:flex;max-width:1280px;margin:0 auto}
+nav#toc{position:sticky;top:var(--tb,60px);align-self:flex-start;width:270px;max-height:calc(100vh - var(--tb,60px) - 8px);overflow:auto;padding:16px 10px 30px 16px;font-size:.84em}
+nav#toc .nt{font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;font-size:.8em;margin:4px 0 8px}
+nav#toc ul{list-style:none;margin:0;padding:0}
+nav#toc li a{display:block;padding:4px 8px;border-radius:6px;color:var(--ink);text-decoration:none;border-left:3px solid transparent}
+nav#toc li.l2 a{padding-left:20px;font-size:.92em;color:var(--muted)}
+nav#toc li a:hover{background:var(--accl)}
+nav#toc li a.active{background:var(--accl);border-left-color:var(--acc);color:var(--acc);font-weight:600}
+main{flex:1;min-width:0;max-width:var(--maxw);margin:18px auto 80px;padding:28px 40px;background:#fff;border-radius:12px;box-shadow:0 1px 8px rgba(0,0,0,.05)}
+.cover{border-bottom:4px solid var(--acc);margin-bottom:18px;padding-bottom:10px}
+.cover .kicker{text-transform:uppercase;letter-spacing:.08em;font-size:.78em;color:var(--muted);font-weight:700}
+.cover h1{color:var(--acc);font-size:2.1em;line-height:1.15;margin:.15em 0}
+.cover .subtitle{font-size:1.2em;margin:.2em 0}
+.cover .tagline{color:var(--muted);font-style:italic;margin:.2em 0}
+h2.band{color:#fff;padding:7px 14px;border-radius:7px;font-size:1.35em;margin:1.6em 0 .6em}
+h3.h2{border-bottom:2px solid;padding-bottom:3px;font-size:1.15em;margin:1.3em 0 .5em}
+h4.h3{font-size:1.02em;margin:1.1em 0 .35em}
+p{margin:.35em 0 .7em}
+ul,ol{margin:.2em 0 .8em;padding-left:1.5em}
+li{margin:.18em 0}
+sub,sup{font-size:.72em;line-height:0}
+.callout{border-left:6px solid;border-radius:8px;padding:10px 16px 6px;margin:12px 0 16px}
+.callout .clabel{font-weight:700;font-size:.9em;margin-bottom:4px;text-transform:none}
+.callout p:last-child{margin-bottom:.4em}
+.toc ol{margin:.3em 0 .5em}
+.cer{border-radius:9px;overflow:hidden;margin:12px 0 18px;border:1px solid #E0E0E0}
+.cer-title{background:#37474F;color:#fff;font-weight:700;padding:7px 14px}
+.cer-row{display:grid;grid-template-columns:130px 1fr;border-top:2px solid #fff}
+.cer-row .lab{color:#fff;font-weight:700;padding:10px 8px;text-align:center;display:flex;flex-direction:column;justify-content:center;font-size:.9em;letter-spacing:.03em}
+.cer-row .lab small{font-weight:400;font-size:.78em;opacity:.95;letter-spacing:0}
+.cer-row .val{padding:8px 14px}
+.cer-row .val p:last-child,.cer-row .val ul:last-child{margin-bottom:.2em}
+.cer-row.c .lab{background:#1565C0}.cer-row.c .val{background:#E3F2FD}
+.cer-row.e .lab{background:#2E7D32}.cer-row.e .val{background:#E8F5E9}
+.cer-row.r .lab{background:#E65100}.cer-row.r .val{background:#FFF3E0}
+.cerlab{font-size:.78em;font-weight:700;letter-spacing:.02em}
+.tag{color:#fff;font-weight:700;font-size:.78em;padding:1px 6px;border-radius:4px;white-space:nowrap}
+.tablewrap{overflow-x:auto;margin:10px 0 4px}
+table{border-collapse:collapse;width:100%;font-size:.92em}
+th{color:#fff;padding:7px 9px;font-weight:700;border:1px solid #CFD8DC}
+td{padding:6px 9px;border:1px solid #CFD8DC;vertical-align:top}
+tbody tr:nth-child(even) td{background-color:#F5F7F8}
+td p,th p{margin:.1em 0}
+.tcap{text-align:center;color:var(--muted);font-size:.85em;margin-top:2px}
+figure.fig{margin:16px auto 20px;text-align:center}
+.svgwrap{margin:0 auto;cursor:zoom-in;border-radius:6px;transition:box-shadow .15s}
+.svgwrap:hover{box-shadow:0 0 0 3px var(--accl)}
+.svgwrap svg{width:100%;height:auto;display:block}
+figcaption{color:var(--muted);font-size:.86em;margin-top:6px}
+.qhead{display:flex;border-radius:9px;overflow:hidden;margin:22px 0 10px;background:var(--ql)}
+.qhead .qnum{background:var(--qc);color:#fff;font-weight:800;font-size:1.35em;min-width:78px;display:flex;align-items:center;justify-content:center;padding:8px}
+.qhead .qt{padding:8px 14px}
+.qhead .qtitle{font-weight:700;font-size:1.08em}
+.qhead .qmeta{color:var(--muted);font-size:.85em}
+.cols{display:grid;gap:22px;align-items:start}
+.cols .col>:first-child{margin-top:0}
+.answerbox{margin:8px 0 16px}
+.answerbox label{display:block}.answerbox .albl{display:block;color:var(--muted);font-size:.9em;margin-bottom:3px}
+.answerbox textarea{width:100%;font:inherit;font-size:.95em;padding:8px 10px;border:1px solid #B0BEC5;border-radius:8px;background:#FCFCFD;resize:vertical}
+details.reveal{margin:10px 0 14px;border:1px dashed #B0BEC5;border-radius:9px;background:#FBFCFC}
+details.reveal>summary{cursor:pointer;padding:8px 14px;font-weight:700;color:var(--acc);list-style:none;user-select:none}
+details.reveal>summary::-webkit-details-marker{display:none}
+details.reveal>summary::before{content:"▸ ";display:inline-block;transition:transform .15s}
+details.reveal[open]>summary::before{transform:rotate(90deg)}
+details.reveal[open]{border-style:solid;background:#fff}
+details.reveal .rv{padding:2px 14px 8px}
+.callout details.reveal{background:transparent;border-color:rgba(0,0,0,.18)}
+.checklist{border:1px solid #CFD8DC;border-radius:10px;padding:10px 14px;margin:12px 0 18px;background:#FAFBFB}
+.cl-title{font-weight:700;color:var(--acc);margin-bottom:6px}
+label.chk{display:flex;gap:10px;align-items:flex-start;padding:5px 4px;border-bottom:1px solid #ECEFF1;cursor:pointer}
+label.chk input{margin-top:5px;transform:scale(1.2);accent-color:var(--acc)}
+label.chk .ct{flex:1}
+label.chk .pts{color:var(--muted);font-size:.85em;white-space:nowrap}
+.cl-score{margin-top:8px;font-size:1.05em}
+.cl-score .sc{color:var(--acc);font-size:1.2em}
+.flash .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+details.card{margin:0;border:1px solid #CFD8DC;border-style:solid;background:var(--accl)}
+details.card>summary{color:var(--ink);font-weight:600}
+details.card>summary::before{content:""}
+details.card .n{display:inline-block;background:var(--acc);color:#fff;border-radius:50%;width:1.5em;height:1.5em;text-align:center;font-size:.8em;line-height:1.5em;margin-right:4px}
+details.card .a{padding:4px 14px 12px;color:#1B5E20}
+details.card[open]{background:#fff}
+hr{border:0;border-top:1px solid #CFD8DC;margin:18px 0}
+.pb{height:0}
+#lightbox{position:fixed;inset:0;background:rgba(20,28,32,.82);display:none;align-items:center;justify-content:center;z-index:50;padding:3vw;cursor:zoom-out}
+#lightbox.on{display:flex}
+#lightbox .lbin{background:#fff;border-radius:12px;padding:18px;max-width:96vw;max-height:94vh;overflow:auto;width:min(1300px,96vw)}
+#lightbox svg{width:100%;height:auto}
+#lightbox .lbcap{color:#37474F;font-size:.95em;margin-top:8px;text-align:center}
+#totop{position:fixed;right:18px;bottom:18px;z-index:15;border:0;background:var(--acc);color:#fff;width:42px;height:42px;border-radius:50%;font-size:20px;cursor:pointer;opacity:0;pointer-events:none;transition:opacity .2s;box-shadow:0 2px 8px rgba(0,0,0,.2)}
+#totop.on{opacity:.9;pointer-events:auto}
+.siblings{display:flex;flex-wrap:wrap;gap:6px;margin:30px 0 0;padding-top:12px;border-top:1px solid #ECEFF1;font-size:.88em}
+.siblings a{padding:4px 10px;border:1px solid #CFD8DC;border-radius:16px;text-decoration:none}
+@media (max-width:1000px){nav#toc{position:fixed;left:0;top:var(--tb,52px);bottom:0;max-height:none;background:#fff;z-index:30;box-shadow:2px 0 12px rgba(0,0,0,.15);transform:translateX(-105%);transition:transform .2s}
+ nav#toc.open{transform:none} #navToggle{display:inline-block} main{padding:20px 18px;margin:10px 8px 70px}}
+@media (max-width:640px){.cols{grid-template-columns:1fr !important}.cer-row{grid-template-columns:92px 1fr}:root{--fs:16px}
+ .topbar{flex-wrap:nowrap;overflow-x:auto;gap:6px;padding:6px 8px}.topbar .dt{min-width:0;flex:1 1 auto;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:.92em}
+ .topbar .opt{display:none}}
+.svgwrap:focus{outline:3px solid var(--acc);outline-offset:2px}
+@media print{body{background:#fff;font-size:11pt}.topbar,nav#toc,#totop,.siblings{display:none!important}main{box-shadow:none;margin:0;padding:0;max-width:none}
+ details.reveal:not(.card)>summary{display:none}details.reveal{border:0}.pb{page-break-after:always}figure,.cer,.callout,.qhead{break-inside:avoid}h2.band,h3.h2,.qhead{break-after:avoid}
+ *{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+</style></head>
+<body>
+<div class="topbar"><button id="navToggle" data-act="nav">☰ Contents</button><span class="dt">4 · Cheat Sheet</span>
+<a class="btn" href="Start_Here.html">⌂ All materials</a>
+<button data-act="expand" class="rv-btn" title="Open every hint, answer and card">Show all answers</button><button data-act="collapse" class="rv-btn opt">Hide all</button>
+<button data-act="font-" class="opt" title="Smaller text">A−</button><button data-act="font+" class="opt" title="Larger text">A+</button>
+<a class="btn" href="PDF/4_Cheat_Sheet.pdf">PDF</a><a class="btn" href="Word/4_Cheat_Sheet.docx">Word</a><button data-act="print">Print</button></div>
+<div class="layout"><nav id="toc"><div class="nt">Contents</div><ul><li class="l1"><a href="#page-1-the-science">Page 1 · The science</a></li><li class="l2"><a href="#a-the-two-equations-energy-in-vs-energy-out">A · The two equations: energy IN vs energy OUT</a></li><li class="l2"><a href="#b-one-cycle-matter-cycles-energy-flows">B · One cycle: matter cycles, energy flows</a></li><li class="l2"><a href="#c-the-lab-in-one-picture">C · The lab in one picture</a></li><li class="l2"><a href="#d-what-controls-the-rate-limiting-factors">D · What controls the rate: limiting factors</a></li><li class="l1"><a href="#page-2-the-cer-the-carbon-cycle">Page 2 · The CER + the carbon cycle</a></li><li class="l2"><a href="#e-cer-claim-evidence-reasoning-5-steps-scored-6">E · CER = Claim + Evidence + Reasoning: 5 steps, scored /6</a></li><li class="l2"><a href="#f-reasoning-toolkit-part-vii-fish-logic">F · Reasoning toolkit + Part VII fish logic</a></li><li class="l2"><a href="#g-the-carbon-cycle-h-the-keeling-curve">G · The carbon cycle   ·   H · The Keeling Curve</a></li><li class="l2"><a href="#i-top-12-watch-outs">I · Top 12 watch-outs</a></li><li class="l2"><a href="#quick-self-test">Quick self-test</a></li></ul></nav>
+<main id="content"><header class="cover"><div class="kicker">Photosynthesis CER Test Prep</div><h1>Photosynthesis CER Cheat Sheet</h1><p class="tagline">The science, the lab, the CER method and the traps. Sources: [P1] POGIL worksheet · [P2] simulation lab · [P3] Mauna Loa notes</p></header><h2 class="band" id="page-1-the-science" style="background:#00695C">Page 1 · The science</h2><h3 class="h2" id="a-the-two-equations-energy-in-vs-energy-out" style="color:#00695C;border-color:#00695C">A · The two equations: energy IN vs energy OUT</h3><figure id="fig-n1" class="fig"><div class="svgwrap" style="max-width:806px" title="Click to enlarge" tabindex="0" role="button" aria-label="Enlarge figure 1"><svg role="img" aria-label="Photosynthesis in the chloroplast: 6CO2 + 6H2O + light energy (IN) gives C6H12O6 + 6O2; light energy becomes chemical energy stored in glucose. Cellular respiration in the mitochondrion: C6H12O6 + 6O2 gives 6CO2 + 6H2O + energy as ATP (OUT), plus some heat; it runs all the time. Number 1 watch-out: never swap the energy labels." preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 162">
+  
+  <rect x="0" y="0" width="720" height="162" fill="#FFFFFF"/>
+  <g font-family="Calibri, Carlito, Arial, sans-serif">
+  <rect x="1.0" y="1.0" width="718.0" height="160.0" fill="#FFFFFF" rx="7" stroke="#00695C" stroke-width="1.5"/>
+  <path d="M1,25 V8 Q1,1 8,1 H712 Q719,1 719,8 V25 Z" fill="#00695C"/>
+  <circle cx="17.0" cy="13.0" r="8.5" fill="#FFFFFF"/>
+  <text x="17.0" y="17.6" font-size="13" fill="#00695C" text-anchor="middle"><tspan font-weight="bold">A</tspan></text>
+  <text x="32.0" y="18.0" font-size="14.5" fill="#FFFFFF"><tspan font-weight="bold">The two equations: energy IN vs energy OUT</tspan></text>
+  <text x="710.0" y="17.3" font-size="11.5" fill="#E0F2F1" text-anchor="end">[P1 Model 1 · Q1–2 · Q14]</text>
+  <rect x="8.0" y="31.0" width="484.0" height="60.0" fill="#E8F5E9" rx="6"/>
+  <ellipse cx="44.0" cy="61.0" rx="29" ry="17" fill="#C8E6C9" stroke="#2E7D32" stroke-width="2"/>
+  <rect x="25.4" y="54.6" width="8.1" height="2.7" fill="#66BB6A" rx="1.36" stroke="#2E7D32" stroke-width="0.7"/>
+  <rect x="25.4" y="58.5" width="8.1" height="2.7" fill="#66BB6A" rx="1.36" stroke="#2E7D32" stroke-width="0.7"/>
+  <rect x="25.4" y="62.4" width="8.1" height="2.7" fill="#66BB6A" rx="1.36" stroke="#2E7D32" stroke-width="0.7"/>
+  <rect x="39.9" y="60.9" width="8.1" height="2.7" fill="#66BB6A" rx="1.36" stroke="#2E7D32" stroke-width="0.7"/>
+  <rect x="39.9" y="64.8" width="8.1" height="2.7" fill="#66BB6A" rx="1.36" stroke="#2E7D32" stroke-width="0.7"/>
+  <rect x="39.9" y="68.7" width="8.1" height="2.7" fill="#66BB6A" rx="1.36" stroke="#2E7D32" stroke-width="0.7"/>
+  <rect x="54.4" y="54.6" width="8.1" height="2.7" fill="#66BB6A" rx="1.36" stroke="#2E7D32" stroke-width="0.7"/>
+  <rect x="54.4" y="58.5" width="8.1" height="2.7" fill="#66BB6A" rx="1.36" stroke="#2E7D32" stroke-width="0.7"/>
+  <rect x="54.4" y="62.4" width="8.1" height="2.7" fill="#66BB6A" rx="1.36" stroke="#2E7D32" stroke-width="0.7"/>
+  <text x="86.0" y="47.0" font-size="13" fill="#2E7D32"><tspan font-weight="bold">PHOTOSYNTHESIS</tspan></text>
+  <text x="190.3" y="47.0" font-size="12" fill="#263238">in the <tspan font-weight="bold">chloroplast</tspan> · chlorophyll captures the light</text>
+  <text x="86.0" y="69.5" font-size="19" fill="#263238"><tspan fill="#546E7A" font-weight="bold">6CO₂</tspan><tspan font-weight="bold"> + </tspan><tspan fill="#00838F" font-weight="bold">6H₂O</tspan><tspan font-weight="bold"> + </tspan></text>
+  <rect x="199.8" y="52.0" width="129.1" height="24.0" fill="#FFF8E1" rx="12.0" stroke="#F9A825" stroke-width="1.5"/>
+  <path d="M304.9,52.0 H316.9 Q328.9,52.0 328.9,64.0 Q328.9,76.0 316.9,76.0 H304.9 Z" fill="#F9A825"/>
+  <text x="205.8" y="69.5" font-size="19" fill="#B26A00"><tspan font-weight="bold">light energy</tspan></text>
+  <text x="316.9" y="66.5" font-size="13" fill="#FFFFFF" text-anchor="middle"><tspan font-weight="bold">IN</tspan></text>
+  <text x="332.9" y="69.5" font-size="19" fill="#263238"><tspan font-weight="bold"> → </tspan><tspan fill="#6A1B9A" font-weight="bold">C₆H₁₂O₆</tspan><tspan font-weight="bold"> + </tspan><tspan fill="#1E88E5" font-weight="bold">6O₂</tspan></text>
+  <text x="86.0" y="85.0" font-size="11.5" fill="#607D8B"><tspan font-style="italic">light energy is changed into chemical energy stored in glucose</tspan></text>
+  <rect x="8.0" y="95.0" width="484.0" height="60.0" fill="#FFF3E0" rx="6"/>
+  <ellipse cx="44.0" cy="125.0" rx="29" ry="17" fill="#FFE0B2" stroke="#E65100" stroke-width="2"/>
+  <path d="M21.4,125.0 C24.2,115.7 24.2,115.7 27.0,125.0 C29.9,134.3 29.9,134.3 32.7,125.0 C35.5,115.7 35.5,115.7 38.3,125.0 C41.2,134.3 41.2,134.3 44.0,125.0 C46.8,115.7 46.8,115.7 49.7,125.0 C52.5,134.3 52.5,134.3 55.3,125.0 C58.1,115.7 58.1,115.7 61.0,125.0 C63.8,134.3 63.8,134.3 66.6,125.0" fill="none" stroke="#E65100" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+  <text x="86.0" y="111.0" font-size="13" fill="#E65100"><tspan font-weight="bold">CELLULAR RESPIRATION</tspan></text>
+  <text x="221.5" y="111.0" font-size="12" fill="#263238">in the <tspan font-weight="bold">mitochondrion</tspan> · runs 24/7, light or dark</text>
+  <text x="86.0" y="133.5" font-size="19" fill="#263238"><tspan fill="#6A1B9A" font-weight="bold">C₆H₁₂O₆</tspan><tspan font-weight="bold"> + </tspan><tspan fill="#1E88E5" font-weight="bold">6O₂</tspan><tspan font-weight="bold"> → </tspan><tspan fill="#546E7A" font-weight="bold">6CO₂</tspan><tspan font-weight="bold"> + </tspan><tspan fill="#00838F" font-weight="bold">6H₂O</tspan><tspan font-weight="bold"> + </tspan></text>
+  <rect x="332.4" y="116.0" width="147.3" height="24.0" fill="#F8BBD0" rx="12.0" stroke="#D81B60" stroke-width="1.5"/>
+  <path d="M443.9,116.0 H467.7 Q479.7,116.0 479.7,128.0 Q479.7,140.0 467.7,140.0 H443.9 Z" fill="#D81B60"/>
+  <text x="338.4" y="133.5" font-size="19" fill="#AD1457"><tspan font-weight="bold">energy (ATP)</tspan></text>
+  <text x="461.8" y="130.5" font-size="13" fill="#FFFFFF" text-anchor="middle"><tspan font-weight="bold">OUT</tspan></text>
+  <text x="86.0" y="149.0" font-size="11.5" fill="#607D8B"><tspan font-style="italic">releases the energy stored in glucose as ATP, the cell’s usable energy</tspan></text>
+  <rect x="499.0" y="31.0" width="213.0" height="124.0" fill="#FFEBEE" rx="6" stroke="#C62828" stroke-width="1.5"/>
+  <text x="508.0" y="49.0" font-size="12.5" fill="#C62828"><tspan font-weight="bold">#1 WATCH-OUT:</tspan></text>
+  <text x="508.0" y="64.0" font-size="12.5" fill="#C62828"><tspan font-weight="bold">don’t swap the energy labels!</tspan></text>
+  <circle cx="511.0" cy="78.0" r="2" fill="#C62828"/>
+  <text x="518.0" y="82.0" font-size="11.5" fill="#263238"><tspan font-weight="bold">Light</tspan> energy goes <tspan font-weight="bold">IN</tspan> to photosynthesis.</text>
+  <circle cx="511.0" cy="94.8" r="2" fill="#C62828"/>
+  <text x="518.0" y="98.8" font-size="11.5" fill="#263238"><tspan font-weight="bold">ATP</tspan> energy comes <tspan font-weight="bold">OUT</tspan> of respiration.</text>
+  <circle cx="511.0" cy="111.6" r="2" fill="#C62828"/>
+  <text x="518.0" y="115.6" font-size="11.5" fill="#263238">Same molecules, reversed: only the</text>
+  <text x="518.0" y="129.4" font-size="11.5" fill="#263238">energy differs [P1 Q9].</text>
+  </g>
+</svg></div></figure><h3 class="h2" id="b-one-cycle-matter-cycles-energy-flows" style="color:#00695C;border-color:#00695C">B · One cycle: matter cycles, energy flows</h3><figure id="fig-n2" class="fig"><div class="svgwrap" style="max-width:806px" title="Click to enlarge" tabindex="0" role="button" aria-label="Enlarge figure 2"><svg role="img" aria-label="The chloroplast sends glucose and O2 to the mitochondrion; the mitochondrion sends CO2 and H2O back, so matter cycles. Energy flows one way: light in, then glucose, then ATP, then heat out; it is not recycled. Who does what: plants do both photosynthesis and respiration; animals and decomposers (fungi, bacteria, worms) do respiration only. Respiration is not breathing." preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 161">
+  
+  <rect x="0" y="0" width="720" height="161" fill="#FFFFFF"/>
+  <g font-family="Calibri, Carlito, Arial, sans-serif">
+  <rect x="1.0" y="1.0" width="718.0" height="159.0" fill="#FFFFFF" rx="7" stroke="#00695C" stroke-width="1.5"/>
+  <path d="M1,25 V8 Q1,1 8,1 H712 Q719,1 719,8 V25 Z" fill="#00695C"/>
+  <circle cx="17.0" cy="13.0" r="8.5" fill="#FFFFFF"/>
+  <text x="17.0" y="17.6" font-size="13" fill="#00695C" text-anchor="middle"><tspan font-weight="bold">B</tspan></text>
+  <text x="32.0" y="18.0" font-size="14.5" fill="#FFFFFF"><tspan font-weight="bold">One cycle: matter cycles, energy flows</tspan></text>
+  <text x="710.0" y="17.3" font-size="11.5" fill="#E0F2F1" text-anchor="end">[P1 Model 1 · Q3–Q10]</text>
+  <ellipse cx="116.0" cy="79.0" rx="58" ry="28" fill="#C8E6C9" stroke="#2E7D32" stroke-width="2.2"/>
+  <text x="116.0" y="77.0" font-size="13.5" fill="#2E7D32" text-anchor="middle"><tspan font-weight="bold">chloroplast</tspan></text>
+  <text x="116.0" y="93.0" font-size="12" fill="#263238" text-anchor="middle">photosynthesis</text>
+  <ellipse cx="334.0" cy="79.0" rx="58" ry="28" fill="#FFE0B2" stroke="#E65100" stroke-width="2.2"/>
+  <text x="334.0" y="77.0" font-size="13.5" fill="#E65100" text-anchor="middle"><tspan font-weight="bold">mitochondrion</tspan></text>
+  <text x="334.0" y="93.0" font-size="12" fill="#263238" text-anchor="middle">respiration</text>
+  <path d="M152.0,55.0 Q225.0,27.0 285.1,50.5" fill="none" stroke="#6A1B9A" stroke-width="3.4" stroke-linejoin="round" stroke-linecap="butt"/>
+  <polygon points="294.0,54.0 280.1,56.6 285.5,42.7" fill="#6A1B9A"/>
+  <text x="225.0" y="63.0" font-size="12.5" fill="#263238" text-anchor="middle"><tspan fill="#6A1B9A" font-weight="bold">glucose</tspan><tspan font-weight="bold"> + </tspan><tspan fill="#1E88E5" font-weight="bold">O₂</tspan></text>
+  <path d="M298.0,103.0 Q225.0,131.0 164.9,107.5" fill="none" stroke="#546E7A" stroke-width="3.4" stroke-linejoin="round" stroke-linecap="butt"/>
+  <polygon points="156.0,104.0 169.9,101.4 164.5,115.3" fill="#546E7A"/>
+  <text x="225.0" y="105.0" font-size="12.5" fill="#263238" text-anchor="middle"><tspan fill="#546E7A" font-weight="bold">CO₂</tspan><tspan font-weight="bold"> + </tspan><tspan fill="#00838F" font-weight="bold">H₂O</tspan></text>
+  <text x="225.0" y="84.0" font-size="11.5" fill="#00695C" text-anchor="middle"><tspan font-weight="bold">MATTER CYCLES</tspan></text>
+  <line x1="42.0" y1="48.0" x2="47.0" y2="48.0" stroke="#F9A825" stroke-width="2.2" stroke-linecap="round"/>
+  <line x1="37.9" y1="57.9" x2="41.4" y2="61.4" stroke="#F9A825" stroke-width="2.2" stroke-linecap="round"/>
+  <line x1="28.0" y1="62.0" x2="28.0" y2="67.0" stroke="#F9A825" stroke-width="2.2" stroke-linecap="round"/>
+  <line x1="18.1" y1="57.9" x2="14.6" y2="61.4" stroke="#F9A825" stroke-width="2.2" stroke-linecap="round"/>
+  <line x1="14.0" y1="48.0" x2="9.0" y2="48.0" stroke="#F9A825" stroke-width="2.2" stroke-linecap="round"/>
+  <line x1="18.1" y1="38.1" x2="14.6" y2="34.6" stroke="#F9A825" stroke-width="2.2" stroke-linecap="round"/>
+  <line x1="28.0" y1="34.0" x2="28.0" y2="29.0" stroke="#F9A825" stroke-width="2.2" stroke-linecap="round"/>
+  <line x1="37.9" y1="38.1" x2="41.4" y2="34.6" stroke="#F9A825" stroke-width="2.2" stroke-linecap="round"/>
+  <circle cx="28.0" cy="48.0" r="11" fill="#FDD835" stroke="#F9A825" stroke-width="1.5"/>
+  <line x1="49.0" y1="64.0" x2="60.2" y2="63.4" stroke="#F9A825" stroke-width="3.4" stroke-linecap="butt"/>
+  <polygon points="69.0,63.0 58.4,70.4 57.7,56.7" fill="#F9A825"/>
+  <text x="26.0" y="86.0" font-size="11.5" fill="#B26A00" text-anchor="middle"><tspan font-weight="bold">light</tspan></text>
+  <text x="26.0" y="99.0" font-size="11.5" fill="#B26A00" text-anchor="middle"><tspan font-weight="bold">IN</tspan></text>
+  <line x1="384.0" y1="64.0" x2="400.8" y2="52.1" stroke="#D81B60" stroke-width="3.4" stroke-linecap="butt"/>
+  <polygon points="408.0,47.0 403.0,58.9 395.1,47.8" fill="#D81B60"/>
+  <rect x="410.0" y="33.5" width="31.4" height="19.5" fill="#F8BBD0" rx="9.75" stroke="#D81B60" stroke-width="1.3"/>
+  <text x="416.0" y="46.0" font-size="12.5" fill="#AD1457"><tspan font-weight="bold">ATP</tspan></text>
+  <text x="429.0" y="80.0" font-size="11.5" fill="#AD1457" text-anchor="middle"><tspan font-weight="bold">OUT</tspan></text>
+  <line x1="384.0" y1="94.0" x2="401.5" y2="106.4" stroke="#EF5350" stroke-width="2.8" stroke-linecap="butt"/>
+  <polygon points="408.0,111.0 396.3,110.3 403.4,100.2" fill="#EF5350"/>
+  <text x="413.0" y="118.0" font-size="11.5" fill="#EF5350"><tspan font-weight="bold">heat</tspan></text>
+  <rect x="10.0" y="131.0" width="446.0" height="22.0" fill="#FFF8E1" rx="6" stroke="#F9A825" stroke-width="1"/>
+  <text x="233.0" y="146.0" font-size="11.5" fill="#263238" text-anchor="middle"><tspan fill="#00695C" font-weight="bold">ENERGY FLOWS</tspan> one way: <tspan fill="#B26A00" font-weight="bold">light</tspan> → glucose → <tspan fill="#AD1457" font-weight="bold">ATP</tspan> → <tspan fill="#EF5350" font-weight="bold">heat</tspan> (not recycled) [P1 Q4]</text>
+  <line x1="464.0" y1="32.0" x2="464.0" y2="153.0" stroke="#CFD8DC" stroke-width="1.2" stroke-linecap="round"/>
+  <text x="472.0" y="44.0" font-size="12.5" fill="#00695C"><tspan font-weight="bold">WHO DOES WHAT</tspan></text>
+  <text x="652.0" y="39.0" font-size="11" fill="#2E7D32" text-anchor="middle"><tspan font-weight="bold">photo-</tspan></text>
+  <text x="652.0" y="51.0" font-size="11" fill="#2E7D32" text-anchor="middle"><tspan font-weight="bold">synthesis</tspan></text>
+  <text x="697.0" y="39.0" font-size="11" fill="#E65100" text-anchor="middle"><tspan font-weight="bold">respi-</tspan></text>
+  <text x="697.0" y="51.0" font-size="11" fill="#E65100" text-anchor="middle"><tspan font-weight="bold">ration</tspan></text>
+  <rect x="469.0" y="54.0" width="242.0" height="29.0" fill="#F5F7F8" rx="4"/>
+  <path d="M483,81 V59.400000000000006" fill="none" stroke="#2E7D32" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+  <ellipse cx="476.5" cy="73.8" rx="5.04" ry="2.592" fill="#66BB6A" stroke="#2E7D32" stroke-width="1" transform="rotate(-35 476.5 73.8)"/>
+  <ellipse cx="489.5" cy="68.8" rx="5.04" ry="2.592" fill="#66BB6A" stroke="#2E7D32" stroke-width="1" transform="rotate(35 489.5 68.8)"/>
+  <ellipse cx="477.2" cy="63.0" rx="5.04" ry="2.592" fill="#66BB6A" stroke="#2E7D32" stroke-width="1" transform="rotate(-30 477.2 63.0)"/>
+  <ellipse cx="483.0" cy="58.0" rx="5.04" ry="2.592" fill="#66BB6A" stroke="#2E7D32" stroke-width="1" transform="rotate(0 483.0 58.0)"/>
+  <text x="500.0" y="67.0" font-size="12.5" fill="#263238"><tspan font-weight="bold">Plants</tspan></text>
+  <text x="500.0" y="80.0" font-size="11" fill="#607D8B">chloroplasts <tspan font-weight="bold">+</tspan> mitochondria</text>
+  <path d="M647.0,72.0 l3.5,4.0 l7.0,-9.0" fill="none" stroke="#2E7D32" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/>
+  <path d="M692.0,72.0 l3.5,4.0 l7.0,-9.0" fill="none" stroke="#2E7D32" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/>
+  <ellipse cx="486.9" cy="91.7" rx="1.736" ry="4.96" fill="#ECEFF1" stroke="#78909C" stroke-width="1.2" transform="rotate(-12 486.9 91.7)"/>
+  <ellipse cx="490.0" cy="91.7" rx="1.736" ry="4.96" fill="#ECEFF1" stroke="#78909C" stroke-width="1.2" transform="rotate(12 490.0 91.7)"/>
+  <ellipse cx="481.3" cy="101.6" rx="7.4399999999999995" ry="4.96" fill="#ECEFF1" stroke="#78909C" stroke-width="1.3"/>
+  <circle cx="488.7" cy="97.9" r="3.7199999999999998" fill="#ECEFF1" stroke="#78909C" stroke-width="1.3"/>
+  <circle cx="473.8" cy="100.4" r="1.736" fill="#ECEFF1" stroke="#78909C" stroke-width="1"/>
+  <circle cx="490.0" cy="97.3" r="0.682" fill="#263238"/>
+  <text x="500.0" y="96.0" font-size="12.5" fill="#263238"><tspan font-weight="bold">Animals</tspan></text>
+  <text x="500.0" y="109.0" font-size="11" fill="#607D8B">mitochondria, <tspan font-weight="bold">no</tspan> chloroplasts</text>
+  <line x1="648.4" y1="95.4" x2="655.6" y2="102.6" stroke="#90A4AE" stroke-width="2.07" stroke-linecap="round"/>
+  <line x1="648.4" y1="102.6" x2="655.6" y2="95.4" stroke="#90A4AE" stroke-width="2.07" stroke-linecap="round"/>
+  <path d="M692.0,101.0 l3.5,4.0 l7.0,-9.0" fill="none" stroke="#2E7D32" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/>
+  <rect x="469.0" y="112.0" width="242.0" height="29.0" fill="#F5F7F8" rx="4"/>
+  <rect x="480.4" y="130.5" width="5.1" height="8.5" fill="#EFEBE9" rx="1.5" stroke="#6D4C41" stroke-width="1"/>
+  <path d="M473.6,131.3 Q483.0,116.9 492.4,131.3 Z" fill="#D7CCC8" stroke="#6D4C41" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round"/>
+  <text x="500.0" y="125.0" font-size="12.5" fill="#263238"><tspan font-weight="bold">Decomposers</tspan></text>
+  <text x="500.0" y="138.0" font-size="11" fill="#607D8B">fungi, bacteria, worms</text>
+  <line x1="648.4" y1="124.4" x2="655.6" y2="131.6" stroke="#90A4AE" stroke-width="2.07" stroke-linecap="round"/>
+  <line x1="648.4" y1="131.6" x2="655.6" y2="124.4" stroke="#90A4AE" stroke-width="2.07" stroke-linecap="round"/>
+  <path d="M692.0,130.0 l3.5,4.0 l7.0,-9.0" fill="none" stroke="#2E7D32" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/>
+  <text x="472.0" y="152.0" font-size="11" fill="#263238"><tspan fill="#E65100" font-weight="bold">Respiration ≠ breathing</tspan>: it is a reaction in cells.</text>
+  </g>
+</svg></div></figure><h3 class="h2" id="c-the-lab-in-one-picture" style="color:#00695C;border-color:#00695C">C · The lab in one picture</h3><figure id="fig-n3" class="fig"><div class="svgwrap" style="max-width:806px" title="Click to enlarge" tabindex="0" role="button" aria-label="Enlarge figure 3"><svg role="img" aria-label="Tank with one water plant under a lamp and a DO meter. DO difference = DO end minus DO start = net change. O2 production = DO difference minus respiration = DO difference plus 0.1939 (sign trap). At 100 percent light: +0.4037 kept plus 0.1939 used = 0.5976 made, or 0.0100 mg/L per minute. Graph of the Part III data: O2 production about 0 at 20 to 40 percent, then rising to 0.5976; DO difference crosses zero near 60 percent (break-even); dark run is -0.1939 mg/L per hour." preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 254">
+  
+  <rect x="0" y="0" width="720" height="254" fill="#FFFFFF"/>
+  <g font-family="Calibri, Carlito, Arial, sans-serif">
+  <rect x="1.0" y="1.0" width="718.0" height="252.0" fill="#FFFFFF" rx="7" stroke="#00695C" stroke-width="1.5"/>
+  <path d="M1,25 V8 Q1,1 8,1 H712 Q719,1 719,8 V25 Z" fill="#00695C"/>
+  <circle cx="17.0" cy="13.0" r="8.5" fill="#FFFFFF"/>
+  <text x="17.0" y="17.6" font-size="13" fill="#00695C" text-anchor="middle"><tspan font-weight="bold">C</tspan></text>
+  <text x="32.0" y="18.0" font-size="14.5" fill="#FFFFFF"><tspan font-weight="bold">The lab in one picture: light intensity and O₂</tspan></text>
+  <text x="710.0" y="17.3" font-size="11.5" fill="#E0F2F1" text-anchor="end">[P2 Parts II–III]</text>
+  <polygon points="32.0,46.0 72.0,46.0 64.0,33.0 40.0,33.0" fill="#90A4AE" stroke="#607D8B" stroke-width="1" stroke-linejoin="round"/>
+  <circle cx="52.0" cy="50.0" r="7" fill="#FDD835" stroke="#F9A825" stroke-width="1.3"/>
+  <line x1="45.6" y1="61.0" x2="36.0" y2="70.0" stroke="#F9A825" stroke-width="2" stroke-linecap="round" stroke-dasharray="3,3"/>
+  <line x1="52.0" y1="61.0" x2="52.0" y2="70.0" stroke="#F9A825" stroke-width="2" stroke-linecap="round" stroke-dasharray="3,3"/>
+  <line x1="58.4" y1="61.0" x2="68.0" y2="70.0" stroke="#F9A825" stroke-width="2" stroke-linecap="round" stroke-dasharray="3,3"/>
+  <text x="79.0" y="46.0" font-size="12" fill="#263238"><tspan fill="#B26A00" font-weight="bold">light %</tspan></text>
+  <text x="79.0" y="59.0" font-size="11" fill="#607D8B">(the IV)</text>
+  <rect x="16.0" y="84.0" width="150.0" height="50.0" fill="#B2EBF2" fill-opacity="0.55"/>
+  <path d="M16,74 V134 H166 V74" fill="none" stroke="#78909C" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+  <line x1="16.0" y1="84.0" x2="166.0" y2="84.0" stroke="#00838F" stroke-width="1.2" stroke-linecap="round"/>
+  <path d="M58,132 Q54,111.0 60,90" fill="none" stroke="#2E7D32" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+  <ellipse cx="63.0" cy="123.0" rx="5" ry="2.2" fill="#66BB6A" stroke="#2E7D32" stroke-width="0.8" transform="rotate(-30 63.0 123.0)"/>
+  <ellipse cx="53.0" cy="113.9" rx="5" ry="2.2" fill="#66BB6A" stroke="#2E7D32" stroke-width="0.8" transform="rotate(30 53.0 113.9)"/>
+  <ellipse cx="63.0" cy="104.7" rx="5" ry="2.2" fill="#66BB6A" stroke="#2E7D32" stroke-width="0.8" transform="rotate(-30 63.0 104.7)"/>
+  <ellipse cx="53.0" cy="95.6" rx="5" ry="2.2" fill="#66BB6A" stroke="#2E7D32" stroke-width="0.8" transform="rotate(30 53.0 95.6)"/>
+  <path d="M74,132 Q70,114.0 76,96" fill="none" stroke="#2E7D32" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+  <ellipse cx="79.0" cy="123.0" rx="5" ry="2.2" fill="#66BB6A" stroke="#2E7D32" stroke-width="0.8" transform="rotate(-30 79.0 123.0)"/>
+  <ellipse cx="69.0" cy="115.6" rx="5" ry="2.2" fill="#66BB6A" stroke="#2E7D32" stroke-width="0.8" transform="rotate(30 69.0 115.6)"/>
+  <ellipse cx="79.0" cy="108.1" rx="5" ry="2.2" fill="#66BB6A" stroke="#2E7D32" stroke-width="0.8" transform="rotate(-30 79.0 108.1)"/>
+  <ellipse cx="69.0" cy="100.7" rx="5" ry="2.2" fill="#66BB6A" stroke="#2E7D32" stroke-width="0.8" transform="rotate(30 69.0 100.7)"/>
+  <path d="M90,132 Q86,112.0 92,92" fill="none" stroke="#2E7D32" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+  <ellipse cx="95.0" cy="123.0" rx="5" ry="2.2" fill="#66BB6A" stroke="#2E7D32" stroke-width="0.8" transform="rotate(-30 95.0 123.0)"/>
+  <ellipse cx="85.0" cy="114.4" rx="5" ry="2.2" fill="#66BB6A" stroke="#2E7D32" stroke-width="0.8" transform="rotate(30 85.0 114.4)"/>
+  <ellipse cx="95.0" cy="105.9" rx="5" ry="2.2" fill="#66BB6A" stroke="#2E7D32" stroke-width="0.8" transform="rotate(-30 95.0 105.9)"/>
+  <ellipse cx="85.0" cy="97.3" rx="5" ry="2.2" fill="#66BB6A" stroke="#2E7D32" stroke-width="0.8" transform="rotate(30 85.0 97.3)"/>
+  <circle cx="66.0" cy="97.0" r="2.6" fill="#FFFFFF" stroke="#1E88E5" stroke-width="1.2"/>
+  <circle cx="80.0" cy="90.0" r="2.2" fill="#FFFFFF" stroke="#1E88E5" stroke-width="1.2"/>
+  <circle cx="72.0" cy="88.0" r="1.8" fill="#FFFFFF" stroke="#1E88E5" stroke-width="1.2"/>
+  <circle cx="95.0" cy="94.0" r="2.4" fill="#FFFFFF" stroke="#1E88E5" stroke-width="1.2"/>
+  <text x="108.0" y="112.0" font-size="11.5" fill="#263238"><tspan fill="#1E88E5" font-weight="bold">O₂</tspan></text>
+  <line x1="146.0" y1="56.0" x2="146.0" y2="122.0" stroke="#455A64" stroke-width="2.2" stroke-linecap="round"/>
+  <rect x="142.0" y="118.0" width="8.0" height="10.0" fill="#455A64" rx="2"/>
+  <rect x="124.0" y="30.0" width="52.0" height="28.0" fill="#ECEFF1" rx="4" stroke="#455A64" stroke-width="1.4"/>
+  <text x="150.0" y="42.0" font-size="11" fill="#455A64" text-anchor="middle"><tspan font-weight="bold">DO meter</tspan></text>
+  <text x="150.0" y="54.0" font-size="11" fill="#1E88E5" text-anchor="middle"><tspan font-weight="bold">mg/L</tspan></text>
+  <text x="16.0" y="147.0" font-size="11" fill="#263238"><tspan font-weight="bold">DO</tspan> = dissolved O₂ in the water</text>
+  <text x="10.0" y="161.0" font-size="11.5" fill="#00695C"><tspan font-weight="bold">EXPERIMENT DESIGN</tspan></text>
+  <text x="10.0" y="174.0" font-size="11" fill="#263238"><tspan font-weight="bold">IV</tspan> (changed): light intensity (%)</text>
+  <text x="10.0" y="186.2" font-size="11" fill="#263238"><tspan font-weight="bold">DV</tspan> (measured): O₂ production</text>
+  <text x="10.0" y="198.4" font-size="11" fill="#263238"><tspan font-weight="bold">Same:</tspan> 0 fish, 1 plant, 25 °C, white light,</text>
+  <text x="10.0" y="210.6" font-size="11" fill="#263238">60-min run</text>
+  <text x="10.0" y="222.8" font-size="11" fill="#263238"><tspan font-weight="bold">Control:</tspan> Part II dark run (respiration only,</text>
+  <text x="10.0" y="235.0" font-size="11" fill="#263238">3 trials)</text>
+  <text x="10.0" y="247.2" font-size="11" fill="#263238"><tspan font-weight="bold">Limitation:</tspan> only 1 trial per light level</text>
+  <line x1="203.0" y1="32.0" x2="203.0" y2="246.0" stroke="#CFD8DC" stroke-width="1.2" stroke-linecap="round"/>
+  <text x="212.0" y="45.0" font-size="12.5" fill="#00695C"><tspan font-weight="bold">TWO NUMBERS: DON’T MIX THEM UP</tspan></text>
+  <rect x="212.0" y="51.0" width="248.0" height="35.0" fill="#F5F7F8" rx="5"/>
+  <rect x="212.0" y="51.0" width="4.0" height="35.0" fill="#263238"/>
+  <text x="222.0" y="65.5" font-size="12.5" fill="#263238"><tspan font-weight="bold">DO difference</tspan> = DO end − DO start</text>
+  <text x="222.0" y="80.5" font-size="11.5" fill="#263238">= <tspan font-weight="bold">net</tspan> change = O₂ made − O₂ used</text>
+  <rect x="212.0" y="90.0" width="248.0" height="35.0" fill="#E3F2FD" rx="5"/>
+  <rect x="212.0" y="90.0" width="4.0" height="35.0" fill="#1E88E5"/>
+  <text x="222.0" y="104.5" font-size="12.5" fill="#263238"><tspan fill="#1E88E5" font-weight="bold">O₂ production</tspan> = DO difference − respiration</text>
+  <text x="222.0" y="119.5" font-size="11.5" fill="#263238">= <tspan font-weight="bold">total</tspan> O₂ made by photosynthesis (<tspan font-weight="bold">gross</tspan>)</text>
+  <rect x="212.0" y="129.0" width="248.0" height="37.0" fill="#FFEBEE" rx="5" stroke="#C62828" stroke-width="1.3"/>
+  <text x="220.0" y="144.0" font-size="12" fill="#263238"><tspan fill="#C62828" font-weight="bold">SIGN TRAP:</tspan> respiration = <tspan font-weight="bold">−0.1939</tspan>, so</text>
+  <text x="220.0" y="160.0" font-size="12.5" fill="#263238">DO diff − (−0.1939) = <tspan fill="#C62828" font-weight="bold">DO diff + 0.1939</tspan></text>
+  <text x="212.0" y="182.0" font-size="11.5" fill="#263238"><tspan font-weight="bold">At 100 % light</tspan> (mg/L per hour):</text>
+  <rect x="212.0" y="188.0" width="153.4" height="20.0" fill="#1E88E5" rx="3"/>
+  <rect x="365.4" y="188.0" width="73.7" height="20.0" fill="#E65100" rx="3"/>
+  <text x="288.7" y="202.5" font-size="11" fill="#FFFFFF" text-anchor="middle"><tspan font-weight="bold">+0.4037 kept (DO difference)</tspan></text>
+  <text x="402.2" y="202.5" font-size="11" fill="#FFFFFF" text-anchor="middle"><tspan font-weight="bold">0.1939 used</tspan></text>
+  <path d="M213,212 V217 H438.088 V212" fill="none" stroke="#263238" stroke-width="1.3" stroke-linejoin="round" stroke-linecap="round"/>
+  <text x="325.5" y="230.0" font-size="11.5" fill="#263238" text-anchor="middle">= <tspan fill="#1E88E5" font-weight="bold">0.5976</tspan><tspan font-weight="bold"> made = O₂ production</tspan> (gross)</text>
+  <text x="325.5" y="244.0" font-size="11" fill="#607D8B" text-anchor="middle">per minute: 0.5976 ÷ 60 = <tspan font-weight="bold">0.0100 mg/L per minute</tspan></text>
+  <line x1="468.0" y1="32.0" x2="468.0" y2="246.0" stroke="#CFD8DC" stroke-width="1.2" stroke-linecap="round"/>
+  <text x="476.0" y="45.0" font-size="12.5" fill="#00695C"><tspan font-weight="bold">YOUR PART III DATA</tspan></text>
+  <text x="632.0" y="45.0" font-size="11" fill="#607D8B">1 trial per level</text>
+  <line x1="500.0" y1="180.8" x2="704.0" y2="180.8" stroke="#CFD8DC" stroke-width="1" stroke-linecap="round"/>
+  <text x="496.0" y="184.8" font-size="11" fill="#607D8B" text-anchor="end">−0.2</text>
+  <line x1="500.0" y1="150.5" x2="704.0" y2="150.5" stroke="#263238" stroke-width="1.4" stroke-linecap="round"/>
+  <text x="496.0" y="154.5" font-size="11" fill="#607D8B" text-anchor="end">0</text>
+  <line x1="500.0" y1="120.2" x2="704.0" y2="120.2" stroke="#CFD8DC" stroke-width="1" stroke-linecap="round"/>
+  <text x="496.0" y="124.2" font-size="11" fill="#607D8B" text-anchor="end">0.2</text>
+  <line x1="500.0" y1="89.9" x2="704.0" y2="89.9" stroke="#CFD8DC" stroke-width="1" stroke-linecap="round"/>
+  <text x="496.0" y="93.9" font-size="11" fill="#607D8B" text-anchor="end">0.4</text>
+  <line x1="500.0" y1="59.6" x2="704.0" y2="59.6" stroke="#CFD8DC" stroke-width="1" stroke-linecap="round"/>
+  <text x="496.0" y="63.6" font-size="11" fill="#607D8B" text-anchor="end">0.6</text>
+  <text x="512.0" y="209.0" font-size="11" fill="#607D8B" text-anchor="middle">20</text>
+  <text x="552.0" y="209.0" font-size="11" fill="#607D8B" text-anchor="middle">40</text>
+  <text x="592.0" y="209.0" font-size="11" fill="#607D8B" text-anchor="middle">60</text>
+  <text x="632.0" y="209.0" font-size="11" fill="#607D8B" text-anchor="middle">80</text>
+  <text x="672.0" y="209.0" font-size="11" fill="#607D8B" text-anchor="middle">100</text>
+  <text x="602.0" y="222.0" font-size="11" fill="#263238" text-anchor="middle">light intensity (%)</text>
+  <text x="478.0" y="127.8" font-size="11" fill="#263238" text-anchor="middle" transform="rotate(-90 478.0 127.8)">mg/L per hour</text>
+  <line x1="500.0" y1="179.9" x2="704.0" y2="179.9" stroke="#E65100" stroke-width="1.6" stroke-linecap="round" stroke-dasharray="2,3"/>
+  <text x="704.0" y="192.9" font-size="11" fill="#263238" text-anchor="end"><tspan fill="#E65100" font-weight="bold">dark run (Part II): −0.1939</tspan></text>
+  <polyline points="512.0,179.8 552.0,179.9 592.0,149.8 632.0,118.9 672.0,89.3" fill="none" stroke="#263238" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="5,3"/>
+  <polyline points="512.0,150.4 552.0,150.5 592.0,120.4 632.0,89.5 672.0,59.9" fill="none" stroke="#1E88E5" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"/>
+  <circle cx="512.0" cy="179.8" r="3.6" fill="#FFFFFF" stroke="#263238" stroke-width="1.6"/>
+  <circle cx="552.0" cy="179.9" r="3.6" fill="#FFFFFF" stroke="#263238" stroke-width="1.6"/>
+  <circle cx="592.0" cy="149.8" r="3.6" fill="#FFFFFF" stroke="#263238" stroke-width="1.6"/>
+  <circle cx="632.0" cy="118.9" r="3.6" fill="#FFFFFF" stroke="#263238" stroke-width="1.6"/>
+  <circle cx="672.0" cy="89.3" r="3.6" fill="#FFFFFF" stroke="#263238" stroke-width="1.6"/>
+  <circle cx="512.0" cy="150.4" r="3.8" fill="#1E88E5" stroke="#FFFFFF" stroke-width="1"/>
+  <circle cx="552.0" cy="150.5" r="3.8" fill="#1E88E5" stroke="#FFFFFF" stroke-width="1"/>
+  <circle cx="592.0" cy="120.4" r="3.8" fill="#1E88E5" stroke="#FFFFFF" stroke-width="1"/>
+  <circle cx="632.0" cy="89.5" r="3.8" fill="#1E88E5" stroke="#FFFFFF" stroke-width="1"/>
+  <circle cx="672.0" cy="59.9" r="3.8" fill="#1E88E5" stroke="#FFFFFF" stroke-width="1"/>
+  <text x="679.0" y="63.9" font-size="11" fill="#263238"><tspan fill="#1E88E5" font-weight="bold">0.5976</tspan></text>
+  <text x="679.0" y="93.3" font-size="11" fill="#263238"><tspan font-weight="bold">+0.4037</tspan></text>
+  <line x1="532.0" y1="122.0" x2="532.0" y2="144.5" stroke="#1E88E5" stroke-width="1" stroke-linecap="round" stroke-dasharray="2,2"/>
+  <text x="506.0" y="103.0" font-size="11" fill="#263238"><tspan fill="#1E88E5" font-weight="bold">≈ 0 at 20–40 %:</tspan></text>
+  <text x="506.0" y="116.0" font-size="11" fill="#263238">too small to detect</text>
+  <line x1="596.0" y1="154.5" x2="604.0" y2="162.5" stroke="#263238" stroke-width="1" stroke-linecap="round"/>
+  <text x="605.0" y="170.5" font-size="11" fill="#263238"><tspan font-weight="bold">break-even ≈ 60 %</tspan></text>
+  <line x1="508.0" y1="62.0" x2="524.0" y2="62.0" stroke="#1E88E5" stroke-width="2.6" stroke-linecap="round"/>
+  <circle cx="516.0" cy="62.0" r="3.6" fill="#1E88E5" stroke="#FFFFFF" stroke-width="1"/>
+  <text x="530.0" y="66.0" font-size="11" fill="#263238"><tspan fill="#1E88E5" font-weight="bold">O₂ production</tspan> (gross)</text>
+  <line x1="508.0" y1="78.0" x2="524.0" y2="78.0" stroke="#263238" stroke-width="2" stroke-linecap="round" stroke-dasharray="5,3"/>
+  <circle cx="516.0" cy="78.0" r="3.3" fill="#FFFFFF" stroke="#263238" stroke-width="1.5"/>
+  <text x="530.0" y="82.0" font-size="11" fill="#263238"><tspan font-weight="bold">DO difference</tspan> (net)</text>
+  </g>
+</svg></div></figure><h3 class="h2" id="d-what-controls-the-rate-limiting-factors" style="color:#00695C;border-color:#00695C">D · What controls the rate: limiting factors</h3><figure id="fig-n4" class="fig"><div class="svgwrap" style="max-width:806px" title="Click to enlarge" tabindex="0" role="button" aria-label="Enlarge figure 4"><svg role="img" aria-label="Four small graphs: light intensity (rising, your data), light color (white best in class results; red and blue absorbed best, green lowest; illustrative), temperature (best tested about 20 degrees C; illustrative), and CO2 concentration (rises then levels off; inference, illustrative)." preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 171">
+  
+  <rect x="0" y="0" width="720" height="171" fill="#FFFFFF"/>
+  <g font-family="Calibri, Carlito, Arial, sans-serif">
+  <rect x="1.0" y="1.0" width="718.0" height="169.0" fill="#FFFFFF" rx="7" stroke="#00695C" stroke-width="1.5"/>
+  <path d="M1,25 V8 Q1,1 8,1 H712 Q719,1 719,8 V25 Z" fill="#00695C"/>
+  <circle cx="17.0" cy="13.0" r="8.5" fill="#FFFFFF"/>
+  <text x="17.0" y="17.6" font-size="13" fill="#00695C" text-anchor="middle"><tspan font-weight="bold">D</tspan></text>
+  <text x="32.0" y="18.0" font-size="14.5" fill="#FFFFFF"><tspan font-weight="bold">What controls the rate: limiting factors</tspan></text>
+  <text x="710.0" y="17.3" font-size="11.5" fill="#E0F2F1" text-anchor="end">Parts IV–V graphs are illustrative: get the real numbers from classmates</text>
+  <text x="16.0" y="44.0" font-size="12.5" fill="#263238"><tspan font-weight="bold">Light intensity</tspan></text>
+  <text x="178.0" y="44.0" font-size="11" fill="#607D8B" text-anchor="end"><tspan font-style="italic">[P2 III] your data</tspan></text>
+  <line x1="34.0" y1="50.0" x2="34.0" y2="98.0" stroke="#263238" stroke-width="1.3" stroke-linecap="round"/>
+  <line x1="34.0" y1="98.0" x2="174.0" y2="98.0" stroke="#263238" stroke-width="1.3" stroke-linecap="round"/>
+  <text x="24.0" y="76.0" font-size="11" fill="#263238" text-anchor="middle" transform="rotate(-90 24.0 76.0)">O₂ prod.</text>
+  <polyline points="44.0,93.9 74.0,94.0 104.0,81.4 134.0,68.5 164.0,56.2" fill="none" stroke="#1E88E5" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/>
+  <circle cx="44.0" cy="93.9" r="3.2" fill="#1E88E5" stroke="#FFFFFF" stroke-width="0.8"/>
+  <circle cx="74.0" cy="94.0" r="3.2" fill="#1E88E5" stroke="#FFFFFF" stroke-width="0.8"/>
+  <circle cx="104.0" cy="81.4" r="3.2" fill="#1E88E5" stroke="#FFFFFF" stroke-width="0.8"/>
+  <circle cx="134.0" cy="68.5" r="3.2" fill="#1E88E5" stroke="#FFFFFF" stroke-width="0.8"/>
+  <circle cx="164.0" cy="56.2" r="3.2" fill="#1E88E5" stroke="#FFFFFF" stroke-width="0.8"/>
+  <text x="44.0" y="110.0" font-size="11" fill="#607D8B" text-anchor="middle">20</text>
+  <text x="104.0" y="110.0" font-size="11" fill="#607D8B" text-anchor="middle">60</text>
+  <text x="164.0" y="110.0" font-size="11" fill="#607D8B" text-anchor="middle">100</text>
+  <text x="110.0" y="122.0" font-size="11" fill="#263238" text-anchor="middle">light (%)</text>
+  <text x="16.0" y="138.0" font-size="11" fill="#263238">From 40 % up, each +20 % light ≈</text>
+  <text x="16.0" y="150.8" font-size="11" fill="#263238"><tspan font-weight="bold">+0.20 mg/L per hour</tspan> more O₂. No</text>
+  <text x="16.0" y="163.6" font-size="11" fill="#263238">leveling off: light was limiting.</text>
+  <line x1="185.0" y1="34.0" x2="185.0" y2="161.0" stroke="#CFD8DC" stroke-width="1" stroke-linecap="round"/>
+  <text x="194.0" y="44.0" font-size="12.5" fill="#263238"><tspan font-weight="bold">Light color</tspan></text>
+  <text x="356.0" y="44.0" font-size="11" fill="#607D8B" text-anchor="end"><tspan font-style="italic">[P2 IV] illustrative</tspan></text>
+  <line x1="212.0" y1="50.0" x2="212.0" y2="98.0" stroke="#263238" stroke-width="1.3" stroke-linecap="round"/>
+  <line x1="212.0" y1="98.0" x2="352.0" y2="98.0" stroke="#263238" stroke-width="1.3" stroke-linecap="round"/>
+  <text x="202.0" y="76.0" font-size="11" fill="#263238" text-anchor="middle" transform="rotate(-90 202.0 76.0)">O₂ prod.</text>
+  <rect x="221.5" y="69.2" width="26.0" height="28.8" fill="#E53935" stroke="#E53935" stroke-width="1.2"/>
+  <text x="234.5" y="110.0" font-size="11" fill="#607D8B" text-anchor="middle">red</text>
+  <rect x="254.5" y="71.6" width="26.0" height="26.4" fill="#1E88E5" stroke="#1E88E5" stroke-width="1.2"/>
+  <text x="267.5" y="110.0" font-size="11" fill="#607D8B" text-anchor="middle">blue</text>
+  <rect x="287.5" y="91.6" width="26.0" height="6.4" fill="#43A047" stroke="#43A047" stroke-width="1.2"/>
+  <text x="300.5" y="110.0" font-size="11" fill="#607D8B" text-anchor="middle">green</text>
+  <rect x="320.5" y="60.0" width="26.0" height="38.0" fill="#FFFFFF" stroke="#455A64" stroke-width="1.2"/>
+  <text x="333.5" y="110.0" font-size="11" fill="#607D8B" text-anchor="middle">white</text>
+  <text x="285.0" y="122.0" font-size="11" fill="#263238" text-anchor="middle">light color</text>
+  <text x="194.0" y="138.0" font-size="11" fill="#263238"><tspan font-weight="bold">White</tspan> was best (class results).</text>
+  <text x="194.0" y="150.8" font-size="11" fill="#263238">Chlorophyll absorbs <tspan font-weight="bold">red +</tspan></text>
+  <text x="194.0" y="163.6" font-size="11" fill="#263238"><tspan font-weight="bold">blue/violet</tspan>, reflects <tspan font-weight="bold">green</tspan>.</text>
+  <line x1="363.0" y1="34.0" x2="363.0" y2="161.0" stroke="#CFD8DC" stroke-width="1" stroke-linecap="round"/>
+  <text x="372.0" y="44.0" font-size="12.5" fill="#263238"><tspan font-weight="bold">Temperature</tspan></text>
+  <text x="534.0" y="44.0" font-size="11" fill="#607D8B" text-anchor="end"><tspan font-style="italic">[P2 V] illustrative</tspan></text>
+  <line x1="390.0" y1="50.0" x2="390.0" y2="98.0" stroke="#263238" stroke-width="1.3" stroke-linecap="round"/>
+  <line x1="390.0" y1="98.0" x2="530.0" y2="98.0" stroke="#263238" stroke-width="1.3" stroke-linecap="round"/>
+  <text x="380.0" y="76.0" font-size="11" fill="#263238" text-anchor="middle" transform="rotate(-90 380.0 76.0)">O₂ prod.</text>
+  <polyline points="400.0,67.6 403.0,66.0 406.0,64.5 409.0,63.1 412.0,61.8 415.0,60.7 418.0,59.7 421.0,59.0 424.0,58.4 427.0,58.1 430.0,58.0 433.0,58.1 436.0,58.4 439.0,59.0 442.0,59.7 445.0,60.7 448.0,61.8 451.0,63.1 454.0,64.5 457.0,66.0 460.0,67.6 463.0,69.2 466.0,70.9 469.0,72.6 472.0,74.3 475.0,76.0 478.0,77.7 481.0,79.2 484.0,80.8 487.0,82.2 490.0,83.5 493.0,84.8 496.0,85.9 499.0,87.0 502.0,87.9 505.0,88.8 508.0,89.5 511.0,90.2 514.0,90.8 517.0,91.3 520.0,91.8" fill="none" stroke="#E65100" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/>
+  <circle cx="400.0" cy="67.6" r="3.0" fill="#E65100" stroke="#FFFFFF" stroke-width="0.8"/>
+  <circle cx="430.0" cy="58.0" r="3.0" fill="#E65100" stroke="#FFFFFF" stroke-width="0.8"/>
+  <circle cx="460.0" cy="67.6" r="3.0" fill="#E65100" stroke="#FFFFFF" stroke-width="0.8"/>
+  <circle cx="490.0" cy="83.5" r="3.0" fill="#E65100" stroke="#FFFFFF" stroke-width="0.8"/>
+  <circle cx="520.0" cy="91.8" r="3.0" fill="#E65100" stroke="#FFFFFF" stroke-width="0.8"/>
+  <line x1="430.0" y1="52.0" x2="430.0" y2="98.0" stroke="#E65100" stroke-width="1" stroke-linecap="round" stroke-dasharray="2,2"/>
+  <text x="400.0" y="110.0" font-size="11" fill="#607D8B" text-anchor="middle">15</text>
+  <text x="430.0" y="110.0" font-size="11" fill="#607D8B" text-anchor="middle">20</text>
+  <text x="460.0" y="110.0" font-size="11" fill="#607D8B" text-anchor="middle">25</text>
+  <text x="490.0" y="110.0" font-size="11" fill="#607D8B" text-anchor="middle">30</text>
+  <text x="520.0" y="110.0" font-size="11" fill="#607D8B" text-anchor="middle">35</text>
+  <text x="466.0" y="122.0" font-size="11" fill="#263238" text-anchor="middle">temperature (°C)</text>
+  <text x="372.0" y="138.0" font-size="11" fill="#263238">Best tested <tspan font-weight="bold">≈ 20 °C</tspan> (optimum</text>
+  <text x="372.0" y="150.8" font-size="11" fill="#263238">15–25 °C). Warmer: enzymes less</text>
+  <text x="372.0" y="163.6" font-size="11" fill="#263238">efficient; respiration rises.</text>
+  <line x1="541.0" y1="34.0" x2="541.0" y2="161.0" stroke="#CFD8DC" stroke-width="1" stroke-linecap="round"/>
+  <text x="550.0" y="44.0" font-size="12.5" fill="#263238"><tspan font-weight="bold">CO₂ level</tspan></text>
+  <text x="712.0" y="44.0" font-size="11" fill="#607D8B" text-anchor="end"><tspan font-style="italic">inference · illustrative</tspan></text>
+  <line x1="568.0" y1="50.0" x2="568.0" y2="98.0" stroke="#263238" stroke-width="1.3" stroke-linecap="round"/>
+  <line x1="568.0" y1="98.0" x2="708.0" y2="98.0" stroke="#263238" stroke-width="1.3" stroke-linecap="round"/>
+  <text x="558.0" y="76.0" font-size="11" fill="#263238" text-anchor="middle" transform="rotate(-90 558.0 76.0)">O₂ prod.</text>
+  <polyline points="572.0,94.0 575.3,91.0 578.6,88.3 581.9,85.9 585.2,83.6 588.5,81.6 591.8,79.7 595.1,78.0 598.4,76.4 601.7,75.0 605.0,73.7 608.3,72.5 611.6,71.4 614.9,70.4 618.2,69.5 621.5,68.7 624.8,67.9 628.1,67.2 631.4,66.6 634.7,66.0 638.0,65.5 641.3,65.0 644.6,64.6 647.9,64.2 651.2,63.8 654.5,63.5 657.8,63.2 661.1,62.9 664.4,62.7 667.7,62.4 671.0,62.2 674.3,62.0 677.6,61.9 680.9,61.7 684.2,61.5 687.5,61.4 690.8,61.3 694.1,61.2 697.4,61.1 700.7,61.0 704.0,60.9" fill="none" stroke="#546E7A" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/>
+  <text x="704.0" y="58.0" font-size="11" fill="#607D8B" text-anchor="end">levels off</text>
+  <text x="574.0" y="110.0" font-size="11" fill="#607D8B">low</text>
+  <text x="708.0" y="110.0" font-size="11" fill="#607D8B" text-anchor="end">high</text>
+  <text x="644.0" y="122.0" font-size="11" fill="#263238" text-anchor="middle">CO₂ concentration</text>
+  <text x="550.0" y="138.0" font-size="11" fill="#263238">CO₂ is a reactant: more CO₂ →</text>
+  <text x="550.0" y="150.8" font-size="11" fill="#263238">faster, until another factor limits.</text>
+  </g>
+</svg></div></figure><div class="pb"></div><h2 class="band" id="page-2-the-cer-the-carbon-cycle" style="background:#00695C">Page 2 · The CER + the carbon cycle</h2><h3 class="h2" id="e-cer-claim-evidence-reasoning-5-steps-scored-6" style="color:#00695C;border-color:#00695C">E · CER = Claim + Evidence + Reasoning: 5 steps, scored /6</h3><figure id="fig-n5" class="fig"><div class="svgwrap" style="max-width:806px" title="Click to enlarge" tabindex="0" role="button" aria-label="Enlarge figure 5"><svg role="img" aria-label="The 5-step CER method: 1 unpack the question, 2 read the data, 3 claim it, 4 prove it with evidence, 5 explain it with reasoning. Scoring out of 6: claim 1, evidence 2, reasoning 3. Claim templates for trend, best condition, comparison, mechanism and model-based questions." preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 210">
+  
+  <rect x="0" y="0" width="720" height="210" fill="#FFFFFF"/>
+  <g font-family="Calibri, Carlito, Arial, sans-serif">
+  <rect x="1.0" y="1.0" width="718.0" height="208.0" fill="#FFFFFF" rx="7" stroke="#00695C" stroke-width="1.5"/>
+  <path d="M1,25 V8 Q1,1 8,1 H712 Q719,1 719,8 V25 Z" fill="#00695C"/>
+  <circle cx="17.0" cy="13.0" r="8.5" fill="#FFFFFF"/>
+  <text x="17.0" y="17.6" font-size="13" fill="#00695C" text-anchor="middle"><tspan font-weight="bold">E</tspan></text>
+  <text x="32.0" y="18.0" font-size="14.5" fill="#FFFFFF"><tspan font-weight="bold">CER = Claim + Evidence + Reasoning: 5 steps, scored /6</tspan></text>
+  <text x="710.0" y="17.3" font-size="11.5" fill="#E0F2F1" text-anchor="end">[P2 Part VII] label AND color: [C] blue · [E] green · [R] orange</text>
+  <text x="10.0" y="45.0" font-size="12.5" fill="#00695C"><tspan font-weight="bold">THE 5-STEP CER METHOD</tspan></text>
+  <circle cx="19.0" cy="58.0" r="8.5" fill="#00695C"/>
+  <text x="19.0" y="62.5" font-size="12" fill="#FFFFFF" text-anchor="middle"><tspan font-weight="bold">1</tspan></text>
+  <text x="34.0" y="62.0" font-size="11.5" fill="#263238"><tspan font-weight="bold">Unpack the question:</tspan> circle the variables (what changed? what was</text>
+  <text x="34.0" y="75.4" font-size="11.5" fill="#263238">measured?) and the command word.</text>
+  <circle cx="19.0" cy="89.3" r="8.5" fill="#00695C"/>
+  <text x="19.0" y="93.8" font-size="12" fill="#FFFFFF" text-anchor="middle"><tspan font-weight="bold">2</tspan></text>
+  <text x="34.0" y="93.3" font-size="11.5" fill="#263238"><tspan font-weight="bold">Read the data:</tspan> find the trend, the highest/lowest, and 2–3 numbers</text>
+  <text x="34.0" y="106.7" font-size="11.5" fill="#263238"><tspan font-weight="bold">with units</tspan>; note anything odd.</text>
+  <circle cx="19.0" cy="120.6" r="8.5" fill="#1565C0"/>
+  <text x="19.0" y="125.1" font-size="12" fill="#FFFFFF" text-anchor="middle"><tspan font-weight="bold">3</tspan></text>
+  <text x="34.0" y="124.6" font-size="11.5" fill="#263238"><tspan fill="#1565C0" font-weight="bold">Claim it</tspan><tspan font-weight="bold"> [C]:</tspan> one sentence that answers the question in its own words.</text>
+  <circle cx="19.0" cy="138.5" r="8.5" fill="#2E7D32"/>
+  <text x="19.0" y="143.0" font-size="12" fill="#FFFFFF" text-anchor="middle"><tspan font-weight="bold">4</tspan></text>
+  <text x="34.0" y="142.5" font-size="11.5" fill="#263238"><tspan fill="#2E7D32" font-weight="bold">Prove it (Evidence)</tspan><tspan font-weight="bold"> [E]:</tspan> 2–3 specific data points with units, ideally a</text>
+  <text x="34.0" y="155.9" font-size="11.5" fill="#263238">comparison (“from __ to __”).</text>
+  <circle cx="19.0" cy="169.8" r="8.5" fill="#E65100"/>
+  <text x="19.0" y="174.3" font-size="12" fill="#FFFFFF" text-anchor="middle"><tspan font-weight="bold">5</tspan></text>
+  <text x="34.0" y="173.8" font-size="11.5" fill="#263238"><tspan fill="#E65100" font-weight="bold">Explain it (Reasoning)</tspan><tspan font-weight="bold"> [R]:</tspan> “This happens because… Since… therefore…”</text>
+  <text x="34.0" y="187.2" font-size="11.5" fill="#263238">Name reactants, products, organelle, energy, and (if relevant)</text>
+  <text x="34.0" y="200.6" font-size="11.5" fill="#263238">respiration happening at the same time.</text>
+  <line x1="386.0" y1="32.0" x2="386.0" y2="202.0" stroke="#CFD8DC" stroke-width="1.2" stroke-linecap="round"/>
+  <text x="396.0" y="45.0" font-size="12.5" fill="#00695C"><tspan font-weight="bold">SCORING /6</tspan></text>
+  <text x="488.0" y="45.0" font-size="11" fill="#607D8B">(typical; your teacher’s may differ a bit)</text>
+  <rect x="396.0" y="51.0" width="50.7" height="20.0" fill="#1565C0" rx="4"/>
+  <text x="421.3" y="65.5" font-size="11.5" fill="#FFFFFF" text-anchor="middle"><tspan font-weight="bold">[C] 1 pt</tspan></text>
+  <rect x="448.7" y="51.0" width="103.3" height="20.0" fill="#2E7D32" rx="4"/>
+  <text x="500.3" y="65.5" font-size="11.5" fill="#FFFFFF" text-anchor="middle"><tspan font-weight="bold">[E] Evidence: 2 pts</tspan></text>
+  <rect x="554.0" y="51.0" width="156.0" height="20.0" fill="#E65100" rx="4"/>
+  <text x="632.0" y="65.5" font-size="11.5" fill="#FFFFFF" text-anchor="middle"><tspan font-weight="bold">[R] Reasoning: 3 pts</tspan></text>
+  <text x="396.0" y="85.0" font-size="11" fill="#263238"><tspan fill="#1565C0" font-weight="bold">[C] 1</tspan> = accurate, complete, answers the question (no “I think”)</text>
+  <text x="396.0" y="97.5" font-size="11" fill="#263238"><tspan fill="#2E7D32" font-weight="bold">[E] 2</tspan> = ≥ 2 accurate data points with units (1 = vague or only one)</text>
+  <text x="396.0" y="110.0" font-size="11" fill="#263238"><tspan fill="#E65100" font-weight="bold">[R] 3</tspan> = right science principle + explicit link to the claim + vocabulary</text>
+  <text x="396.0" y="122.5" font-size="11" fill="#263238">(2 = weak link · 1 = repeats the evidence · 0 = wrong science)</text>
+  <text x="396.0" y="139.5" font-size="12" fill="#00695C"><tspan font-weight="bold">CLAIM TEMPLATES</tspan></text>
+  <text x="396.0" y="152.3" font-size="11" fill="#263238"><tspan font-weight="bold">Trend:</tspan> As [IV] increases, [DV] increases/decreases.</text>
+  <text x="396.0" y="164.6" font-size="11" fill="#263238"><tspan font-weight="bold">Best condition:</tspan> [Condition] gives the most [DV].</text>
+  <text x="396.0" y="176.9" font-size="11" fill="#263238"><tspan font-weight="bold">Comparison:</tspan> [A] produced more [DV] than [B].</text>
+  <text x="396.0" y="189.2" font-size="11" fill="#263238"><tspan font-weight="bold">Mechanism:</tspan> [Pattern] happens because [process].</text>
+  <text x="396.0" y="201.5" font-size="11" fill="#263238"><tspan font-weight="bold">Model-based:</tspan> [Action] will increase/decrease [quantity].</text>
+  </g>
+</svg></div></figure><h3 class="h2" id="f-reasoning-toolkit-part-vii-fish-logic" style="color:#00695C;border-color:#00695C">F · Reasoning toolkit + Part VII fish logic</h3><figure id="fig-n6" class="fig"><div class="svgwrap" style="max-width:806px" title="Click to enlarge" tabindex="0" role="button" aria-label="Enlarge figure 6"><svg role="img" aria-label="Ten science principles to cite in reasoning, and the Part VII fish logic: fish only respire, so the tank stays healthy only while the DO difference is at least 0; one plant at 100 percent light left a surplus of +0.4037 mg/L per hour, so all the fish together can use about 0.40 mg/L per hour." preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 172">
+  
+  <rect x="0" y="0" width="720" height="172" fill="#FFFFFF"/>
+  <g font-family="Calibri, Carlito, Arial, sans-serif">
+  <rect x="1.0" y="1.0" width="718.0" height="170.0" fill="#FFFFFF" rx="7" stroke="#00695C" stroke-width="1.5"/>
+  <path d="M1,25 V8 Q1,1 8,1 H712 Q719,1 719,8 V25 Z" fill="#00695C"/>
+  <circle cx="17.0" cy="13.0" r="8.5" fill="#FFFFFF"/>
+  <text x="17.0" y="17.6" font-size="13" fill="#00695C" text-anchor="middle"><tspan font-weight="bold">F</tspan></text>
+  <text x="32.0" y="18.0" font-size="14.5" fill="#FFFFFF"><tspan font-weight="bold">Reasoning toolkit: science to cite in your [R]</tspan></text>
+  <text x="710.0" y="17.3" font-size="11.5" fill="#E0F2F1" text-anchor="end">[P1] [P2] [P3]: use the packets’ own words</text>
+  <rect x="10.0" y="33.0" width="349.0" height="15.0" fill="#FFF3E0" rx="3"/>
+  <circle cx="19.0" cy="40.8" r="7.4" fill="#E65100"/>
+  <text x="19.0" y="44.7" font-size="11" fill="#FFFFFF" text-anchor="middle"><tspan font-weight="bold">1</tspan></text>
+  <text x="31.0" y="46.0" font-size="11.5" fill="#263238">Photosynthesis stores <tspan font-weight="bold">light energy</tspan> as chemical energy in <tspan font-weight="bold">glucose</tspan>.</text>
+  <rect x="10.0" y="48.2" width="349.0" height="15.0" fill="#FFFFFF" rx="3"/>
+  <circle cx="19.0" cy="56.0" r="7.4" fill="#E65100"/>
+  <text x="19.0" y="59.9" font-size="11" fill="#FFFFFF" text-anchor="middle"><tspan font-weight="bold">2</tspan></text>
+  <text x="31.0" y="61.2" font-size="11.5" fill="#263238"><tspan font-weight="bold">O₂ is a product:</tspan> faster photosynthesis → more O₂ released.</text>
+  <rect x="10.0" y="63.4" width="349.0" height="15.0" fill="#FFF3E0" rx="3"/>
+  <circle cx="19.0" cy="71.2" r="7.4" fill="#E65100"/>
+  <text x="19.0" y="75.1" font-size="11" fill="#FFFFFF" text-anchor="middle"><tspan font-weight="bold">3</tspan></text>
+  <text x="31.0" y="76.4" font-size="11.5" fill="#263238">Respiration breaks down glucose + O₂ to release energy as <tspan font-weight="bold">ATP</tspan>.</text>
+  <rect x="10.0" y="78.6" width="349.0" height="15.0" fill="#FFFFFF" rx="3"/>
+  <circle cx="19.0" cy="86.4" r="7.4" fill="#E65100"/>
+  <text x="19.0" y="90.3" font-size="11" fill="#FFFFFF" text-anchor="middle"><tspan font-weight="bold">4</tspan></text>
+  <text x="31.0" y="91.6" font-size="11.5" fill="#263238"><tspan font-weight="bold">Plants do both.</tspan> Respiration runs 24/7, so in the dark DO falls.</text>
+  <rect x="10.0" y="93.8" width="349.0" height="15.0" fill="#FFF3E0" rx="3"/>
+  <circle cx="19.0" cy="101.6" r="7.4" fill="#E65100"/>
+  <text x="19.0" y="105.5" font-size="11" fill="#FFFFFF" text-anchor="middle"><tspan font-weight="bold">5</tspan></text>
+  <text x="31.0" y="106.8" font-size="11.5" fill="#263238">DO difference = O₂ made − O₂ used (&gt; 0 only if photosynthesis wins).</text>
+  <rect x="365.0" y="33.0" width="349.0" height="15.0" fill="#FFF3E0" rx="3"/>
+  <circle cx="374.0" cy="40.8" r="7.4" fill="#E65100"/>
+  <text x="374.0" y="44.7" font-size="11" fill="#FFFFFF" text-anchor="middle"><tspan font-weight="bold">6</tspan></text>
+  <text x="386.0" y="46.0" font-size="11.5" fill="#263238"><tspan font-weight="bold">Light is the energy source:</tspan> more light → faster photosynthesis.</text>
+  <rect x="365.0" y="48.2" width="349.0" height="15.0" fill="#FFFFFF" rx="3"/>
+  <circle cx="374.0" cy="56.0" r="7.4" fill="#E65100"/>
+  <text x="374.0" y="59.9" font-size="11" fill="#FFFFFF" text-anchor="middle"><tspan font-weight="bold">7</tspan></text>
+  <text x="386.0" y="61.2" font-size="11.5" fill="#263238">Chlorophyll absorbs <tspan font-weight="bold">red + blue/violet</tspan> light best and <tspan font-weight="bold">reflects green</tspan>.</text>
+  <rect x="365.0" y="63.4" width="349.0" height="15.0" fill="#FFF3E0" rx="3"/>
+  <circle cx="374.0" cy="71.2" r="7.4" fill="#E65100"/>
+  <text x="374.0" y="75.1" font-size="11" fill="#FFFFFF" text-anchor="middle"><tspan font-weight="bold">8</tspan></text>
+  <text x="386.0" y="76.4" font-size="11.5" fill="#263238">Enzymes work best at an <tspan font-weight="bold">optimum temperature</tspan>.</text>
+  <rect x="365.0" y="78.6" width="349.0" height="15.0" fill="#FFFFFF" rx="3"/>
+  <circle cx="374.0" cy="86.4" r="7.4" fill="#E65100"/>
+  <text x="374.0" y="90.3" font-size="11" fill="#FFFFFF" text-anchor="middle"><tspan font-weight="bold">9</tspan></text>
+  <text x="386.0" y="91.6" font-size="11.5" fill="#263238">The factor in shortest supply (the <tspan font-weight="bold">limiting factor</tspan>) sets the rate.</text>
+  <rect x="365.0" y="93.8" width="349.0" height="15.0" fill="#FFF3E0" rx="3"/>
+  <circle cx="374.0" cy="101.6" r="7.4" fill="#E65100"/>
+  <text x="374.0" y="105.5" font-size="11" fill="#FFFFFF" text-anchor="middle"><tspan font-weight="bold">10</tspan></text>
+  <text x="386.0" y="106.8" font-size="11.5" fill="#263238">Air CO₂: respiration + burning <tspan font-weight="bold">add</tspan> it; photosynthesis <tspan font-weight="bold">removes</tspan> it.</text>
+  <rect x="8.0" y="118.0" width="704.0" height="46.0" fill="#E3F2FD" rx="6" stroke="#1E88E5" stroke-width="1.2"/>
+  <polygon points="20.0,136.0 11.2,129.4 11.2,142.6" fill="#FFE0B2" stroke="#E65100" stroke-width="1.1" stroke-linejoin="round"/>
+  <ellipse cx="31.0" cy="136.0" rx="12.100000000000001" ry="7.15" fill="#FFE0B2" stroke="#E65100" stroke-width="1.2"/>
+  <circle cx="37.6" cy="134.3" r="1.32" fill="#263238"/>
+  <path d="M60,162.0 V136.5" fill="none" stroke="#2E7D32" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+  <ellipse cx="52.4" cy="153.5" rx="5.95" ry="3.06" fill="#66BB6A" stroke="#2E7D32" stroke-width="1" transform="rotate(-35 52.4 153.5)"/>
+  <ellipse cx="67.7" cy="147.6" rx="5.95" ry="3.06" fill="#66BB6A" stroke="#2E7D32" stroke-width="1" transform="rotate(35 67.7 147.6)"/>
+  <ellipse cx="53.2" cy="140.8" rx="5.95" ry="3.06" fill="#66BB6A" stroke="#2E7D32" stroke-width="1" transform="rotate(-30 53.2 140.8)"/>
+  <ellipse cx="60.0" cy="134.8" rx="5.95" ry="3.06" fill="#66BB6A" stroke="#2E7D32" stroke-width="1" transform="rotate(0 60.0 134.8)"/>
+  <text x="76.0" y="132.5" font-size="11.5" fill="#263238"><tspan fill="#1565C0" font-weight="bold">PART VII FISH LOGIC</tspan> [P2 Part VII]: fish only respire, so the tank stays healthy only while <tspan font-weight="bold">DO difference ≥ 0</tspan>. One plant at 100 % light left</text>
+  <text x="76.0" y="145.7" font-size="11.5" fill="#263238">a <tspan font-weight="bold">+0.4037 mg/L per hour</tspan> surplus → the fish O₂ budget is <tspan font-weight="bold">≈ 0.40 mg/L per hour</tspan> for all the fish together. To find the number: add fish</text>
+  <text x="76.0" y="158.9" font-size="11.5" fill="#263238">one at a time, rerun, and keep the last number with DO difference ≥ 0.</text>
+  </g>
+</svg></div></figure><h3 class="h2" id="g-the-carbon-cycle-h-the-keeling-curve" style="color:#00695C;border-color:#00695C">G · The carbon cycle   ·   H · The Keeling Curve</h3><div class="cols" style="grid-template-columns:1fr 1fr"><div class="col"><figure id="fig-n7" class="fig"><div class="svgwrap" style="max-width:403px" title="Click to enlarge" tabindex="0" role="button" aria-label="Enlarge figure 7"><svg role="img" aria-label="Model 2 carbon cycle: arrow D is photosynthesis (CO2 out of the air into the plant); arrows A, B and C are respiration by decomposers, animals and plants (CO2 into the air); combustion of fossil fuels also adds CO2. Humans add CO2 faster than it is removed by burning fossil fuels and by deforestation." preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 233">
+  
+  <rect x="0" y="0" width="360" height="233" fill="#FFFFFF"/>
+  <g font-family="Calibri, Carlito, Arial, sans-serif">
+  <rect x="1.0" y="1.0" width="351.0" height="231.0" fill="#FFFFFF" rx="7" stroke="#00695C" stroke-width="1.5"/>
+  <path d="M1,25 V8 Q1,1 8,1 H345 Q352,1 352,8 V25 Z" fill="#00695C"/>
+  <circle cx="17.0" cy="13.0" r="8.5" fill="#FFFFFF"/>
+  <text x="17.0" y="17.6" font-size="13" fill="#00695C" text-anchor="middle"><tspan font-weight="bold">G</tspan></text>
+  <text x="32.0" y="18.0" font-size="14.5" fill="#FFFFFF"><tspan font-weight="bold">The carbon cycle</tspan></text>
+  <text x="343.0" y="17.3" font-size="11.5" fill="#E0F2F1" text-anchor="end">[P1 Model 2]</text>
+  <ellipse cx="178.0" cy="48.0" rx="66" ry="15" fill="#CFD8DC" stroke="#546E7A" stroke-width="1.8"/>
+  <text x="178.0" y="52.5" font-size="12.5" fill="#546E7A" text-anchor="middle"><tspan font-weight="bold">Atmospheric CO₂</tspan></text>
+  <rect x="296.5" y="130.0" width="7.0" height="20.0" fill="#8D6E63" rx="1.5" stroke="#5D4037" stroke-width="1"/>
+  <circle cx="300.0" cy="114.0" r="14.0" fill="#66BB6A" stroke="#2E7D32" stroke-width="1.3"/>
+  <circle cx="289.0" cy="123.0" r="10.0" fill="#66BB6A" stroke="#2E7D32" stroke-width="1.3"/>
+  <circle cx="311.0" cy="123.0" r="10.0" fill="#66BB6A" stroke="#2E7D32" stroke-width="1.3"/>
+  <ellipse cx="186.6" cy="105.2" rx="2.38" ry="6.8" fill="#ECEFF1" stroke="#78909C" stroke-width="1.2" transform="rotate(-12 186.6 105.2)"/>
+  <ellipse cx="190.8" cy="105.2" rx="2.38" ry="6.8" fill="#ECEFF1" stroke="#78909C" stroke-width="1.2" transform="rotate(12 190.8 105.2)"/>
+  <ellipse cx="178.9" cy="118.8" rx="10.2" ry="6.8" fill="#ECEFF1" stroke="#78909C" stroke-width="1.3"/>
+  <circle cx="189.1" cy="113.8" r="5.1" fill="#ECEFF1" stroke="#78909C" stroke-width="1.3"/>
+  <circle cx="168.7" cy="117.2" r="2.38" fill="#ECEFF1" stroke="#78909C" stroke-width="1"/>
+  <circle cx="190.8" cy="112.9" r="0.935" fill="#263238"/>
+  <rect x="173.3" y="153.0" width="5.4" height="9.0" fill="#EFEBE9" rx="1.5" stroke="#6D4C41" stroke-width="1"/>
+  <path d="M166.1,153.9 Q176.0,138.6 185.9,153.9 Z" fill="#D7CCC8" stroke="#6D4C41" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round"/>
+  <rect x="191.9" y="155.0" width="4.2" height="7.0" fill="#EFEBE9" rx="1.5" stroke="#6D4C41" stroke-width="1"/>
+  <path d="M186.3,155.7 Q194.0,143.8 201.7,155.7 Z" fill="#D7CCC8" stroke="#6D4C41" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round"/>
+  <text x="185.0" y="173.0" font-size="11" fill="#607D8B" text-anchor="middle">decay</text>
+  <rect x="22.0" y="129.0" width="30.0" height="18.0" fill="#B0BEC5" stroke="#37474F" stroke-width="1.2"/>
+  <rect x="42.0" y="115.0" width="7.0" height="14.0" fill="#B0BEC5" stroke="#37474F" stroke-width="1.2"/>
+  <polygon points="22.0,129.0 32.0,121.0 32.0,129.0" fill="#B0BEC5" stroke="#37474F" stroke-width="1" stroke-linejoin="round"/>
+  <polygon points="32.0,129.0 42.0,121.0 42.0,129.0" fill="#B0BEC5" stroke="#37474F" stroke-width="1" stroke-linejoin="round"/>
+  <text x="37.0" y="160.0" font-size="11" fill="#37474F" text-anchor="middle">fossil fuels</text>
+  <text x="37.0" y="172.0" font-size="11" fill="#607D8B" text-anchor="middle">(coal, oil, gas)</text>
+  <path d="M238.0,54.0 Q305.0,52.0 305.0,96.0" fill="none" stroke="#2E7D32" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="butt"/>
+  <polygon points="305.0,104.0 298.8,94.0 311.2,94.0" fill="#2E7D32"/>
+  <circle cx="292.0" cy="66.0" r="8" fill="#FFFFFF" stroke="#2E7D32" stroke-width="2"/>
+  <text x="292.0" y="70.3" font-size="12" fill="#2E7D32" text-anchor="middle"><tspan font-weight="bold">D</tspan></text>
+  <path d="M282.0,120.0 Q252.0,92.0 227.7,67.7" fill="none" stroke="#E65100" stroke-width="2.8" stroke-linejoin="round" stroke-linecap="butt"/>
+  <polygon points="222.0,62.0 233.5,64.7 224.7,73.5" fill="#E65100"/>
+  <circle cx="246.0" cy="98.0" r="8" fill="#FFFFFF" stroke="#E65100" stroke-width="2"/>
+  <text x="246.0" y="102.3" font-size="12" fill="#E65100" text-anchor="middle"><tspan font-weight="bold">C</tspan></text>
+  <line x1="184.0" y1="100.0" x2="184.0" y2="74.0" stroke="#E65100" stroke-width="2.8" stroke-linecap="butt"/>
+  <polygon points="184.0,66.0 190.2,76.0 177.8,76.0" fill="#E65100"/>
+  <circle cx="199.0" cy="86.0" r="8" fill="#FFFFFF" stroke="#E65100" stroke-width="2"/>
+  <text x="199.0" y="90.3" font-size="12" fill="#E65100" text-anchor="middle"><tspan font-weight="bold">B</tspan></text>
+  <path d="M166.0,152.0 Q128.0,118.0 138.2,73.8" fill="none" stroke="#E65100" stroke-width="2.8" stroke-linejoin="round" stroke-linecap="butt"/>
+  <polygon points="140.0,66.0 143.8,77.1 131.7,74.3" fill="#E65100"/>
+  <circle cx="133.0" cy="112.0" r="8" fill="#FFFFFF" stroke="#E65100" stroke-width="2"/>
+  <text x="133.0" y="116.3" font-size="12" fill="#E65100" text-anchor="middle"><tspan font-weight="bold">A</tspan></text>
+  <path d="M45.0,109.0 Q50.0,58.0 102.1,51.1" fill="none" stroke="#37474F" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="butt"/>
+  <polygon points="110.0,50.0 100.9,57.5 99.3,45.2" fill="#37474F"/>
+  <text x="58.0" y="98.0" font-size="11" fill="#37474F"><tspan font-weight="bold">combustion</tspan></text>
+  <line x1="282.0" y1="132.0" x2="211.6" y2="122.7" stroke="#90A4AE" stroke-width="1.6" stroke-linecap="butt"/>
+  <polygon points="206.0,122.0 213.5,118.6 212.4,127.2" fill="#90A4AE"/>
+  <text x="246.0" y="140.0" font-size="11" fill="#607D8B" text-anchor="middle">feeding</text>
+  <line x1="184.0" y1="129.0" x2="184.0" y2="138.4" stroke="#90A4AE" stroke-width="1.6" stroke-linecap="butt"/>
+  <polygon points="184.0,144.0 179.7,137.0 188.3,137.0" fill="#90A4AE"/>
+  <text x="190.0" y="141.0" font-size="11" fill="#607D8B">death</text>
+  <text x="9.0" y="188.0" font-size="11" fill="#263238"><tspan fill="#2E7D32" font-weight="bold">D</tspan> = photosynthesis: takes CO₂ <tspan font-weight="bold">out</tspan> of the air</text>
+  <text x="9.0" y="200.6" font-size="11" fill="#263238"><tspan fill="#E65100" font-weight="bold">A, B, C</tspan> = respiration (decomposers, animals, plants): puts CO₂ <tspan font-weight="bold">in</tspan></text>
+  <text x="9.0" y="213.2" font-size="11" fill="#263238"><tspan fill="#37474F" font-weight="bold">Humans</tspan> add CO₂ fast: burning fossil fuels (carbon stored for millions of</text>
+  <text x="9.0" y="225.8" font-size="11" fill="#263238">years) + deforestation. No humans: in ≈ out [P1 Q18–20].</text>
+  </g>
+</svg></div></figure></div><div class="col"><figure id="fig-n8" class="fig"><div class="svgwrap" style="max-width:403px" title="Click to enlarge" tabindex="0" role="button" aria-label="Enlarge figure 8"><svg role="img" aria-label="Illustrative Keeling Curve: a yearly zig-zag on a rising trend, from about 313 ppm in 1958 to about 432 ppm in May 2026, far above about 280 ppm before the Industrial Revolution. Each year CO2 peaks in May and is lowest in September to October, because the level is a running total, like water in a bathtub." preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 233">
+  
+  <rect x="0" y="0" width="360" height="233" fill="#FFFFFF"/>
+  <g font-family="Calibri, Carlito, Arial, sans-serif">
+  <g transform="translate(7,0)">
+  <rect x="1.0" y="1.0" width="351.0" height="231.0" fill="#FFFFFF" rx="7" stroke="#00695C" stroke-width="1.5"/>
+  <path d="M1,25 V8 Q1,1 8,1 H345 Q352,1 352,8 V25 Z" fill="#00695C"/>
+  <circle cx="17.0" cy="13.0" r="8.5" fill="#FFFFFF"/>
+  <text x="17.0" y="17.6" font-size="13" fill="#00695C" text-anchor="middle"><tspan font-weight="bold">H</tspan></text>
+  <text x="32.0" y="18.0" font-size="14.5" fill="#FFFFFF"><tspan font-weight="bold">The Keeling Curve (Mauna Loa)</tspan></text>
+  <text x="343.0" y="17.3" font-size="11.5" fill="#E0F2F1" text-anchor="end">[P3] · illustrative</text>
+  <line x1="44.0" y1="118.7" x2="340.0" y2="118.7" stroke="#CFD8DC" stroke-width="0.8" stroke-linecap="round"/>
+  <text x="40.0" y="122.7" font-size="11" fill="#607D8B" text-anchor="end">280</text>
+  <line x1="44.0" y1="100.0" x2="340.0" y2="100.0" stroke="#CFD8DC" stroke-width="0.8" stroke-linecap="round"/>
+  <text x="40.0" y="104.0" font-size="11" fill="#607D8B" text-anchor="end">320</text>
+  <line x1="44.0" y1="81.3" x2="340.0" y2="81.3" stroke="#CFD8DC" stroke-width="0.8" stroke-linecap="round"/>
+  <text x="40.0" y="85.3" font-size="11" fill="#607D8B" text-anchor="end">360</text>
+  <line x1="44.0" y1="62.7" x2="340.0" y2="62.7" stroke="#CFD8DC" stroke-width="0.8" stroke-linecap="round"/>
+  <text x="40.0" y="66.7" font-size="11" fill="#607D8B" text-anchor="end">400</text>
+  <line x1="44.0" y1="44.0" x2="340.0" y2="44.0" stroke="#CFD8DC" stroke-width="0.8" stroke-linecap="round"/>
+  <text x="40.0" y="48.0" font-size="11" fill="#607D8B" text-anchor="end">440</text>
+  <text x="81.0" y="141.0" font-size="11" fill="#607D8B" text-anchor="middle">1960</text>
+  <text x="155.0" y="141.0" font-size="11" fill="#607D8B" text-anchor="middle">1980</text>
+  <text x="229.0" y="141.0" font-size="11" fill="#607D8B" text-anchor="middle">2000</text>
+  <text x="303.0" y="141.0" font-size="11" fill="#607D8B" text-anchor="middle">2020</text>
+  <text x="12.0" y="86.0" font-size="11" fill="#263238" text-anchor="middle" transform="rotate(-90 12.0 86.0)">CO₂ (ppm)</text>
+  <line x1="44.0" y1="128.0" x2="340.0" y2="128.0" stroke="#263238" stroke-width="1.2" stroke-linecap="round"/>
+  <line x1="44.0" y1="118.7" x2="340.0" y2="118.7" stroke="#546E7A" stroke-width="1.4" stroke-linecap="round" stroke-dasharray="4,3"/>
+  <text x="338.0" y="114.7" font-size="11" fill="#546E7A" text-anchor="end">pre-industrial ≈ 280 ppm</text>
+  <polyline points="74.3,101.4 74.5,101.1 74.6,101.0 74.8,100.8 75.0,100.8 75.1,100.8 75.3,101.0 75.4,101.3 75.6,101.8 75.7,102.2 75.9,102.6 76.0,103.0 76.2,103.3 76.3,103.4 76.5,103.4 76.7,103.3 76.8,103.2 77.0,103.0 77.1,102.7 77.3,102.4 77.4,102.1 77.6,101.8 77.7,101.5 77.9,101.2 78.0,100.9 78.2,100.7 78.3,100.5 78.5,100.4 78.7,100.4 78.8,100.4 79.0,100.6 79.1,100.9 79.3,101.3 79.4,101.8 79.6,102.2 79.7,102.6 79.9,102.9 80.0,103.0 80.2,103.0 80.4,102.9 80.5,102.8 80.7,102.6 80.8,102.3 81.0,102.0 81.1,101.7 81.3,101.4 81.4,101.1 81.6,100.8 81.7,100.5 81.9,100.3 82.0,100.1 82.2,100.0 82.4,99.9 82.5,100.0 82.7,100.2 82.8,100.5 83.0,100.9 83.1,101.4 83.3,101.8 83.4,102.2 83.6,102.4 83.7,102.6 83.9,102.6 84.1,102.5 84.2,102.3 84.4,102.1 84.5,101.9 84.7,101.6 84.8,101.3 85.0,101.0 85.1,100.7 85.3,100.4 85.4,100.1 85.6,99.9 85.7,99.7 85.9,99.6 86.1,99.5 86.2,99.6 86.4,99.8 86.5,100.1 86.7,100.5 86.8,101.0 87.0,101.4 87.1,101.8 87.3,102.0 87.4,102.2 87.6,102.1 87.8,102.1 87.9,101.9 88.1,101.7 88.2,101.5 88.4,101.2 88.5,100.9 88.7,100.6 88.8,100.3 89.0,100.0 89.1,99.7 89.3,99.5 89.4,99.3 89.6,99.2 89.8,99.1 89.9,99.2 90.1,99.4 90.2,99.7 90.4,100.1 90.5,100.5 90.7,101.0 90.8,101.4 91.0,101.6 91.1,101.7 91.3,101.7 91.5,101.6 91.6,101.5 91.8,101.3 91.9,101.1 92.1,100.8 92.2,100.5 92.4,100.1 92.5,99.8 92.7,99.5 92.8,99.3 93.0,99.0 93.1,98.9 93.3,98.8 93.5,98.7 93.6,98.7 93.8,98.9 93.9,99.3 94.1,99.7 94.2,100.1 94.4,100.6 94.5,100.9 94.7,101.2 94.8,101.3 95.0,101.3 95.2,101.2 95.3,101.1 95.5,100.9 95.6,100.6 95.8,100.4 95.9,100.1 96.1,99.7 96.2,99.4 96.4,99.1 96.5,98.9 96.7,98.6 96.8,98.5 97.0,98.3 97.2,98.3 97.3,98.3 97.5,98.5 97.6,98.9 97.8,99.3 97.9,99.7 98.1,100.1 98.2,100.5 98.4,100.8 98.5,100.9 98.7,100.9 98.9,100.8 99.0,100.7 99.2,100.5 99.3,100.2 99.5,99.9 99.6,99.6 99.8,99.3 99.9,99.0 100.1,98.7 100.2,98.4 100.4,98.2 100.5,98.0 100.7,97.9 100.9,97.9 101.0,97.9 101.2,98.1 101.3,98.4 101.5,98.8 101.6,99.3 101.8,99.7 101.9,100.1 102.1,100.4 102.2,100.5 102.4,100.5 102.6,100.4 102.7,100.3 102.9,100.1 103.0,99.8 103.2,99.5 103.3,99.2 103.5,98.9 103.6,98.6 103.8,98.3 103.9,98.0 104.1,97.8 104.2,97.6 104.4,97.5 104.6,97.5 104.7,97.5 104.9,97.7 105.0,98.0 105.2,98.4 105.3,98.9 105.5,99.3 105.6,99.7 105.8,100.0 105.9,100.1 106.1,100.1 106.3,100.0 106.4,99.8 106.6,99.6 106.7,99.4 106.9,99.1 107.0,98.8 107.2,98.5 107.3,98.2 107.5,97.9 107.6,97.6 107.8,97.4 107.9,97.2 108.1,97.1 108.3,97.0 108.4,97.1 108.6,97.3 108.7,97.6 108.9,98.0 109.0,98.5 109.2,98.9 109.3,99.3 109.5,99.5 109.6,99.7 109.8,99.7 110.0,99.6 110.1,99.4 110.3,99.2 110.4,99.0 110.6,98.7 110.7,98.4 110.9,98.1 111.0,97.8 111.2,97.5 111.3,97.2 111.5,97.0 111.6,96.8 111.8,96.7 112.0,96.6 112.1,96.7 112.3,96.9 112.4,97.2 112.6,97.6 112.7,98.0 112.9,98.5 113.0,98.9 113.2,99.1 113.3,99.2 113.5,99.2 113.7,99.2 113.8,99.0 114.0,98.8 114.1,98.6 114.3,98.3 114.4,98.0 114.6,97.7 114.7,97.3 114.9,97.0 115.0,96.8 115.2,96.6 115.3,96.4 115.5,96.3 115.7,96.2 115.8,96.3 116.0,96.4 116.1,96.8 116.3,97.2 116.4,97.6 116.6,98.1 116.7,98.4 116.9,98.7 117.0,98.8 117.2,98.8 117.4,98.7 117.5,98.6 117.7,98.4 117.8,98.1 118.0,97.9 118.1,97.5 118.3,97.2 118.4,96.9 118.6,96.6 118.7,96.3 118.9,96.1 119.0,95.9 119.2,95.8 119.4,95.7 119.5,95.8 119.7,95.9 119.8,96.3 120.0,96.7 120.1,97.1 120.3,97.5 120.4,97.9 120.6,98.2 120.7,98.3 120.9,98.3 121.1,98.2 121.2,98.0 121.4,97.8 121.5,97.5 121.7,97.3 121.8,96.9 122.0,96.6 122.1,96.3 122.3,96.0 122.4,95.7 122.6,95.5 122.7,95.3 122.9,95.2 123.1,95.1 123.2,95.1 123.4,95.3 123.5,95.6 123.7,96.0 123.8,96.5 124.0,96.9 124.1,97.3 124.3,97.5 124.4,97.7 124.6,97.6 124.8,97.5 124.9,97.4 125.1,97.2 125.2,96.9 125.4,96.6 125.5,96.3 125.7,96.0 125.8,95.7 126.0,95.4 126.1,95.1 126.3,94.9 126.4,94.7 126.6,94.6 126.8,94.5 126.9,94.5 127.1,94.7 127.2,95.0 127.4,95.4 127.5,95.9 127.7,96.3 127.8,96.7 128.0,96.9 128.1,97.0 128.3,97.0 128.5,96.9 128.6,96.8 128.8,96.6 128.9,96.3 129.1,96.0 129.2,95.7 129.4,95.4 129.5,95.1 129.7,94.8 129.8,94.5 130.0,94.3 130.1,94.1 130.3,93.9 130.5,93.9 130.6,93.9 130.8,94.1 130.9,94.4 131.1,94.8 131.2,95.3 131.4,95.7 131.5,96.1 131.7,96.3 131.8,96.4 132.0,96.4 132.2,96.3 132.3,96.2 132.5,96.0 132.6,95.7 132.8,95.4 132.9,95.1 133.1,94.8 133.2,94.5 133.4,94.2 133.5,93.9 133.7,93.6 133.8,93.5 134.0,93.3 134.2,93.3 134.3,93.3 134.5,93.5 134.6,93.8 134.8,94.2 134.9,94.7 135.1,95.1 135.2,95.4 135.4,95.7 135.5,95.8 135.7,95.8 135.9,95.7 136.0,95.6 136.2,95.4 136.3,95.1 136.5,94.8 136.6,94.5 136.8,94.2 136.9,93.8 137.1,93.5 137.2,93.3 137.4,93.0 137.5,92.8 137.7,92.7 137.9,92.7 138.0,92.7 138.2,92.9 138.3,93.2 138.5,93.6 138.6,94.0 138.8,94.5 138.9,94.8 139.1,95.1 139.2,95.2 139.4,95.2 139.6,95.1 139.7,94.9 139.9,94.7 140.0,94.5 140.2,94.2 140.3,93.9 140.5,93.6 140.6,93.2 140.8,92.9 140.9,92.7 141.1,92.4 141.2,92.2 141.4,92.1 141.6,92.0 141.7,92.1 141.9,92.3 142.0,92.6 142.2,93.0 142.3,93.4 142.5,93.9 142.6,94.2 142.8,94.5 142.9,94.6 143.1,94.6 143.3,94.5 143.4,94.3 143.6,94.1 143.7,93.9 143.9,93.6 144.0,93.3 144.2,92.9 144.3,92.6 144.5,92.3 144.6,92.0 144.8,91.8 144.9,91.6 145.1,91.5 145.3,91.4 145.4,91.5 145.6,91.7 145.7,92.0 145.9,92.4 146.0,92.8 146.2,93.2 146.3,93.6 146.5,93.9 146.6,94.0 146.8,94.0 147.0,93.9 147.1,93.7 147.3,93.5 147.4,93.3 147.6,93.0 147.7,92.7 147.9,92.3 148.0,92.0 148.2,91.7 148.3,91.4 148.5,91.2 148.6,91.0 148.8,90.9 149.0,90.8 149.1,90.9 149.3,91.1 149.4,91.4 149.6,91.8 149.7,92.2 149.9,92.6 150.0,93.0 150.2,93.3 150.3,93.4 150.5,93.4 150.7,93.3 150.8,93.1 151.0,92.9 151.1,92.7 151.3,92.4 151.4,92.0 151.6,91.7 151.7,91.4 151.9,91.1 152.0,90.8 152.2,90.6 152.3,90.4 152.5,90.3 152.7,90.2 152.8,90.3 153.0,90.4 153.1,90.8 153.3,91.2 153.4,91.6 153.6,92.0 153.7,92.4 153.9,92.6 154.0,92.8 154.2,92.7 154.4,92.7 154.5,92.5 154.7,92.3 154.8,92.0 155.0,91.7 155.1,91.4 155.3,91.1 155.4,90.8 155.6,90.5 155.7,90.2 155.9,89.9 156.0,89.8 156.2,89.6 156.4,89.6 156.5,89.6 156.7,89.8 156.8,90.1 157.0,90.5 157.1,90.9 157.3,91.3 157.4,91.7 157.6,92.0 157.7,92.1 157.9,92.0 158.1,91.9 158.2,91.8 158.4,91.6 158.5,91.3 158.7,91.0 158.8,90.7 159.0,90.4 159.1,90.0 159.3,89.7 159.4,89.5 159.6,89.2 159.7,89.0 159.9,88.9 160.1,88.8 160.2,88.9 160.4,89.1 160.5,89.4 160.7,89.8 160.8,90.2 161.0,90.6 161.1,91.0 161.3,91.2 161.4,91.3 161.6,91.3 161.8,91.2 161.9,91.1 162.1,90.8 162.2,90.6 162.4,90.3 162.5,90.0 162.7,89.6 162.8,89.3 163.0,89.0 163.1,88.7 163.3,88.5 163.4,88.3 163.6,88.2 163.8,88.1 163.9,88.1 164.1,88.3 164.2,88.6 164.4,89.0 164.5,89.5 164.7,89.9 164.8,90.2 165.0,90.5 165.1,90.6 165.3,90.6 165.5,90.5 165.6,90.3 165.8,90.1 165.9,89.9 166.1,89.6 166.2,89.2 166.4,88.9 166.5,88.6 166.7,88.3 166.8,88.0 167.0,87.8 167.1,87.6 167.3,87.4 167.5,87.4 167.6,87.4 167.8,87.6 167.9,87.9 168.1,88.3 168.2,88.7 168.4,89.2 168.5,89.5 168.7,89.8 168.8,89.9 169.0,89.9 169.2,89.8 169.3,89.6 169.5,89.4 169.6,89.1 169.8,88.8 169.9,88.5 170.1,88.2 170.2,87.9 170.4,87.6 170.5,87.3 170.7,87.0 170.8,86.8 171.0,86.7 171.2,86.6 171.3,86.7 171.5,86.9 171.6,87.2 171.8,87.6 171.9,88.0 172.1,88.4 172.2,88.8 172.4,89.0 172.5,89.2 172.7,89.1 172.9,89.0 173.0,88.9 173.2,88.7 173.3,88.4 173.5,88.1 173.6,87.8 173.8,87.5 173.9,87.1 174.1,86.8 174.2,86.5 174.4,86.3 174.5,86.1 174.7,86.0 174.9,85.9 175.0,86.0 175.2,86.1 175.3,86.4 175.5,86.8 175.6,87.3 175.8,87.7 175.9,88.1 176.1,88.3 176.2,88.4 176.4,88.4 176.6,88.3 176.7,88.1 176.9,87.9 177.0,87.7 177.2,87.4 177.3,87.1 177.5,86.7 177.6,86.4 177.8,86.1 177.9,85.8 178.1,85.6 178.2,85.4 178.4,85.3 178.6,85.2 178.7,85.2 178.9,85.4 179.0,85.7 179.2,86.1 179.3,86.6 179.5,87.0 179.6,87.3 179.8,87.6 179.9,87.7 180.1,87.7 180.3,87.6 180.4,87.4 180.6,87.2 180.7,86.9 180.9,86.7 181.0,86.3 181.2,86.0 181.3,85.7 181.5,85.4 181.6,85.1 181.8,84.8 181.9,84.7 182.1,84.5 182.3,84.5 182.4,84.5 182.6,84.7 182.7,85.0 182.9,85.4 183.0,85.8 183.2,86.2 183.3,86.6 183.5,86.9 183.6,87.0 183.8,87.0 184.0,86.9 184.1,86.7 184.3,86.5 184.4,86.2 184.6,85.9 184.7,85.6 184.9,85.3 185.0,84.9 185.2,84.6 185.3,84.4 185.5,84.1 185.6,83.9 185.8,83.8 186.0,83.7 186.1,83.8 186.3,84.0 186.4,84.3 186.6,84.7 186.7,85.1 186.9,85.5 187.0,85.9 187.2,86.1 187.3,86.2 187.5,86.2 187.7,86.1 187.8,86.0 188.0,85.8 188.1,85.5 188.3,85.2 188.4,84.9 188.6,84.5 188.7,84.2 188.9,83.9 189.0,83.6 189.2,83.4 189.3,83.2 189.5,83.1 189.7,83.0 189.8,83.0 190.0,83.2 190.1,83.5 190.3,83.9 190.4,84.4 190.6,84.8 190.7,85.2 190.9,85.4 191.0,85.5 191.2,85.5 191.4,85.4 191.5,85.2 191.7,85.0 191.8,84.8 192.0,84.5 192.1,84.2 192.3,83.8 192.4,83.5 192.6,83.2 192.7,82.9 192.9,82.7 193.0,82.5 193.2,82.4 193.4,82.3 193.5,82.3 193.7,82.5 193.8,82.8 194.0,83.2 194.1,83.6 194.3,84.1 194.4,84.4 194.6,84.7 194.7,84.8 194.9,84.8 195.1,84.7 195.2,84.5 195.4,84.3 195.5,84.0 195.7,83.8 195.8,83.4 196.0,83.1 196.1,82.8 196.3,82.5 196.4,82.2 196.6,82.0 196.7,81.8 196.9,81.6 197.1,81.6 197.2,81.6 197.4,81.8 197.5,82.1 197.7,82.5 197.8,82.9 198.0,83.4 198.1,83.7 198.3,84.0 198.4,84.1 198.6,84.1 198.8,84.0 198.9,83.8 199.1,83.6 199.2,83.3 199.4,83.0 199.5,82.7 199.7,82.4 199.8,82.1 200.0,81.8 200.1,81.5 200.3,81.2 200.4,81.1 200.6,80.9 200.8,80.9 200.9,80.9 201.1,81.1 201.2,81.4 201.4,81.8 201.5,82.2 201.7,82.6 201.8,83.0 202.0,83.3 202.1,83.4 202.3,83.3 202.5,83.3 202.6,83.1 202.8,82.9 202.9,82.6 203.1,82.3 203.2,82.0 203.4,81.7 203.5,81.4 203.7,81.0 203.8,80.8 204.0,80.5 204.1,80.3 204.3,80.2 204.5,80.1 204.6,80.2 204.8,80.4 204.9,80.7 205.1,81.1 205.2,81.5 205.4,81.9 205.5,82.3 205.7,82.5 205.8,82.7 206.0,82.6 206.2,82.5 206.3,82.4 206.5,82.2 206.6,81.9 206.8,81.6 206.9,81.3 207.1,81.0 207.2,80.6 207.4,80.3 207.5,80.1 207.7,79.8 207.8,79.6 208.0,79.5 208.2,79.4 208.3,79.5 208.5,79.7 208.6,80.0 208.8,80.4 208.9,80.8 209.1,81.2 209.2,81.6 209.4,81.8 209.5,81.9 209.7,81.9 209.9,81.8 210.0,81.7 210.2,81.5 210.3,81.2 210.5,80.9 210.6,80.6 210.8,80.3 210.9,79.9 211.1,79.6 211.2,79.3 211.4,79.1 211.5,78.9 211.7,78.8 211.9,78.7 212.0,78.8 212.2,78.9 212.3,79.2 212.5,79.6 212.6,80.1 212.8,80.5 212.9,80.9 213.1,81.1 213.2,81.2 213.4,81.2 213.6,81.1 213.7,81.0 213.9,80.7 214.0,80.5 214.2,80.2 214.3,79.9 214.5,79.5 214.6,79.2 214.8,78.9 214.9,78.6 215.1,78.4 215.2,78.2 215.4,78.1 215.6,78.0 215.7,78.0 215.9,78.2 216.0,78.5 216.2,78.9 216.3,79.4 216.5,79.8 216.6,80.1 216.8,80.4 216.9,80.5 217.1,80.5 217.3,80.4 217.4,80.2 217.6,80.0 217.7,79.8 217.9,79.5 218.0,79.2 218.2,78.8 218.3,78.5 218.5,78.2 218.6,77.9 218.8,77.7 218.9,77.5 219.1,77.4 219.3,77.3 219.4,77.3 219.6,77.5 219.7,77.8 219.9,78.2 220.0,78.7 220.2,79.1 220.3,79.4 220.5,79.7 220.6,79.8 220.8,79.8 221.0,79.7 221.1,79.5 221.3,79.3 221.4,79.1 221.6,78.8 221.7,78.4 221.9,78.1 222.0,77.8 222.2,77.5 222.3,77.2 222.5,77.0 222.6,76.8 222.8,76.6 223.0,76.6 223.1,76.6 223.3,76.8 223.4,77.1 223.6,77.5 223.7,77.9 223.9,78.4 224.0,78.7 224.2,79.0 224.3,79.1 224.5,79.1 224.7,79.0 224.8,78.8 225.0,78.6 225.1,78.3 225.3,78.0 225.4,77.7 225.6,77.4 225.7,77.1 225.9,76.8 226.0,76.5 226.2,76.2 226.3,76.1 226.5,75.9 226.7,75.9 226.8,75.9 227.0,76.1 227.1,76.4 227.3,76.8 227.4,77.2 227.6,77.6 227.7,78.0 227.9,78.3 228.0,78.4 228.2,78.4 228.4,78.3 228.5,78.1 228.7,77.9 228.8,77.6 229.0,77.3 229.1,77.0 229.3,76.7 229.4,76.3 229.6,76.0 229.7,75.7 229.9,75.5 230.0,75.3 230.2,75.1 230.4,75.1 230.5,75.1 230.7,75.3 230.8,75.6 231.0,76.0 231.1,76.4 231.3,76.8 231.4,77.1 231.6,77.4 231.7,77.5 231.9,77.5 232.1,77.4 232.2,77.2 232.4,77.0 232.5,76.7 232.7,76.4 232.8,76.1 233.0,75.7 233.1,75.4 233.3,75.1 233.4,74.8 233.6,74.5 233.7,74.3 233.9,74.2 234.1,74.1 234.2,74.1 234.4,74.3 234.5,74.6 234.7,75.0 234.8,75.4 235.0,75.8 235.1,76.2 235.3,76.4 235.4,76.5 235.6,76.5 235.8,76.4 235.9,76.2 236.1,76.0 236.2,75.8 236.4,75.4 236.5,75.1 236.7,74.8 236.8,74.4 237.0,74.1 237.1,73.8 237.3,73.6 237.4,73.4 237.6,73.3 237.8,73.2 237.9,73.2 238.1,73.4 238.2,73.7 238.4,74.1 238.5,74.5 238.7,74.9 238.8,75.3 239.0,75.5 239.1,75.6 239.3,75.6 239.5,75.5 239.6,75.3 239.8,75.1 239.9,74.8 240.1,74.5 240.2,74.2 240.4,73.8 240.5,73.5 240.7,73.2 240.8,72.9 241.0,72.6 241.1,72.4 241.3,72.3 241.5,72.2 241.6,72.3 241.8,72.4 241.9,72.7 242.1,73.1 242.2,73.5 242.4,74.0 242.5,74.3 242.7,74.6 242.8,74.7 243.0,74.6 243.2,74.5 243.3,74.4 243.5,74.1 243.6,73.9 243.8,73.6 243.9,73.2 244.1,72.9 244.2,72.6 244.4,72.2 244.5,72.0 244.7,71.7 244.8,71.5 245.0,71.4 245.2,71.3 245.3,71.3 245.5,71.5 245.6,71.8 245.8,72.2 245.9,72.6 246.1,73.0 246.2,73.4 246.4,73.6 246.5,73.7 246.7,73.7 246.9,73.6 247.0,73.4 247.2,73.2 247.3,72.9 247.5,72.6 247.6,72.3 247.8,72.0 247.9,71.6 248.1,71.3 248.2,71.0 248.4,70.8 248.5,70.6 248.7,70.4 248.9,70.3 249.0,70.4 249.2,70.5 249.3,70.9 249.5,71.2 249.6,71.7 249.8,72.1 249.9,72.4 250.1,72.7 250.2,72.8 250.4,72.7 250.6,72.6 250.7,72.5 250.9,72.2 251.0,72.0 251.2,71.7 251.3,71.3 251.5,71.0 251.6,70.7 251.8,70.4 251.9,70.1 252.1,69.8 252.2,69.6 252.4,69.5 252.6,69.4 252.7,69.4 252.9,69.6 253.0,69.9 253.2,70.3 253.3,70.7 253.5,71.1 253.6,71.5 253.8,71.7 253.9,71.8 254.1,71.8 254.3,71.7 254.4,71.5 254.6,71.3 254.7,71.0 254.9,70.7 255.0,70.4 255.2,70.1 255.3,69.7 255.5,69.4 255.6,69.1 255.8,68.9 255.9,68.7 256.1,68.5 256.3,68.5 256.4,68.5 256.6,68.7 256.7,69.0 256.9,69.4 257.0,69.8 257.2,70.2 257.3,70.5 257.5,70.8 257.6,70.9 257.8,70.9 258.0,70.8 258.1,70.6 258.3,70.4 258.4,70.1 258.6,69.8 258.7,69.5 258.9,69.1 259.0,68.8 259.2,68.5 259.3,68.2 259.5,67.9 259.6,67.7 259.8,67.6 260.0,67.5 260.1,67.5 260.3,67.7 260.4,68.0 260.6,68.4 260.7,68.8 260.9,69.3 261.0,69.6 261.2,69.8 261.3,70.0 261.5,69.9 261.7,69.8 261.8,69.6 262.0,69.4 262.1,69.2 262.3,68.8 262.4,68.5 262.6,68.2 262.7,67.8 262.9,67.5 263.0,67.2 263.2,67.0 263.3,66.8 263.5,66.7 263.7,66.6 263.8,66.6 264.0,66.8 264.1,67.1 264.3,67.5 264.4,67.9 264.6,68.3 264.7,68.7 264.9,68.9 265.0,69.0 265.2,69.0 265.4,68.9 265.5,68.7 265.7,68.5 265.8,68.2 266.0,67.9 266.1,67.6 266.3,67.2 266.4,66.9 266.6,66.6 266.7,66.3 266.9,66.0 267.0,65.8 267.2,65.6 267.4,65.6 267.5,65.6 267.7,65.8 267.8,66.0 268.0,66.4 268.1,66.8 268.3,67.2 268.4,67.6 268.6,67.8 268.7,67.9 268.9,67.9 269.1,67.8 269.2,67.6 269.4,67.4 269.5,67.1 269.7,66.8 269.8,66.4 270.0,66.1 270.1,65.7 270.3,65.4 270.4,65.1 270.6,64.9 270.7,64.7 270.9,64.5 271.1,64.4 271.2,64.4 271.4,64.6 271.5,64.9 271.7,65.3 271.8,65.7 272.0,66.1 272.1,66.5 272.3,66.7 272.4,66.8 272.6,66.7 272.8,66.6 272.9,66.5 273.1,66.2 273.2,66.0 273.4,65.6 273.5,65.3 273.7,65.0 273.8,64.6 274.0,64.3 274.1,64.0 274.3,63.7 274.4,63.5 274.6,63.4 274.8,63.3 274.9,63.3 275.1,63.5 275.2,63.8 275.4,64.2 275.5,64.6 275.7,65.0 275.8,65.3 276.0,65.6 276.1,65.7 276.3,65.6 276.5,65.5 276.6,65.3 276.8,65.1 276.9,64.8 277.1,64.5 277.2,64.2 277.4,63.8 277.5,63.5 277.7,63.2 277.8,62.9 278.0,62.6 278.1,62.4 278.3,62.2 278.5,62.2 278.6,62.2 278.8,62.3 278.9,62.6 279.1,63.0 279.2,63.4 279.4,63.8 279.5,64.2 279.7,64.4 279.8,64.5 280.0,64.5 280.2,64.4 280.3,64.2 280.5,64.0 280.6,63.7 280.8,63.4 280.9,63.0 281.1,62.7 281.2,62.3 281.4,62.0 281.5,61.7 281.7,61.5 281.8,61.3 282.0,61.1 282.2,61.0 282.3,61.0 282.5,61.2 282.6,61.5 282.8,61.9 282.9,62.3 283.1,62.7 283.2,63.1 283.4,63.3 283.5,63.4 283.7,63.3 283.9,63.2 284.0,63.1 284.2,62.8 284.3,62.5 284.5,62.2 284.6,61.9 284.8,61.6 284.9,61.2 285.1,60.9 285.2,60.6 285.4,60.3 285.5,60.1 285.7,60.0 285.9,59.9 286.0,59.9 286.2,60.1 286.3,60.4 286.5,60.8 286.6,61.2 286.8,61.6 286.9,61.9 287.1,62.2 287.2,62.3 287.4,62.2 287.6,62.1 287.7,61.9 287.9,61.7 288.0,61.4 288.2,61.1 288.3,60.8 288.5,60.4 288.6,60.1 288.8,59.7 288.9,59.5 289.1,59.2 289.2,59.0 289.4,58.8 289.6,58.8 289.7,58.8 289.9,58.9 290.0,59.2 290.2,59.6 290.3,60.0 290.5,60.4 290.6,60.8 290.8,61.0 290.9,61.1 291.1,61.1 291.3,61.0 291.4,60.8 291.6,60.6 291.7,60.3 291.9,60.0 292.0,59.6 292.2,59.3 292.3,58.9 292.5,58.6 292.6,58.3 292.8,58.1 292.9,57.9 293.1,57.7 293.3,57.6 293.4,57.6 293.6,57.8 293.7,58.1 293.9,58.5 294.0,58.9 294.2,59.3 294.3,59.7 294.5,59.9 294.6,60.0 294.8,59.9 295.0,59.8 295.1,59.7 295.3,59.4 295.4,59.1 295.6,58.8 295.7,58.5 295.9,58.2 296.0,57.8 296.2,57.5 296.3,57.2 296.5,56.9 296.6,56.7 296.8,56.6 297.0,56.5 297.1,56.5 297.3,56.7 297.4,57.0 297.6,57.3 297.7,57.8 297.9,58.2 298.0,58.5 298.2,58.8 298.3,58.9 298.5,58.8 298.7,58.7 298.8,58.5 299.0,58.3 299.1,58.0 299.3,57.7 299.4,57.4 299.6,57.0 299.7,56.7 299.9,56.3 300.0,56.1 300.2,55.8 300.3,55.6 300.5,55.4 300.7,55.4 300.8,55.4 301.0,55.5 301.1,55.8 301.3,56.2 301.4,56.6 301.6,57.0 301.7,57.4 301.9,57.6 302.0,57.7 302.2,57.7 302.4,57.6 302.5,57.4 302.7,57.2 302.8,56.9 303.0,56.6 303.1,56.2 303.3,55.9 303.4,55.5 303.6,55.2 303.7,54.9 303.9,54.7 304.0,54.5 304.2,54.3 304.4,54.2 304.5,54.3 304.7,54.4 304.8,54.7 305.0,55.1 305.1,55.5 305.3,55.9 305.4,56.3 305.6,56.5 305.7,56.6 305.9,56.6 306.1,56.5 306.2,56.3 306.4,56.1 306.5,55.8 306.7,55.5 306.8,55.1 307.0,54.8 307.1,54.4 307.3,54.1 307.4,53.8 307.6,53.6 307.7,53.4 307.9,53.2 308.1,53.1 308.2,53.2 308.4,53.3 308.5,53.6 308.7,54.0 308.8,54.4 309.0,54.8 309.1,55.2 309.3,55.4 309.4,55.5 309.6,55.5 309.8,55.4 309.9,55.2 310.1,55.0 310.2,54.7 310.4,54.4 310.5,54.0 310.7,53.7 310.8,53.3 311.0,53.0 311.1,52.7 311.3,52.5 311.4,52.3 311.6,52.1 311.8,52.0 311.9,52.1 312.1,52.2 312.2,52.5 312.4,52.9 312.5,53.3 312.7,53.7 312.8,54.1 313.0,54.3 313.1,54.4 313.3,54.4 313.5,54.3 313.6,54.1 313.8,53.9 313.9,53.6 314.1,53.3 314.2,52.9 314.4,52.6 314.5,52.2 314.7,51.9 314.8,51.6 315.0,51.4 315.1,51.2 315.3,51.0 315.5,50.9 315.6,51.0 315.8,51.1 315.9,51.4 316.1,51.8 316.2,52.2 316.4,52.6 316.5,53.0 316.7,53.2 316.8,53.3 317.0,53.3 317.2,53.2 317.3,53.0 317.5,52.8 317.6,52.5 317.8,52.2 317.9,51.8 318.1,51.5 318.2,51.1 318.4,50.8 318.5,50.5 318.7,50.3 318.8,50.1 319.0,49.9 319.2,49.8 319.3,49.9 319.5,50.0 319.6,50.3 319.8,50.7 319.9,51.1 320.1,51.5 320.2,51.9 320.4,52.1 320.5,52.2 320.7,52.2 320.9,52.1 321.0,51.9 321.2,51.7 321.3,51.4 321.5,51.1 321.6,50.7 321.8,50.4 321.9,50.1 322.1,49.7 322.2,49.4 322.4,49.2 322.5,49.0 322.7,48.8 322.9,48.7 323.0,48.8 323.2,48.9 323.3,49.2 323.5,49.6 323.6,50.0 323.8,50.4 323.9,50.8 324.1,51.0 324.2,51.1 324.4,51.1 324.6,51.0 324.7,50.8 324.9,50.6 325.0,50.3 325.2,50.0 325.3,49.6 325.5,49.3 325.6,49.0 325.8,48.6 325.9,48.3 326.1,48.1 326.2,47.9 326.4,47.7 326.6,47.6" fill="none" stroke="#546E7A" stroke-width="1.3" stroke-linejoin="round" stroke-linecap="round"/>
+  <circle cx="74.3" cy="101.4" r="3.2" fill="#546E7A"/>
+  <text x="68.3" y="116.4" font-size="11" fill="#263238"><tspan font-weight="bold">1958 ≈ 313 ppm</tspan></text>
+  <circle cx="326.6" cy="47.6" r="3.4" fill="#C62828"/>
+  <text x="338.0" y="38.0" font-size="11" fill="#263238" text-anchor="end"><tspan fill="#C62828" font-weight="bold">May 2026 ≈ 432 ppm (a record)</tspan></text>
+  <rect x="48.0" y="46.0" width="114.0" height="40.0" fill="#FFFFFF" rx="4" stroke="#CFD8DC" stroke-width="1"/>
+  <text x="52.0" y="58.0" font-size="11" fill="#607D8B">one year:</text>
+  <text x="52.0" y="70.5" font-size="11" fill="#607D8B">swing</text>
+  <text x="52.0" y="82.5" font-size="11" fill="#607D8B">≈ 6 ppm</text>
+  <polyline points="98.0,68.3 99.0,67.7 100.0,67.1 101.0,66.5 102.0,65.9 103.0,65.3 104.0,64.8 105.0,64.2 106.0,63.6 107.0,63.1 108.0,62.6 109.0,62.1 110.0,61.6 111.0,61.1 112.0,60.7 113.0,60.4 114.0,60.1 115.0,59.8 116.0,59.5 117.0,59.4 118.0,59.2 119.0,59.1 120.0,59.1 121.0,59.1 122.0,59.3 123.0,59.6 124.0,60.0 125.0,60.5 126.0,61.1 127.0,61.8 128.0,62.5 129.0,63.4 130.0,64.3 131.0,65.2 132.0,66.1 133.0,67.0 134.0,67.9 135.0,68.8 136.0,69.6 137.0,70.4 138.0,71.0 139.0,71.6 140.0,72.1 141.0,72.5 142.0,72.7 143.0,72.9 144.0,72.9 145.0,72.9 146.0,72.8 147.0,72.6 148.0,72.4 149.0,72.2 150.0,71.9 151.0,71.6 152.0,71.2 153.0,70.8 154.0,70.3 155.0,69.9 156.0,69.3 157.0,68.8 158.0,68.3" fill="none" stroke="#546E7A" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>
+  <text x="120.2" y="56.6" font-size="11" fill="#C62828" text-anchor="middle"><tspan font-weight="bold">May</tspan></text>
+  <text x="137.0" y="84.4" font-size="11" fill="#2E7D32" text-anchor="middle"><tspan font-weight="bold">Sept–Oct</tspan></text>
+  <text x="9.0" y="156.0" font-size="11" fill="#263238"><tspan font-weight="bold">Zig-zag</tspan> = Northern-Hemisphere plants “breathing”. CO₂ is a <tspan font-weight="bold">running total,</tspan></text>
+  <text x="9.0" y="168.6" font-size="11" fill="#263238"><tspan font-weight="bold">like water in a bathtub</tspan>: fall + winter, respiration + decay add more than</text>
+  <text x="9.0" y="181.2" font-size="11" fill="#263238">photosynthesis removes → <tspan font-weight="bold">peak in May</tspan>; late May through summer, leaves</text>
+  <text x="9.0" y="193.8" font-size="11" fill="#263238">draw it down → <tspan font-weight="bold">low in Sept–Oct</tspan>.</text>
+  <text x="9.0" y="207.4" font-size="11" fill="#263238"><tspan font-weight="bold">Long rise</tspan> = burning fossil fuels (since the 1800s; faster after the 1950s):</text>
+  <text x="9.0" y="220.0" font-size="11" fill="#263238">more is added each year than removed (≈ +2–2.5 ppm per year).</text>
+  </g>
+  </g>
+</svg></div></figure></div></div><h3 class="h2" id="i-top-12-watch-outs" style="color:#00695C;border-color:#00695C">I · Top 12 watch-outs</h3><figure id="fig-n9" class="fig"><div class="svgwrap" style="max-width:806px" title="Click to enlarge" tabindex="0" role="button" aria-label="Enlarge figure 9"><svg role="img" aria-label="Twelve common mistakes and the fix for each: energy labels, plants respire too, animals have mitochondria, DO difference versus O2 production, evidence needs numbers and units, reasoning must explain why, no claims beyond the data, the two mistaken notes, respiration is not breathing, enzymes do not denature just above 20 degrees C, graph rules, and units with the time basis." preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 206">
+  
+  <rect x="0" y="0" width="720" height="206" fill="#FFFFFF"/>
+  <g font-family="Calibri, Carlito, Arial, sans-serif">
+  <rect x="1.0" y="1.0" width="718.0" height="204.0" fill="#FFFFFF" rx="7" stroke="#C62828" stroke-width="1.5"/>
+  <path d="M1,25 V8 Q1,1 8,1 H712 Q719,1 719,8 V25 Z" fill="#C62828"/>
+  <circle cx="17.0" cy="13.0" r="8.5" fill="#FFFFFF"/>
+  <text x="17.0" y="17.6" font-size="13" fill="#C62828" text-anchor="middle"><tspan font-weight="bold">I</tspan></text>
+  <text x="32.0" y="18.0" font-size="14.5" fill="#FFFFFF"><tspan font-weight="bold">Top 12 watch-outs (and the fix)</tspan></text>
+  <text x="710.0" y="17.3" font-size="11.5" fill="#FFEBEE" text-anchor="end">the traps that cost points</text>
+  <rect x="6.0" y="31.0" width="708.0" height="13.9" fill="#FFEBEE" rx="3"/>
+  <circle cx="18.0" cy="38.0" r="6.6" fill="#C62828"/>
+  <text x="18.0" y="41.9" font-size="11" fill="#FFFFFF" text-anchor="middle"><tspan font-weight="bold">1</tspan></text>
+  <text x="30.0" y="41.3" font-size="11.5" fill="#C62828"><tspan font-weight="bold">Swapping the energy labels</tspan></text>
+  <text x="249.0" y="41.3" font-size="11.5" fill="#607D8B">→</text>
+  <text x="262.0" y="41.3" font-size="11.5" fill="#263238"><tspan font-weight="bold">Light</tspan> energy goes <tspan font-weight="bold">IN</tspan> to photosynthesis; <tspan font-weight="bold">ATP</tspan> comes <tspan font-weight="bold">OUT</tspan> of respiration [P1 Q14].</text>
+  <circle cx="18.0" cy="51.9" r="6.6" fill="#C62828"/>
+  <text x="18.0" y="55.8" font-size="11" fill="#FFFFFF" text-anchor="middle"><tspan font-weight="bold">2</tspan></text>
+  <text x="30.0" y="55.2" font-size="11.5" fill="#C62828"><tspan font-weight="bold">Forgetting that plants also respire</tspan></text>
+  <text x="249.0" y="55.2" font-size="11.5" fill="#607D8B">→</text>
+  <text x="262.0" y="55.2" font-size="11.5" fill="#263238">Plants have chloroplasts <tspan font-weight="bold">AND</tspan> mitochondria, so they respire 24/7, light or dark.</text>
+  <rect x="6.0" y="58.8" width="708.0" height="13.9" fill="#FFEBEE" rx="3"/>
+  <circle cx="18.0" cy="65.8" r="6.6" fill="#C62828"/>
+  <text x="18.0" y="69.7" font-size="11" fill="#FFFFFF" text-anchor="middle"><tspan font-weight="bold">3</tspan></text>
+  <text x="30.0" y="69.1" font-size="11.5" fill="#C62828"><tspan font-weight="bold">Saying animals lack mitochondria</tspan></text>
+  <text x="249.0" y="69.1" font-size="11.5" fill="#607D8B">→</text>
+  <text x="262.0" y="69.1" font-size="11.5" fill="#263238">Animals lack <tspan font-weight="bold">chloroplasts</tspan>. They <tspan font-weight="bold">do</tspan> have mitochondria [P1 Q10].</text>
+  <circle cx="18.0" cy="79.7" r="6.6" fill="#C62828"/>
+  <text x="18.0" y="83.6" font-size="11" fill="#FFFFFF" text-anchor="middle"><tspan font-weight="bold">4</tspan></text>
+  <text x="30.0" y="83.0" font-size="11.5" fill="#C62828"><tspan font-weight="bold">Mixing up DO difference and O₂ production</tspan></text>
+  <text x="249.0" y="83.0" font-size="11.5" fill="#607D8B">→</text>
+  <text x="262.0" y="83.0" font-size="11.5" fill="#263238">DO difference = <tspan font-weight="bold">net</tspan>; O₂ production = <tspan font-weight="bold">gross</tspan> = DO difference <tspan font-weight="bold">+ 0.1939</tspan> (minus a negative = plus).</text>
+  <rect x="6.0" y="86.6" width="708.0" height="13.9" fill="#FFEBEE" rx="3"/>
+  <circle cx="18.0" cy="93.5" r="6.6" fill="#C62828"/>
+  <text x="18.0" y="97.5" font-size="11" fill="#FFFFFF" text-anchor="middle"><tspan font-weight="bold">5</tspan></text>
+  <text x="30.0" y="96.9" font-size="11.5" fill="#C62828"><tspan font-weight="bold">Evidence without numbers or units</tspan></text>
+  <text x="249.0" y="96.9" font-size="11.5" fill="#607D8B">→</text>
+  <text x="262.0" y="96.9" font-size="11.5" fill="#263238">Quote 2–3 numbers with units, ideally a comparison: “from 0.0011 to 0.5976 mg/L per hour”.</text>
+  <circle cx="18.0" cy="107.5" r="6.6" fill="#C62828"/>
+  <text x="18.0" y="111.4" font-size="11" fill="#FFFFFF" text-anchor="middle"><tspan font-weight="bold">6</tspan></text>
+  <text x="30.0" y="110.8" font-size="11.5" fill="#C62828"><tspan font-weight="bold">Reasoning that just repeats the evidence</tspan></text>
+  <text x="249.0" y="110.8" font-size="11.5" fill="#607D8B">→</text>
+  <text x="262.0" y="110.8" font-size="11.5" fill="#263238">Say <tspan font-weight="bold">why</tspan> with science: the process, reactants/products, organelle, energy.</text>
+  <rect x="6.0" y="114.4" width="708.0" height="13.9" fill="#FFEBEE" rx="3"/>
+  <circle cx="18.0" cy="121.4" r="6.6" fill="#C62828"/>
+  <text x="18.0" y="125.3" font-size="11" fill="#FFFFFF" text-anchor="middle"><tspan font-weight="bold">7</tspan></text>
+  <text x="30.0" y="124.7" font-size="11.5" fill="#C62828"><tspan font-weight="bold">Claiming beyond the data</tspan></text>
+  <text x="249.0" y="124.7" font-size="11.5" fill="#607D8B">→</text>
+  <text x="262.0" y="124.7" font-size="11.5" fill="#263238">Light above 100 % was never tested: don’t claim “200 % light would be even better”.</text>
+  <circle cx="18.0" cy="135.2" r="6.6" fill="#C62828"/>
+  <text x="18.0" y="139.2" font-size="11" fill="#FFFFFF" text-anchor="middle"><tspan font-weight="bold">8</tspan></text>
+  <text x="30.0" y="138.6" font-size="11.5" fill="#C62828"><tspan font-weight="bold">Keeping the mistaken notes [P3]</tspan></text>
+  <text x="249.0" y="138.6" font-size="11.5" fill="#607D8B">→</text>
+  <text x="262.0" y="138.6" font-size="11.5" fill="#263238">Respiration is <tspan font-weight="bold">not</tspan> negligible; photosynthesis is <tspan font-weight="bold">not</tspan> “delayed”: CO₂ is a running total.</text>
+  <rect x="6.0" y="142.2" width="708.0" height="13.9" fill="#FFEBEE" rx="3"/>
+  <circle cx="18.0" cy="149.1" r="6.6" fill="#C62828"/>
+  <text x="18.0" y="153.0" font-size="11" fill="#FFFFFF" text-anchor="middle"><tspan font-weight="bold">9</tspan></text>
+  <text x="30.0" y="152.5" font-size="11.5" fill="#C62828"><tspan font-weight="bold">“Respiration = breathing”</tspan></text>
+  <text x="249.0" y="152.5" font-size="11.5" fill="#607D8B">→</text>
+  <text x="262.0" y="152.5" font-size="11.5" fill="#263238">Breathing moves gases in and out of the lungs; cellular respiration is a reaction in mitochondria.</text>
+  <circle cx="18.0" cy="163.1" r="6.6" fill="#C62828"/>
+  <text x="18.0" y="167.0" font-size="11" fill="#FFFFFF" text-anchor="middle"><tspan font-weight="bold">10</tspan></text>
+  <text x="30.0" y="166.4" font-size="11.5" fill="#C62828"><tspan font-weight="bold">“Enzymes denature just above 20 °C”</tspan></text>
+  <text x="249.0" y="166.4" font-size="11.5" fill="#607D8B">→</text>
+  <text x="262.0" y="166.4" font-size="11.5" fill="#263238">Above the optimum they just work less well; real denaturing needs ≈ 40 °C or more.</text>
+  <rect x="6.0" y="170.0" width="708.0" height="13.9" fill="#FFEBEE" rx="3"/>
+  <circle cx="18.0" cy="176.9" r="6.6" fill="#C62828"/>
+  <text x="18.0" y="180.8" font-size="11" fill="#FFFFFF" text-anchor="middle"><tspan font-weight="bold">11</tspan></text>
+  <text x="30.0" y="180.3" font-size="11.5" fill="#C62828"><tspan font-weight="bold">Graph doesn’t match the table</tspan></text>
+  <text x="249.0" y="180.3" font-size="11.5" fill="#607D8B">→</text>
+  <text x="262.0" y="180.3" font-size="11.5" fill="#263238">IV on x, DV on y, even scale, units, mark the points, a title; don’t draw beyond the data.</text>
+  <circle cx="18.0" cy="190.8" r="6.6" fill="#C62828"/>
+  <text x="18.0" y="194.8" font-size="11" fill="#FFFFFF" text-anchor="middle"><tspan font-weight="bold">12</tspan></text>
+  <text x="30.0" y="194.2" font-size="11.5" fill="#C62828"><tspan font-weight="bold">Forgetting units and the time basis</tspan></text>
+  <text x="249.0" y="194.2" font-size="11.5" fill="#607D8B">→</text>
+  <text x="262.0" y="194.2" font-size="11.5" fill="#263238">Write “mg/L per hour” (60-min run); per minute = ÷ 60 (0.5976 → 0.0100 mg/L per minute).</text>
+  </g>
+</svg></div></figure><h3 class="h2" id="quick-self-test" style="color:#00695C;border-color:#00695C">Quick self-test</h3><div class="flash"><div class="cl-title">Quick self-test: click a card to check yourself</div><div class="cards"><details class="card reveal"><summary><span class="n">1</span> Which energy goes IN to photosynthesis, and which comes OUT of cellular respiration?</summary><div class="a">Light energy goes <strong>in</strong> to photosynthesis (stored as chemical energy in glucose). Energy comes <strong>out</strong> of respiration as <strong>ATP</strong> (plus some heat).</div></details><details class="card reveal"><summary><span class="n">2</span> Which living things do photosynthesis AND respiration?</summary><div class="a"><strong>Plants</strong> (they have chloroplasts and mitochondria). Animals and decomposers only respire.</div></details><details class="card reveal"><summary><span class="n">3</span> What was the DO difference in the dark run (Part II), and what does it measure?</summary><div class="a"><strong>−0.1939 mg/L per hour</strong>: respiration alone (no light, so no photosynthesis).</div></details><details class="card reveal"><summary><span class="n">4</span> At 100 % light, what were the DO difference and the O<sub>2</sub> production?</summary><div class="a">DO difference <strong>+0.4037</strong> mg/L per hour (net, what the water kept); O<sub>2</sub> production <strong>0.5976</strong> mg/L per hour (gross) = 0.4037 + 0.1939.</div></details><details class="card reveal"><summary><span class="n">5</span> Why is O<sub>2</sub> production = DO difference + 0.1939?</summary><div class="a">The sheet says DO difference − respiration, and respiration = −0.1939. Minus a negative is a <strong>plus</strong>.</div></details><details class="card reveal"><summary><span class="n">6</span> Near which light level did the plant break even?</summary><div class="a">Near <strong>60 %</strong>: DO difference +0.0046 ≈ 0, so O<sub>2</sub> made ≈ O<sub>2</sub> used (one trial).</div></details><details class="card reveal"><summary><span class="n">7</span> Name the three classic limiting factors of photosynthesis.</summary><div class="a"><strong>Light intensity, CO</strong><strong><sub>2</sub></strong><strong> concentration and temperature.</strong></div></details><details class="card reveal"><summary><span class="n">8</span> Why does Mauna Loa CO<sub>2</sub> peak in May and dip in Sept–Oct?</summary><div class="a">CO<sub>2</sub> is a <strong>running total</strong>: in fall and winter, respiration + decay add more than photosynthesis removes, so it climbs until May; then summer photosynthesis pulls it down to the low in Sept–Oct.</div></details><details class="card reveal"><summary><span class="n">9</span> Part VII: how do you find how many fish the tank can support?</summary><div class="a">Keep the <strong>DO difference ≥ 0</strong>. One plant at 100 % light leaves about <strong>0.40 mg/L per hour</strong> for all the fish together; add fish one at a time and keep the last number with DO difference ≥ 0.</div></details><details class="card reveal"><summary><span class="n">10</span> How are the CER points split?</summary><div class="a">Claim <strong>1</strong> + Evidence <strong>2</strong> + Reasoning <strong>3</strong> = <strong>6</strong> (your teacher’s rubric may differ slightly).</div></details></div></div><div class="siblings"><a href="Start_Here.html">⌂ Start here</a><a href="1_Photosynthesis_Learning_Guide.html">1 · Learning Guide</a><a href="2_CER_Prep_Guide.html">2 · CER Prep Guide</a><a href="3_Mock_CER_Questions.html">3 · Mock CER Questions</a><a href="4_Cheat_Sheet.html">4 · Cheat Sheet</a><a href="5_Detected_Errors_in_Worksheets.html">5 · Detected Errors</a></div></main></div>
+<div id="lightbox" role="dialog" aria-modal="true" aria-label="Enlarged figure" aria-hidden="true"></div><button id="totop" title="Back to top">↑</button>
+<script>
+(function(){
+  var $=function(s,r){return (r||document).querySelectorAll(s)};
+  var root=document.documentElement, bar=document.querySelector('.topbar'), nav=document.getElementById('toc');
+  function tb(){ root.style.setProperty('--tb', bar.offsetHeight+'px'); }
+  function syncInert(){ var mobile=window.matchMedia('(max-width:1000px)').matches; var hide=mobile && !nav.classList.contains('open');
+    if(hide) nav.setAttribute('inert',''); else nav.removeAttribute('inert'); }
+  tb(); syncInert(); window.addEventListener('resize',function(){ tb(); syncInert(); });
+  if(!$('details.reveal').length){ $('.rv-btn').forEach(function(b){ b.style.display='none'; }); }
+  var saved=null;
+  function setAll(open){ $('details.reveal').forEach(function(d){ d.open=open; }); }
+  function openForPrint(){ if(saved===null){ saved=[]; $('details.reveal').forEach(function(d){ saved.push(d.open); }); } setAll(true); }
+  function restoreAfterPrint(){ if(saved){ var i=0; $('details.reveal').forEach(function(d){ d.open=saved[i++]; }); saved=null; } }
+  document.addEventListener('click',function(e){
+    var b=e.target.closest('[data-act]'); if(!b) return;
+    var a=b.getAttribute('data-act');
+    if(a==='expand') setAll(true); else if(a==='collapse') setAll(false);
+    else if(a==='print'){ openForPrint(); setTimeout(function(){window.print();},60); }
+    else if(a==='font+'||a==='font-'){ var cur=parseFloat(getComputedStyle(root).getPropertyValue('--fs'))||17; cur=Math.min(24,Math.max(13,cur+(a==='font+'?1:-1))); root.style.setProperty('--fs',cur+'px'); tb(); }
+    else if(a==='nav'){ nav.classList.toggle('open'); syncInert(); }
+  });
+  window.addEventListener('beforeprint',openForPrint);
+  window.addEventListener('afterprint',restoreAfterPrint);
+  $('nav#toc a').forEach(function(a){ a.addEventListener('click',function(){ nav.classList.remove('open'); syncInert(); }); });
+  // lightbox
+  var lb=document.getElementById('lightbox'), lastFocus=null;
+  function openLb(w){ var fig=w.closest('figure'); var cap=fig.querySelector('figcaption'); var svg=w.querySelector('svg');
+    var capHtml=cap?cap.innerHTML:(svg&&svg.getAttribute('aria-label')?svg.getAttribute('aria-label'):'');
+    lastFocus=w; lb.innerHTML='<div class="lbin" tabindex="-1">'+w.innerHTML+(capHtml?'<div class="lbcap">'+capHtml+'</div>':'')+'</div>';
+    lb.classList.add('on'); lb.setAttribute('aria-hidden','false'); lb.querySelector('.lbin').focus(); }
+  function closeLb(){ if(!lb.classList.contains('on')) return; lb.classList.remove('on'); lb.setAttribute('aria-hidden','true'); lb.innerHTML=''; if(lastFocus) lastFocus.focus(); }
+  $('.svgwrap').forEach(function(w){ w.addEventListener('click',function(){ openLb(w); });
+    w.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); openLb(w); } }); });
+  lb.addEventListener('click',closeLb);
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') closeLb(); });
+  // checklists
+  $('.checklist').forEach(function(cl){ var sc=cl.querySelector('.sc'); if(!sc) return;
+    cl.addEventListener('change',function(){ var t=0; cl.querySelectorAll('input:checked').forEach(function(i){ t+=parseFloat(i.getAttribute('data-pts'))||0; }); sc.textContent=t; }); });
+  // scroll spy
+  var links={}; $('nav#toc a').forEach(function(a){ links[a.getAttribute('href').slice(1)]=a; });
+  var heads=[].slice.call($('h2.band[id],h3.h2[id],.qhead[id]')).filter(function(h){ return links[h.id]; });
+  var last=null;
+  function spy(){ var y=window.scrollY+bar.offsetHeight+30, cur=null; heads.forEach(function(h){ if(h.getBoundingClientRect().top+window.scrollY<=y) cur=h.id; });
+    if(cur!==last){ Object.keys(links).forEach(function(k){ links[k].classList.toggle('active',k===cur); });
+      if(cur&&links[cur]&&nav.scrollHeight>nav.clientHeight){ var r=links[cur].getBoundingClientRect(), n=nav.getBoundingClientRect();
+        if(r.top<n.top||r.bottom>n.bottom) nav.scrollTop+= (r.top-n.top) - nav.clientHeight/3; }
+      last=cur; }
+    document.getElementById('totop').classList.toggle('on',window.scrollY>600); }
+  window.addEventListener('scroll',spy,{passive:true}); spy();
+  document.getElementById('totop').addEventListener('click',function(){ window.scrollTo({top:0}); });
+})();
+</script>
+</body></html>

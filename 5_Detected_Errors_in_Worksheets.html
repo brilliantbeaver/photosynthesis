@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Detected Errors in Your Worksheets</title><style>
+:root{--acc:#BF360C;--accl:#FBE9E7;--ink:#263238;--muted:#607D8B;--fs:17px;--maxw:860px}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--tb,60px) + 12px)}
+body{margin:0;font-family:Calibri,Carlito,"Segoe UI",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:var(--fs);line-height:1.55;color:var(--ink);background:#F4F6F7}
+a{color:var(--acc)}
+.topbar{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:8px 14px;background:#fff;border-bottom:3px solid var(--acc);box-shadow:0 1px 6px rgba(0,0,0,.06)}
+.topbar .dt{font-weight:700;color:var(--acc);margin-right:auto;font-size:1.02em}
+.topbar button,.topbar a.btn{font:inherit;font-size:.82em;padding:5px 10px;border-radius:7px;border:1px solid #CFD8DC;background:#fff;color:var(--ink);cursor:pointer;text-decoration:none;white-space:nowrap}
+.topbar button:hover,.topbar a.btn:hover{border-color:var(--acc);color:var(--acc)}
+#navToggle{display:none}
+.layout{display:flex;max-width:1280px;margin:0 auto}
+nav#toc{position:sticky;top:var(--tb,60px);align-self:flex-start;width:270px;max-height:calc(100vh - var(--tb,60px) - 8px);overflow:auto;padding:16px 10px 30px 16px;font-size:.84em}
+nav#toc .nt{font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;font-size:.8em;margin:4px 0 8px}
+nav#toc ul{list-style:none;margin:0;padding:0}
+nav#toc li a{display:block;padding:4px 8px;border-radius:6px;color:var(--ink);text-decoration:none;border-left:3px solid transparent}
+nav#toc li.l2 a{padding-left:20px;font-size:.92em;color:var(--muted)}
+nav#toc li a:hover{background:var(--accl)}
+nav#toc li a.active{background:var(--accl);border-left-color:var(--acc);color:var(--acc);font-weight:600}
+main{flex:1;min-width:0;max-width:var(--maxw);margin:18px auto 80px;padding:28px 40px;background:#fff;border-radius:12px;box-shadow:0 1px 8px rgba(0,0,0,.05)}
+.cover{border-bottom:4px solid var(--acc);margin-bottom:18px;padding-bottom:10px}
+.cover .kicker{text-transform:uppercase;letter-spacing:.08em;font-size:.78em;color:var(--muted);font-weight:700}
+.cover h1{color:var(--acc);font-size:2.1em;line-height:1.15;margin:.15em 0}
+.cover .subtitle{font-size:1.2em;margin:.2em 0}
+.cover .tagline{color:var(--muted);font-style:italic;margin:.2em 0}
+h2.band{color:#fff;padding:7px 14px;border-radius:7px;font-size:1.35em;margin:1.6em 0 .6em}
+h3.h2{border-bottom:2px solid;padding-bottom:3px;font-size:1.15em;margin:1.3em 0 .5em}
+h4.h3{font-size:1.02em;margin:1.1em 0 .35em}
+p{margin:.35em 0 .7em}
+ul,ol{margin:.2em 0 .8em;padding-left:1.5em}
+li{margin:.18em 0}
+sub,sup{font-size:.72em;line-height:0}
+.callout{border-left:6px solid;border-radius:8px;padding:10px 16px 6px;margin:12px 0 16px}
+.callout .clabel{font-weight:700;font-size:.9em;margin-bottom:4px;text-transform:none}
+.callout p:last-child{margin-bottom:.4em}
+.toc ol{margin:.3em 0 .5em}
+.cer{border-radius:9px;overflow:hidden;margin:12px 0 18px;border:1px solid #E0E0E0}
+.cer-title{background:#37474F;color:#fff;font-weight:700;padding:7px 14px}
+.cer-row{display:grid;grid-template-columns:130px 1fr;border-top:2px solid #fff}
+.cer-row .lab{color:#fff;font-weight:700;padding:10px 8px;text-align:center;display:flex;flex-direction:column;justify-content:center;font-size:.9em;letter-spacing:.03em}
+.cer-row .lab small{font-weight:400;font-size:.78em;opacity:.95;letter-spacing:0}
+.cer-row .val{padding:8px 14px}
+.cer-row .val p:last-child,.cer-row .val ul:last-child{margin-bottom:.2em}
+.cer-row.c .lab{background:#1565C0}.cer-row.c .val{background:#E3F2FD}
+.cer-row.e .lab{background:#2E7D32}.cer-row.e .val{background:#E8F5E9}
+.cer-row.r .lab{background:#E65100}.cer-row.r .val{background:#FFF3E0}
+.cerlab{font-size:.78em;font-weight:700;letter-spacing:.02em}
+.tag{color:#fff;font-weight:700;font-size:.78em;padding:1px 6px;border-radius:4px;white-space:nowrap}
+.tablewrap{overflow-x:auto;margin:10px 0 4px}
+table{border-collapse:collapse;width:100%;font-size:.92em}
+th{color:#fff;padding:7px 9px;font-weight:700;border:1px solid #CFD8DC}
+td{padding:6px 9px;border:1px solid #CFD8DC;vertical-align:top}
+tbody tr:nth-child(even) td{background-color:#F5F7F8}
+td p,th p{margin:.1em 0}
+.tcap{text-align:center;color:var(--muted);font-size:.85em;margin-top:2px}
+figure.fig{margin:16px auto 20px;text-align:center}
+.svgwrap{margin:0 auto;cursor:zoom-in;border-radius:6px;transition:box-shadow .15s}
+.svgwrap:hover{box-shadow:0 0 0 3px var(--accl)}
+.svgwrap svg{width:100%;height:auto;display:block}
+figcaption{color:var(--muted);font-size:.86em;margin-top:6px}
+.qhead{display:flex;border-radius:9px;overflow:hidden;margin:22px 0 10px;background:var(--ql)}
+.qhead .qnum{background:var(--qc);color:#fff;font-weight:800;font-size:1.35em;min-width:78px;display:flex;align-items:center;justify-content:center;padding:8px}
+.qhead .qt{padding:8px 14px}
+.qhead .qtitle{font-weight:700;font-size:1.08em}
+.qhead .qmeta{color:var(--muted);font-size:.85em}
+.cols{display:grid;gap:22px;align-items:start}
+.cols .col>:first-child{margin-top:0}
+.answerbox{margin:8px 0 16px}
+.answerbox label{display:block}.answerbox .albl{display:block;color:var(--muted);font-size:.9em;margin-bottom:3px}
+.answerbox textarea{width:100%;font:inherit;font-size:.95em;padding:8px 10px;border:1px solid #B0BEC5;border-radius:8px;background:#FCFCFD;resize:vertical}
+details.reveal{margin:10px 0 14px;border:1px dashed #B0BEC5;border-radius:9px;background:#FBFCFC}
+details.reveal>summary{cursor:pointer;padding:8px 14px;font-weight:700;color:var(--acc);list-style:none;user-select:none}
+details.reveal>summary::-webkit-details-marker{display:none}
+details.reveal>summary::before{content:"▸ ";display:inline-block;transition:transform .15s}
+details.reveal[open]>summary::before{transform:rotate(90deg)}
+details.reveal[open]{border-style:solid;background:#fff}
+details.reveal .rv{padding:2px 14px 8px}
+.callout details.reveal{background:transparent;border-color:rgba(0,0,0,.18)}
+.checklist{border:1px solid #CFD8DC;border-radius:10px;padding:10px 14px;margin:12px 0 18px;background:#FAFBFB}
+.cl-title{font-weight:700;color:var(--acc);margin-bottom:6px}
+label.chk{display:flex;gap:10px;align-items:flex-start;padding:5px 4px;border-bottom:1px solid #ECEFF1;cursor:pointer}
+label.chk input{margin-top:5px;transform:scale(1.2);accent-color:var(--acc)}
+label.chk .ct{flex:1}
+label.chk .pts{color:var(--muted);font-size:.85em;white-space:nowrap}
+.cl-score{margin-top:8px;font-size:1.05em}
+.cl-score .sc{color:var(--acc);font-size:1.2em}
+.flash .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+details.card{margin:0;border:1px solid #CFD8DC;border-style:solid;background:var(--accl)}
+details.card>summary{color:var(--ink);font-weight:600}
+details.card>summary::before{content:""}
+details.card .n{display:inline-block;background:var(--acc);color:#fff;border-radius:50%;width:1.5em;height:1.5em;text-align:center;font-size:.8em;line-height:1.5em;margin-right:4px}
+details.card .a{padding:4px 14px 12px;color:#1B5E20}
+details.card[open]{background:#fff}
+hr{border:0;border-top:1px solid #CFD8DC;margin:18px 0}
+.pb{height:0}
+#lightbox{position:fixed;inset:0;background:rgba(20,28,32,.82);display:none;align-items:center;justify-content:center;z-index:50;padding:3vw;cursor:zoom-out}
+#lightbox.on{display:flex}
+#lightbox .lbin{background:#fff;border-radius:12px;padding:18px;max-width:96vw;max-height:94vh;overflow:auto;width:min(1300px,96vw)}
+#lightbox svg{width:100%;height:auto}
+#lightbox .lbcap{color:#37474F;font-size:.95em;margin-top:8px;text-align:center}
+#totop{position:fixed;right:18px;bottom:18px;z-index:15;border:0;background:var(--acc);color:#fff;width:42px;height:42px;border-radius:50%;font-size:20px;cursor:pointer;opacity:0;pointer-events:none;transition:opacity .2s;box-shadow:0 2px 8px rgba(0,0,0,.2)}
+#totop.on{opacity:.9;pointer-events:auto}
+.siblings{display:flex;flex-wrap:wrap;gap:6px;margin:30px 0 0;padding-top:12px;border-top:1px solid #ECEFF1;font-size:.88em}
+.siblings a{padding:4px 10px;border:1px solid #CFD8DC;border-radius:16px;text-decoration:none}
+@media (max-width:1000px){nav#toc{position:fixed;left:0;top:var(--tb,52px);bottom:0;max-height:none;background:#fff;z-index:30;box-shadow:2px 0 12px rgba(0,0,0,.15);transform:translateX(-105%);transition:transform .2s}
+ nav#toc.open{transform:none} #navToggle{display:inline-block} main{padding:20px 18px;margin:10px 8px 70px}}
+@media (max-width:640px){.cols{grid-template-columns:1fr !important}.cer-row{grid-template-columns:92px 1fr}:root{--fs:16px}
+ .topbar{flex-wrap:nowrap;overflow-x:auto;gap:6px;padding:6px 8px}.topbar .dt{min-width:0;flex:1 1 auto;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:.92em}
+ .topbar .opt{display:none}}
+.svgwrap:focus{outline:3px solid var(--acc);outline-offset:2px}
+@media print{body{background:#fff;font-size:11pt}.topbar,nav#toc,#totop,.siblings{display:none!important}main{box-shadow:none;margin:0;padding:0;max-width:none}
+ details.reveal:not(.card)>summary{display:none}details.reveal{border:0}.pb{page-break-after:always}figure,.cer,.callout,.qhead{break-inside:avoid}h2.band,h3.h2,.qhead{break-after:avoid}
+ *{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+</style></head>
+<body>
+<div class="topbar"><button id="navToggle" data-act="nav">☰ Contents</button><span class="dt">5 · Detected Errors</span>
+<a class="btn" href="Start_Here.html">⌂ All materials</a>
+<button data-act="expand" class="rv-btn" title="Open every hint, answer and card">Show all answers</button><button data-act="collapse" class="rv-btn opt">Hide all</button>
+<button data-act="font-" class="opt" title="Smaller text">A−</button><button data-act="font+" class="opt" title="Larger text">A+</button>
+<a class="btn" href="PDF/5_Detected_Errors_in_Worksheets.pdf">PDF</a><a class="btn" href="Word/5_Detected_Errors_in_Worksheets.docx">Word</a><button data-act="print">Print</button></div>
+<div class="layout"><nav id="toc"><div class="nt">Contents</div><ul><li class="l1"><a href="#part-a-errors-to-fix">Part A · Errors to fix</a></li><li class="l2"><a href="#p1-photosynthesis-and-respiration-pogil-worksheet">[P1] Photosynthesis and Respiration (POGIL worksheet)</a></li><li class="l2"><a href="#p2-photosynthesis-cellular-respiration-simulation-">[P2] Photosynthesis &amp; Cellular Respiration Simulation (lab)</a></li><li class="l2"><a href="#p3-notes-mauna-loa-the-rise-of-co2">[P3] Notes: Mauna Loa &amp; the Rise of CO<sub>2</sub></a></li><li class="l1"><a href="#part-b-polish-right-idea-make-it-sharper">Part B · Polish: right idea, make it sharper</a></li><li class="l1"><a href="#part-c-what-you-nailed">Part C · What you nailed</a></li></ul></nav>
+<main id="content"><header class="cover"><div class="kicker">Photosynthesis CER Test Prep</div><h1>Detected Errors in Your Worksheets</h1><p class="subtitle">A complete, kind fix-it list for your three photosynthesis packets</p><p class="tagline">Every item here is fixable — and fixing it now means it can’t cost you points on the CER test.</p></header><p>Every answer, number and drawing in your three packets was checked: the POGIL worksheet <strong>[P1]</strong>, the simulation lab <strong>[P2]</strong>, and your Mauna Loa notes <strong>[P3]</strong>. All the lab math was recalculated, and your graph was compared with your table. Most of your work is correct — often very strong (see Part C). The items below are the places where a fix will make your CER answers more accurate.</p><div class="callout plain toc" style="border-left-color:#BF360C;background:#FBE9E7"><div class="clabel" style="color:#BF360C">What's inside</div><ol class="toclist"><li><a href="#part-a-errors-to-fix">Part A · Errors to fix</a></li><li><a href="#part-b-polish-right-idea-make-it-sharper">Part B · Polish: right idea, make it sharper</a></li><li><a href="#part-c-what-you-nailed">Part C · What you nailed</a></li></ol></div><figure id="fig-overview" class="fig"><div class="svgwrap" style="max-width:731px" title="Click to enlarge" tabindex="0" role="button" aria-label="Enlarge figure 1"><svg role="img" aria-label="What was found in each packet. H/M/L = priority; teal dots = “polish” items (right idea, could be sharper)." preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 672 200">
+<rect x="0" y="0" width="672" height="200" fill="#FFFFFF"/>
+<g font-family="Calibri, Carlito, Arial, sans-serif">
+<rect x="6" y="8" width="206" height="150" rx="12" fill="#FBE9E7" stroke="#BF360C" stroke-width="1.5"/>
+<text x="20" y="32" font-size="15" font-weight="bold" fill="#BF360C">[P1] POGIL worksheet</text>
+<text x="20" y="49" font-size="12" fill="#607D8B">Photosynthesis &amp; Respiration</text>
+<text x="20" y="74" font-size="12" font-weight="bold" fill="#263238">Errors to fix: 4</text>
+<rect x="20" y="82" width="20" height="20" rx="4" fill="#C62828"/>
+<text x="30" y="97" font-size="12" font-weight="bold" fill="#FFFFFF" text-anchor="middle">H</text>
+<rect x="42" y="82" width="20" height="20" rx="4" fill="#C62828"/>
+<text x="52" y="97" font-size="12" font-weight="bold" fill="#FFFFFF" text-anchor="middle">H</text>
+<rect x="64" y="82" width="20" height="20" rx="4" fill="#E65100"/>
+<text x="74" y="97" font-size="12" font-weight="bold" fill="#FFFFFF" text-anchor="middle">M</text>
+<rect x="86" y="82" width="20" height="20" rx="4" fill="#E65100"/>
+<text x="96" y="97" font-size="12" font-weight="bold" fill="#FFFFFF" text-anchor="middle">M</text>
+<text x="20" y="124" font-size="12" font-weight="bold" fill="#263238">Polish (make it sharper): 10</text>
+<circle cx="26" cy="140" r="6" fill="#00695C"/>
+<circle cx="44" cy="140" r="6" fill="#00695C"/>
+<circle cx="62" cy="140" r="6" fill="#00695C"/>
+<circle cx="80" cy="140" r="6" fill="#00695C"/>
+<circle cx="98" cy="140" r="6" fill="#00695C"/>
+<circle cx="116" cy="140" r="6" fill="#00695C"/>
+<circle cx="134" cy="140" r="6" fill="#00695C"/>
+<circle cx="152" cy="140" r="6" fill="#00695C"/>
+<circle cx="170" cy="140" r="6" fill="#00695C"/>
+<circle cx="188" cy="140" r="6" fill="#00695C"/>
+<rect x="233" y="8" width="206" height="150" rx="12" fill="#FBE9E7" stroke="#BF360C" stroke-width="1.5"/>
+<text x="247" y="32" font-size="15" font-weight="bold" fill="#BF360C">[P2] Simulation lab</text>
+<text x="247" y="49" font-size="12" fill="#607D8B">Light-intensity data &amp; board meeting</text>
+<text x="247" y="74" font-size="12" font-weight="bold" fill="#263238">Errors to fix: 8</text>
+<rect x="247" y="82" width="20" height="20" rx="4" fill="#C62828"/>
+<text x="257" y="97" font-size="12" font-weight="bold" fill="#FFFFFF" text-anchor="middle">H</text>
+<rect x="269" y="82" width="20" height="20" rx="4" fill="#C62828"/>
+<text x="279" y="97" font-size="12" font-weight="bold" fill="#FFFFFF" text-anchor="middle">H</text>
+<rect x="291" y="82" width="20" height="20" rx="4" fill="#E65100"/>
+<text x="301" y="97" font-size="12" font-weight="bold" fill="#FFFFFF" text-anchor="middle">M</text>
+<rect x="313" y="82" width="20" height="20" rx="4" fill="#E65100"/>
+<text x="323" y="97" font-size="12" font-weight="bold" fill="#FFFFFF" text-anchor="middle">M</text>
+<rect x="335" y="82" width="20" height="20" rx="4" fill="#E65100"/>
+<text x="345" y="97" font-size="12" font-weight="bold" fill="#FFFFFF" text-anchor="middle">M</text>
+<rect x="357" y="82" width="20" height="20" rx="4" fill="#E65100"/>
+<text x="367" y="97" font-size="12" font-weight="bold" fill="#FFFFFF" text-anchor="middle">M</text>
+<rect x="379" y="82" width="20" height="20" rx="4" fill="#B26A00"/>
+<text x="389" y="97" font-size="12" font-weight="bold" fill="#FFFFFF" text-anchor="middle">L</text>
+<rect x="401" y="82" width="20" height="20" rx="4" fill="#B26A00"/>
+<text x="411" y="97" font-size="12" font-weight="bold" fill="#FFFFFF" text-anchor="middle">L</text>
+<text x="247" y="124" font-size="12" font-weight="bold" fill="#263238">Polish (make it sharper): 4</text>
+<circle cx="253" cy="140" r="6" fill="#00695C"/>
+<circle cx="271" cy="140" r="6" fill="#00695C"/>
+<circle cx="289" cy="140" r="6" fill="#00695C"/>
+<circle cx="307" cy="140" r="6" fill="#00695C"/>
+<rect x="460" y="8" width="206" height="150" rx="12" fill="#FBE9E7" stroke="#BF360C" stroke-width="1.5"/>
+<text x="474" y="32" font-size="15" font-weight="bold" fill="#BF360C">[P3] Mauna Loa notes</text>
+<text x="474" y="49" font-size="12" fill="#607D8B">Keeling Curve lesson</text>
+<text x="474" y="74" font-size="12" font-weight="bold" fill="#263238">Errors to fix: 3</text>
+<rect x="474" y="82" width="20" height="20" rx="4" fill="#C62828"/>
+<text x="484" y="97" font-size="12" font-weight="bold" fill="#FFFFFF" text-anchor="middle">H</text>
+<rect x="496" y="82" width="20" height="20" rx="4" fill="#E65100"/>
+<text x="506" y="97" font-size="12" font-weight="bold" fill="#FFFFFF" text-anchor="middle">M</text>
+<rect x="518" y="82" width="20" height="20" rx="4" fill="#B26A00"/>
+<text x="528" y="97" font-size="12" font-weight="bold" fill="#FFFFFF" text-anchor="middle">L</text>
+<text x="474" y="124" font-size="12" font-weight="bold" fill="#263238">Polish (make it sharper): 6</text>
+<circle cx="480" cy="140" r="6" fill="#00695C"/>
+<circle cx="498" cy="140" r="6" fill="#00695C"/>
+<circle cx="516" cy="140" r="6" fill="#00695C"/>
+<circle cx="534" cy="140" r="6" fill="#00695C"/>
+<circle cx="552" cy="140" r="6" fill="#00695C"/>
+<circle cx="570" cy="140" r="6" fill="#00695C"/>
+<rect x="8" y="172" width="18" height="18" rx="4" fill="#C62828"/><text x="17" y="186" font-size="12" font-weight="bold" fill="#FFFFFF" text-anchor="middle">H</text>
+<text x="32" y="186" font-size="12" fill="#263238">High priority: likely CER-test trap</text>
+<rect x="250" y="172" width="18" height="18" rx="4" fill="#E65100"/><text x="259" y="186" font-size="12" font-weight="bold" fill="#FFFFFF" text-anchor="middle">M</text>
+<text x="274" y="186" font-size="12" fill="#263238">Medium</text>
+<rect x="350" y="172" width="18" height="18" rx="4" fill="#B26A00"/><text x="359" y="186" font-size="12" font-weight="bold" fill="#FFFFFF" text-anchor="middle">L</text>
+<text x="374" y="186" font-size="12" fill="#263238">Low</text>
+<circle cx="426" cy="181" r="6" fill="#00695C"/><text x="438" y="186" font-size="12" fill="#263238">polish item</text>
+</g>
+</svg></div><figcaption><strong>Figure 1.</strong> What was found in each packet. H/M/L = priority; teal dots = “polish” items (right idea, could be sharper).</figcaption></figure><div class="checklist" data-total=""><div class="cl-title">Your top 5 fixes before the test (tick them off)</div><label class="chk"><input type="checkbox" data-pts="1"><span class="ct"><strong>Energy labels:</strong> photosynthesis takes in LIGHT energy; respiration releases ATP energy (E4, E1).</span></label><label class="chk"><input type="checkbox" data-pts="1"><span class="ct"><strong>Who has what:</strong> animals have mitochondria; plants have chloroplasts AND mitochondria and do both processes (E2).</span></label><label class="chk"><input type="checkbox" data-pts="1"><span class="ct"><strong>Your data:</strong> fix the 100 % and 40 % values and redraw the graph so it matches the table — no dip below zero (E7, E8, E9).</span></label><label class="chk"><input type="checkbox" data-pts="1"><span class="ct"><strong>Keeling Curve:</strong> respiration is NOT negligible; the CO<sub>2</sub> level is a running total (E13, E14).</span></label><label class="chk"><input type="checkbox" data-pts="1"><span class="ct"><strong>Practice the Part VII CER</strong> (best conditions + how many fish), and get the real Part IV/V class numbers (E12).</span></label></div><aside class="callout k-tip" style="border-left-color:#1565C0;background:#E3F2FD"><div class="clabel" style="color:#1565C0">→ Tip — How to read each item</div><p>Each error has four parts: <strong>You wrote</strong> (what is on your sheet) → <strong>What’s off</strong> → <strong>Full-credit version</strong> (what a top answer says) → <strong>Why it matters on a CER test</strong>. Start with the <strong>High priority</strong> items — they are the most likely test traps.</p></aside><h2 class="band" id="part-a-errors-to-fix" style="background:#BF360C">Part A · Errors to fix</h2><h3 class="h2" id="p1-photosynthesis-and-respiration-pogil-worksheet" style="color:#BF360C;border-color:#BF360C">[P1] Photosynthesis and Respiration (POGIL worksheet)</h3><div class="tablewrap"><table id="e-e1"><colgroup><col style="width:20.6%"><col style="width:79.4%"></colgroup><tbody><tr><td style="text-align:center;background:#E65100;color:#FFFFFF"><span style="font-size:1.18em"><strong>E1</strong></span></td><td style="text-align:left;background:#FFF3E0"><p><strong>Q9: the energy exception is in the wrong half</strong></p><p style="color:#607D8B;font-size:0.82em">[P1] p.2, Q9 · Science (half right) · <strong>Medium priority</strong></p></td></tr><tr><td style="text-align:left;background:#FFF8E1"><strong>You wrote</strong></td><td style="text-align:left">“The reactants of photosynthesis are the products of respiration, except for sunlight energy, and the reactants of respiration are the products of photosynthesis, <em>except for ATP energy</em>.”</td></tr><tr><td style="text-align:left;background:#FFEBEE"><strong>What's off</strong></td><td style="text-align:left">The first half is right. In the second half there is <strong>no exception</strong>: glucose + O<sub>2</sub> (respiration’s reactants) are exactly what photosynthesis makes. ATP is a <strong>product</strong> of respiration, not one of its reactants, so “except for ATP” suggests ATP goes <em>into</em> respiration.</td></tr><tr><td style="text-align:left;background:#E8F5E9"><strong>Full-credit version</strong></td><td style="text-align:left">“The products of respiration (CO<sub>2</sub> and H<sub>2</sub>O) are the reactants of photosynthesis, and the products of photosynthesis (glucose and O<sub>2</sub>) are the reactants of respiration. The only difference is energy: photosynthesis takes in <strong>light</strong> energy, and respiration releases energy as <strong>ATP</strong>.”</td></tr><tr><td style="text-align:left;background:#E3F2FD"><strong>Why it matters on a CER test</strong></td><td style="text-align:left">Energy is the #1 trap on this test: matter cycles, but energy does not. Getting “light in, ATP out” exactly right shows you understand both processes.</td></tr></tbody></table></div><div class="tablewrap"><table id="e-e2"><colgroup><col style="width:20.6%"><col style="width:79.4%"></colgroup><tbody><tr><td style="text-align:center;background:#C62828;color:#FFFFFF"><span style="font-size:1.18em"><strong>E2</strong></span></td><td style="text-align:left;background:#FFEBEE"><p><strong>Q10: animals DO have mitochondria</strong></p><p style="color:#607D8B;font-size:0.82em">[P1] p.2, Q10 · Contradiction / science error · <strong>High priority</strong></p></td></tr><tr><td style="text-align:left;background:#FFF8E1"><strong>You wrote</strong></td><td style="text-align:left">“…but animals can only go through respiration on their own because they don’t have <strong>mitochondria</strong>.”</td></tr><tr><td style="text-align:left;background:#FFEBEE"><strong>What's off</strong></td><td style="text-align:left">Animals do have mitochondria — that is where their cellular respiration happens (you said so yourself in Q2a and Q8). You almost certainly meant <strong>chloroplasts</strong>. Also, “plants can survive on their own” is only partly true: plants still use CO<sub>2</sub> released by respiration (their own, animals’, and decomposers’), and decomposers recycle matter.</td></tr><tr><td style="text-align:left;background:#E8F5E9"><strong>Full-credit version</strong></td><td style="text-align:left">“We partly agree. Plants have chloroplasts <strong>and</strong> mitochondria, so they can make their own glucose and also break it down for ATP. Animals have mitochondria but <strong>no chloroplasts</strong>, so they must eat plants (or animals that ate plants) to get glucose. But plants aren’t completely independent: they use CO<sub>2</sub> released by the respiration of animals and decomposers, so the two depend on each other.”</td></tr><tr><td style="text-align:left;background:#E3F2FD"><strong>Why it matters on a CER test</strong></td><td style="text-align:left">A one-word slip (mitochondria ↔ chloroplasts) turns a correct idea into a science error and contradicts your own earlier answers. On a CER test, a contradiction can cost the reasoning points.</td></tr></tbody></table></div><div class="tablewrap"><table id="e-e3"><colgroup><col style="width:20.6%"><col style="width:79.4%"></colgroup><tbody><tr><td style="text-align:center;background:#E65100;color:#FFFFFF"><span style="font-size:1.18em"><strong>E3</strong></span></td><td style="text-align:left;background:#FFF3E0"><p><strong>Q13: the missing red star at B</strong></p><p style="color:#607D8B;font-size:0.82em">[P1] p.4, Q13 (Model 2) · Incomplete · <strong>Medium priority</strong></p></td></tr><tr><td style="text-align:left;background:#FFF8E1"><strong>You wrote</strong></td><td style="text-align:left">Green star at <strong>D</strong>; red stars at <strong>C</strong> and <strong>A</strong>; nothing at <strong>B</strong>.</td></tr><tr><td style="text-align:left;background:#FFEBEE"><strong>What's off</strong></td><td style="text-align:left">Arrow <strong>B</strong> goes from the rabbit up to atmospheric CO<sub>2</sub> — that is <strong>animal respiration</strong>, so it needs a red star. Your D (photosynthesis), C (plant respiration) and A (decomposer respiration, the Q15 idea) are all correct.</td></tr><tr><td style="text-align:left;background:#E8F5E9"><strong>Full-credit version</strong></td><td style="text-align:left">Green star: <strong>D</strong>. Red stars: <strong>B</strong> and <strong>C</strong> — plus <strong>A</strong> once you know decomposers respire (Q15). See <a class="figref" href="#fig-stars">Figure 2</a>.</td></tr><tr><td style="text-align:left;background:#E3F2FD"><strong>Why it matters on a CER test</strong></td><td style="text-align:left">Carbon-cycle questions often ask <em>which organisms release CO</em><em><sub>2</sub></em>. The complete answer is plants, animals <strong>and</strong> decomposers — leaving out animals is a common way to lose a point.</td></tr></tbody></table></div><figure id="fig-stars" class="fig"><div class="svgwrap" style="max-width:753px" title="Click to enlarge" tabindex="0" role="button" aria-label="Enlarge figure 2"><svg role="img" aria-label="Where the stars go on Model 2 [P1]. Letters and words are included, so the colors are not needed to read it." preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 672 516">
+<rect x="0" y="0" width="672" height="516" fill="#FFFFFF"/>
+<g font-family="Calibri, Carlito, Arial, sans-serif">
+
+<path d="M386.0,54.0 Q540.0,40.0 554.6,155.1" fill="none" stroke="#2E7D32" stroke-width="4.5"/><polygon points="556.0,166.0 546.9,154.0 561.8,152.2" fill="#2E7D32"/>
+<line x1="536.0" y1="182.0" x2="391.4" y2="93.7" stroke="#E65100" stroke-width="4.5"/><polygon points="382.0,88.0 397.0,88.4 389.2,101.2" fill="#E65100"/>
+<line x1="336.0" y1="170.0" x2="336.0" y2="127.0" stroke="#E65100" stroke-width="4.5"/><polygon points="336.0,116.0 343.5,129.0 328.5,129.0" fill="#E65100"/>
+<path d="M296.0,292.0 Q180.0,190.0 283.5,105.0" fill="none" stroke="#E65100" stroke-width="4.5"/><polygon points="292.0,98.0 286.7,112.0 277.2,100.5" fill="#E65100"/>
+<path d="M228.0,358.0 Q-30.0,236.0 274.5,65.5" fill="none" stroke="#37474F" stroke-width="4.5"/><polygon points="284.0,60.0 276.5,73.0 269.0,60.0" fill="#37474F"/>
+<line x1="522.0" y1="214.0" x2="385.0" y2="208.4" stroke="#78909C" stroke-width="3"/><polygon points="376.0,208.0 387.3,202.0 386.7,214.9" fill="#78909C"/>
+<line x1="336.0" y1="232.0" x2="336.0" y2="257.0" stroke="#78909C" stroke-width="3"/><polygon points="336.0,266.0 329.5,255.0 342.5,255.0" fill="#78909C"/>
+<line x1="536.0" y1="246.0" x2="382.7" y2="285.7" stroke="#78909C" stroke-width="3"/><polygon points="374.0,288.0 383.0,278.9 386.3,291.5" fill="#78909C"/>
+<line x1="336.0" y1="328.0" x2="336.0" y2="347.0" stroke="#78909C" stroke-width="3"/><polygon points="336.0,356.0 329.5,345.0 342.5,345.0" fill="#78909C"/>
+<path d="M578.0,254.0 Q604.0,392.0 402.0,386.3" fill="none" stroke="#37474F" stroke-width="3" stroke-dasharray="7 4"/><polygon points="392.0,386.0 404.2,379.3 403.8,393.3" fill="#37474F"/>
+<circle cx="336" cy="64" r="50" fill="#CFD8DC" stroke="#546E7A" stroke-width="3"/>
+<text x="336.0" y="60.0" font-size="14" fill="#263238" text-anchor="middle" font-weight="bold">Atmospheric</text>
+<text x="336.0" y="80.0" font-size="18" fill="#263238" text-anchor="middle" font-weight="bold">CO₂</text>
+<rect x="530" y="244" width="62" height="8" rx="4" fill="#CFD8DC"/>
+<line x1="561" y1="246" x2="561" y2="176" stroke="#2E7D32" stroke-width="3.5" stroke-linecap="round"/>
+<ellipse cx="547" cy="228" rx="16" ry="6.5" fill="#66BB6A" stroke="#2E7D32" stroke-width="1.5" transform="rotate(-30 547 228)"/>
+<ellipse cx="575" cy="214" rx="16" ry="6.5" fill="#66BB6A" stroke="#2E7D32" stroke-width="1.5" transform="rotate(30 575 214)"/>
+<ellipse cx="548" cy="198" rx="16" ry="6.5" fill="#66BB6A" stroke="#2E7D32" stroke-width="1.5" transform="rotate(-35 548 198)"/>
+<ellipse cx="574" cy="186" rx="16" ry="6.5" fill="#66BB6A" stroke="#2E7D32" stroke-width="1.5" transform="rotate(35 574 186)"/>
+<circle cx="561" cy="172" r="6" fill="#66BB6A" stroke="#2E7D32" stroke-width="1.5"/>
+<text x="600.0" y="232.0" font-size="13" fill="#2E7D32" font-weight="bold">plant</text>
+<ellipse cx="350" cy="184" rx="4.5" ry="12" fill="#FFFFFF" stroke="#546E7A" stroke-width="2" transform="rotate(-12 350 184)"/>
+<ellipse cx="360" cy="184" rx="4.5" ry="12" fill="#FFFFFF" stroke="#546E7A" stroke-width="2" transform="rotate(12 360 184)"/>
+<circle cx="310" cy="214" r="5.5" fill="#FFFFFF" stroke="#546E7A" stroke-width="2"/>
+<ellipse cx="332" cy="216" rx="23" ry="15" fill="#FFFFFF" stroke="#546E7A" stroke-width="2"/>
+<circle cx="354" cy="201" r="10" fill="#FFFFFF" stroke="#546E7A" stroke-width="2"/>
+<circle cx="357.5" cy="199" r="1.7" fill="#263238"/>
+<text x="303.0" y="242.0" font-size="13" fill="#263238" text-anchor="end" font-weight="bold">rabbit</text>
+<rect x="329" y="292" width="12" height="18" rx="3" fill="#F5F7F8" stroke="#607D8B" stroke-width="1.5"/>
+<path d="M313,294 Q335,262 357,294 Z" fill="#FFE0B2" stroke="#E65100" stroke-width="2" stroke-linejoin="round"/>
+<circle cx="328" cy="284" r="2.5" fill="#FFFFFF"/><circle cx="341" cy="280" r="2.5" fill="#FFFFFF"/>
+<path d="M362,306 q4,-5 8,0 q4,5 8,0 q4,-5 8,0" fill="none" stroke="#EF5350" stroke-width="2.5" stroke-linecap="round"/>
+<text x="390.0" y="310.0" font-size="11" fill="#C62828" font-weight="bold">heat</text>
+<rect x="300" y="304" width="7" height="3.5" rx="1.75" fill="#546E7A"/>
+<rect x="306" y="298" width="7" height="3.5" rx="1.75" fill="#546E7A"/>
+<rect x="296" y="296" width="7" height="3.5" rx="1.75" fill="#546E7A"/>
+<text x="336.0" y="324.0" font-size="12" fill="#263238" text-anchor="middle" font-weight="bold">Decay (fungi, bacteria, worms)</text>
+<polygon points="298,388 306,372 322,370 330,384 320,394 304,394" fill="#37474F"/>
+<polygon points="326,392 334,376 348,378 352,392" fill="#455A64"/>
+<path d="M366,370 C366,370 356,384 356,389 C356,395 361,398 366,398 C371,398 376,395 376,389 C376,384 366,370 366,370 Z" fill="#263238"/>
+<text x="336.0" y="414.0" font-size="12" fill="#263238" text-anchor="middle" font-weight="bold">Carbon stores: coal, oil, natural gas</text>
+<g transform="translate(198.4,170) scale(0.8)">
+<path d="M30,262 L36,246 Q38,240 46,240 L84,240 Q92,240 96,246 L104,262 Z" fill="#B0BEC5" stroke="#37474F" stroke-width="2"/>
+<rect x="22" y="260" width="90" height="16" rx="6" fill="#B0BEC5" stroke="#37474F" stroke-width="2"/>
+<circle cx="44" cy="278" r="7" fill="#37474F"/><circle cx="90" cy="278" r="7" fill="#37474F"/>
+<rect x="44" y="246" width="20" height="12" rx="2" fill="#ECEFF1"/><rect x="68" y="246" width="20" height="12" rx="2" fill="#ECEFF1"/>
+</g>
+<text x="67.0" y="302.0" font-size="12" fill="#37474F" text-anchor="middle">auto and factory</text>
+<text x="67.0" y="316.0" font-size="12" fill="#37474F" text-anchor="middle">emissions</text>
+<polygon points="506.0,54.0 513.6,65.5 526.9,69.2 518.4,80.0 518.9,93.8 506.0,89.0 493.1,93.8 493.6,80.0 485.1,69.2 498.4,65.5" fill="#A5D6A7" stroke="#2E7D32" stroke-width="2"/>
+<polygon points="459.0,113.0 466.6,124.5 479.9,128.2 471.4,139.0 471.9,152.8 459.0,148.0 446.1,152.8 446.6,139.0 438.1,128.2 451.4,124.5" fill="#FFCDD2" stroke="#C62828" stroke-width="2"/>
+<polygon points="237.0,170.0 244.6,181.5 257.9,185.2 249.4,196.0 249.9,209.8 237.0,205.0 224.1,209.8 224.6,196.0 216.1,185.2 229.4,181.5" fill="#FFCDD2" stroke="#C62828" stroke-width="2"/>
+<polygon points="336.0,121.0 343.6,132.5 356.9,136.2 348.4,147.0 348.9,160.8 336.0,156.0 323.1,160.8 323.6,147.0 315.1,136.2 328.4,132.5" fill="#FFFFFF" stroke="#C62828" stroke-width="2.5" stroke-dasharray="4 3"/>
+<circle cx="506" cy="76" r="12" fill="#2E7D32" stroke="#FFFFFF" stroke-width="2"/><text x="506.0" y="81.0" font-size="14" fill="#FFFFFF" text-anchor="middle" font-weight="bold">D</text>
+<text x="532.0" y="62.0" font-size="13" fill="#2E7D32" font-weight="bold">photosynthesis</text>
+<text x="532.0" y="77.0" font-size="11" fill="#2E7D32">removes CO₂</text>
+<circle cx="459" cy="135" r="12" fill="#E65100" stroke="#FFFFFF" stroke-width="2"/><text x="459.0" y="140.0" font-size="14" fill="#FFFFFF" text-anchor="middle" font-weight="bold">C</text>
+<text x="486.0" y="110.0" font-size="12" fill="#E65100" font-weight="bold">plant</text>
+<text x="486.0" y="124.0" font-size="12" fill="#E65100" font-weight="bold">respiration</text>
+<circle cx="336" cy="143" r="12" fill="#E65100" stroke="#FFFFFF" stroke-width="2"/><text x="336.0" y="148.0" font-size="14" fill="#FFFFFF" text-anchor="middle" font-weight="bold">B</text>
+<text x="362.0" y="136.0" font-size="12" fill="#E65100" font-weight="bold">animal</text>
+<text x="362.0" y="150.0" font-size="12" fill="#E65100" font-weight="bold">respiration</text>
+<circle cx="237" cy="192" r="12" fill="#E65100" stroke="#FFFFFF" stroke-width="2"/><text x="237.0" y="197.0" font-size="14" fill="#FFFFFF" text-anchor="middle" font-weight="bold">A</text>
+<text x="214.0" y="216.0" font-size="12" fill="#E65100" text-anchor="end" font-weight="bold">decomposer</text>
+<text x="214.0" y="230.0" font-size="12" fill="#E65100" text-anchor="end" font-weight="bold">respiration</text>
+<text x="102.0" y="128.0" font-size="13" fill="#37474F" text-anchor="middle" font-weight="bold">combustion</text>
+<text x="102.0" y="142.0" font-size="11" fill="#37474F" text-anchor="middle">(burning)</text>
+<text x="448.0" y="202.0" font-size="11" fill="#78909C" text-anchor="middle" font-weight="bold">feeding</text>
+<text x="346.0" y="254.0" font-size="11" fill="#78909C" font-weight="bold">death, wastes</text>
+<text x="468.0" y="292.0" font-size="11" fill="#78909C" text-anchor="middle" font-weight="bold">death</text>
+<text x="470.0" y="356.0" font-size="11" fill="#37474F" text-anchor="middle" font-weight="bold">fossil fuel formation</text>
+<text x="470.0" y="369.0" font-size="11" fill="#37474F" text-anchor="middle">(millions of years)</text>
+
+<rect x="8" y="434" width="324" height="32" rx="8" fill="#E8F5E9" stroke="#2E7D32" stroke-width="1.5"/>
+<circle cx="26" cy="450" r="11" fill="#2E7D32"/><text x="26" y="455" font-size="13" font-weight="bold" fill="#FFFFFF" text-anchor="middle">D</text>
+<text x="44" y="455" font-size="13" fill="#263238"><tspan font-weight="bold">photosynthesis</tspan> → green star</text>
+<polyline points="270.0,450.0 274.0,454.0 280.4,445.2" fill="none" stroke="#2E7D32" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="288" y="455" font-size="12" font-weight="bold" fill="#2E7D32">correct</text>
+<rect x="340" y="434" width="324" height="32" rx="8" fill="#E8F5E9" stroke="#2E7D32" stroke-width="1.5"/>
+<circle cx="358" cy="450" r="11" fill="#E65100"/><text x="358" y="455" font-size="13" font-weight="bold" fill="#FFFFFF" text-anchor="middle">C</text>
+<text x="376" y="455" font-size="13" fill="#263238"><tspan font-weight="bold">plant respiration</tspan> → red star</text>
+<polyline points="602.0,450.0 606.0,454.0 612.4,445.2" fill="none" stroke="#2E7D32" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="620" y="455" font-size="12" font-weight="bold" fill="#2E7D32">correct</text>
+<rect x="8" y="474" width="324" height="32" rx="8" fill="#E8F5E9" stroke="#2E7D32" stroke-width="1.5"/>
+<circle cx="26" cy="490" r="11" fill="#E65100"/><text x="26" y="495" font-size="13" font-weight="bold" fill="#FFFFFF" text-anchor="middle">A</text>
+<text x="44" y="495" font-size="13" fill="#263238"><tspan font-weight="bold">decomposer respiration</tspan> → red star (Q15)</text>
+<polyline points="270.0,490.0 274.0,494.0 280.4,485.2" fill="none" stroke="#2E7D32" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="288" y="495" font-size="12" font-weight="bold" fill="#2E7D32">correct</text>
+<rect x="340" y="474" width="324" height="32" rx="8" fill="#FFEBEE" stroke="#C62828" stroke-width="1.5"/>
+<circle cx="358" cy="490" r="11" fill="#E65100"/><text x="358" y="495" font-size="13" font-weight="bold" fill="#FFFFFF" text-anchor="middle">B</text>
+<text x="376" y="495" font-size="13" fill="#263238"><tspan font-weight="bold">animal respiration</tspan> → red star</text>
+<line x1="597.2" y1="485.2" x2="606.8" y2="494.8" stroke="#C62828" stroke-width="2.4" stroke-linecap="round"/><line x1="597.2" y1="494.8" x2="606.8" y2="485.2" stroke="#C62828" stroke-width="2.4" stroke-linecap="round"/>
+<text x="614" y="495" font-size="12" font-weight="bold" fill="#C62828">MISSED</text>
+</g>
+</svg></div><figcaption><strong>Figure 2.</strong> Where the stars go on Model 2 [P1]. Letters and words are included, so the colors are not needed to read it.</figcaption></figure><div class="tablewrap"><table id="e-e4"><colgroup><col style="width:20.6%"><col style="width:79.4%"></colgroup><tbody><tr><td style="text-align:center;background:#C62828;color:#FFFFFF"><span style="font-size:1.18em"><strong>E4</strong></span></td><td style="text-align:left;background:#FFEBEE"><p><strong>Q14: the energy labels are swapped</strong></p><p style="color:#607D8B;font-size:0.82em">[P1] p.4, Q14 · Science error · <strong>High priority</strong></p></td></tr><tr><td style="text-align:left;background:#FFF8E1"><strong>You wrote</strong></td><td style="text-align:left">Respiration: C<sub>6</sub>H<sub>12</sub>O<sub>6</sub> + 6O<sub>2</sub> → 6CO<sub>2</sub> + 6H<sub>2</sub>O + energy, with <strong>“(sunlight)”</strong> written over “energy”. Photosynthesis: 6CO<sub>2</sub> + 6H<sub>2</sub>O + energy → C<sub>6</sub>H<sub>12</sub>O<sub>6</sub> + 6O<sub>2</sub>, with <strong>“(ATP)”</strong> written over “energy”.</td></tr><tr><td style="text-align:left;background:#FFEBEE"><strong>What's off</strong></td><td style="text-align:left">The two labels are switched. Photosynthesis takes in <strong>light (sunlight) energy</strong>; respiration <strong>releases</strong> energy as <strong>ATP</strong>. This also contradicts your own correct answers to Q1b (“sunlight energy”) and Q2c (“ATP energy”). Your formulas, coefficients and circled CO<sub>2</sub> are all correct.</td></tr><tr><td style="text-align:left;background:#E8F5E9"><strong>Full-credit version</strong></td><td style="text-align:left">Photosynthesis: 6CO<sub>2</sub> + 6H<sub>2</sub>O + <strong>light energy</strong> → C<sub>6</sub>H<sub>12</sub>O<sub>6</sub> + 6O<sub>2</sub>. Respiration: C<sub>6</sub>H<sub>12</sub>O<sub>6</sub> + 6O<sub>2</sub> → 6CO<sub>2</sub> + 6H<sub>2</sub>O + <strong>energy (ATP)</strong>. “Label” also means naming each substance: carbon dioxide, water, glucose, oxygen, energy.</td></tr><tr><td style="text-align:left;background:#E3F2FD"><strong>Why it matters on a CER test</strong></td><td style="text-align:left">This is the single most likely trap on the test. If your reasoning says respiration uses sunlight, the science is wrong and the reasoning points are lost.</td></tr></tbody></table></div><figure id="fig-q14" class="fig"><div class="svgwrap" style="max-width:710px" title="Click to enlarge" tabindex="0" role="button" aria-label="Enlarge figure 3"><svg role="img" aria-label="Q14 fixed: light energy goes IN to photosynthesis; ATP energy comes OUT of respiration." preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 672 300">
+<rect x="0" y="0" width="672" height="300" fill="#FFFFFF"/>
+<g font-family="Calibri, Carlito, Arial, sans-serif">
+<rect x="6" y="6" width="660" height="128" rx="12" fill="#F5F7F8" stroke="#CFD8DC"/>
+<text x="22" y="30" font-size="15" font-weight="bold" fill="#263238">Photosynthesis</text>
+<text x="132.60000000000002" y="30" font-size="13" fill="#607D8B"> · chloroplast</text>
+<text x="22" y="66" font-size="19" fill="#263238">6CO₂ + 6H₂O +</text>
+<rect x="150" y="44" width="96" height="30" rx="7" fill="#FFFFFF" stroke="#263238" stroke-width="2" stroke-dasharray="5 3"/>
+<text x="198" y="65" font-size="17" font-weight="bold" fill="#263238" text-anchor="middle">energy</text>
+<text x="254" y="66" font-size="19" fill="#263238">→ C₆H₁₂O₆ + 6O₂</text>
+<line x1="198" y1="75" x2="198" y2="88" stroke="#607D8B" stroke-width="1.5"/>
+<rect x="16" y="88" width="172" height="30" rx="7" fill="#FFEBEE" stroke="#C62828" stroke-width="1.5"/>
+<line x1="27.2" y1="98.2" x2="36.8" y2="107.8" stroke="#C62828" stroke-width="2.4" stroke-linecap="round"/><line x1="27.2" y1="107.8" x2="36.8" y2="98.2" stroke="#C62828" stroke-width="2.4" stroke-linecap="round"/>
+<text x="46" y="108" font-size="14" fill="#C62828" font-weight="bold">you wrote: ATP</text>
+<rect x="202" y="88" width="214" height="30" rx="7" fill="#E8F5E9" stroke="#2E7D32" stroke-width="1.5"/>
+<polyline points="212.0,103.0 216.0,107.0 222.4,98.2" fill="none" stroke="#2E7D32" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="230" y="108" font-size="14" fill="#2E7D32" font-weight="bold">correct: LIGHT (sunlight)</text>
+<text x="652" y="30" font-size="12" fill="#607D8B" text-anchor="end" font-style="italic">energy goes IN</text>
+<rect x="6" y="142" width="660" height="128" rx="12" fill="#F5F7F8" stroke="#CFD8DC"/>
+<text x="22" y="166" font-size="15" font-weight="bold" fill="#263238">Cellular respiration</text>
+<text x="180.0" y="166" font-size="13" fill="#607D8B"> · mitochondrion</text>
+<text x="22" y="202" font-size="19" fill="#263238">C₆H₁₂O₆ + 6O₂ → 6CO₂ + 6H₂O +</text>
+<rect x="290" y="180" width="96" height="30" rx="7" fill="#FFFFFF" stroke="#263238" stroke-width="2" stroke-dasharray="5 3"/>
+<text x="338" y="201" font-size="17" font-weight="bold" fill="#263238" text-anchor="middle">energy</text>
+<line x1="338" y1="211" x2="338" y2="224" stroke="#607D8B" stroke-width="1.5"/>
+<rect x="156" y="224" width="172" height="30" rx="7" fill="#FFEBEE" stroke="#C62828" stroke-width="1.5"/>
+<line x1="167.2" y1="234.2" x2="176.8" y2="243.8" stroke="#C62828" stroke-width="2.4" stroke-linecap="round"/><line x1="167.2" y1="243.8" x2="176.8" y2="234.2" stroke="#C62828" stroke-width="2.4" stroke-linecap="round"/>
+<text x="186" y="244" font-size="14" fill="#C62828" font-weight="bold">you wrote: sunlight</text>
+<rect x="342" y="224" width="214" height="30" rx="7" fill="#E8F5E9" stroke="#2E7D32" stroke-width="1.5"/>
+<polyline points="352.0,239.0 356.0,243.0 362.4,234.2" fill="none" stroke="#2E7D32" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="370" y="244" font-size="14" fill="#2E7D32" font-weight="bold">correct: ATP (released)</text>
+<text x="652" y="166" font-size="12" fill="#607D8B" text-anchor="end" font-style="italic">energy comes OUT</text>
+<text x="336" y="290" font-size="14" font-weight="bold" fill="#BF360C" text-anchor="middle">Memory hook: LIGHT goes IN to photosynthesis · ATP comes OUT of respiration</text>
+</g>
+</svg></div><figcaption><strong>Figure 3.</strong> Q14 fixed: light energy goes IN to photosynthesis; ATP energy comes OUT of respiration.</figcaption></figure><h3 class="h2" id="p2-photosynthesis-cellular-respiration-simulation-" style="color:#BF360C;border-color:#BF360C">[P2] Photosynthesis &amp; Cellular Respiration Simulation (lab)</h3><div class="tablewrap"><table id="e-e5"><colgroup><col style="width:20.6%"><col style="width:79.4%"></colgroup><tbody><tr><td style="text-align:center;background:#B26A00;color:#FFFFFF"><span style="font-size:1.18em"><strong>E5</strong></span></td><td style="text-align:left;background:#FFF8E1"><p><strong>Part II: a small slip in the averages</strong></p><p style="color:#607D8B;font-size:0.82em">[P2] p.1, Part II · Math / data · <strong>Low priority</strong></p></td></tr><tr><td style="text-align:left;background:#FFF8E1"><strong>You wrote</strong></td><td style="text-align:left">Average start 7.0647, average end 6.8709, average difference <strong>−0.1939</strong> mg/L per hour.</td></tr><tr><td style="text-align:left;background:#FFEBEE"><strong>What's off</strong></td><td style="text-align:left">Your three trial differences (−0.1941, −0.1908, −0.1973) are all correct. Their average is (−0.1941 − 0.1908 − 0.1973) ÷ 3 = <strong>−0.1941</strong> (the start and end averages are 7.0649 and 6.8708). The slip is tiny (0.0002) and changes no conclusion — the other study guides keep your −0.1939 so their numbers match your sheet.</td></tr><tr><td style="text-align:left;background:#E8F5E9"><strong>Full-credit version</strong></td><td style="text-align:left">Respiration = <strong>−0.1941 mg/L per hour</strong> (average of the three dark trials). Tip: average the three differences directly, and re-check with a calculator.</td></tr><tr><td style="text-align:left;background:#E3F2FD"><strong>Why it matters on a CER test</strong></td><td style="text-align:left">Teachers check that evidence numbers are calculated correctly. Tiny slips are usually forgiven, but double-checking protects your evidence points.</td></tr></tbody></table></div><div class="tablewrap"><table id="e-e6"><colgroup><col style="width:20.6%"><col style="width:79.4%"></colgroup><tbody><tr><td style="text-align:center;background:#B26A00;color:#FFFFFF"><span style="font-size:1.18em"><strong>E6</strong></span></td><td style="text-align:left;background:#FFF8E1"><p><strong>Part III prediction: unclear, and opposite to your result</strong></p><p style="color:#607D8B;font-size:0.82em">[P2] p.2, Part III prediction · Wording · <strong>Low priority</strong></p></td></tr><tr><td style="text-align:left;background:#FFF8E1"><strong>You wrote</strong></td><td style="text-align:left">“Light intensity decreases oxygen production during photosynthesis.”</td></tr><tr><td style="text-align:left;background:#FFEBEE"><strong>What's off</strong></td><td style="text-align:left">It doesn’t say <em>which way</em> light changes (more light or less light?), and as written it says light <em>reduces</em> O<sub>2</sub> — the opposite of what you found. A prediction is allowed to turn out wrong, but it should be clear, testable, and give a reason.</td></tr><tr><td style="text-align:left;background:#E8F5E9"><strong>Full-credit version</strong></td><td style="text-align:left">“<strong>If</strong> light intensity increases, <strong>then</strong> oxygen production will increase, <strong>because</strong> light is the energy source for photosynthesis, which releases O<sub>2</sub>.”</td></tr><tr><td style="text-align:left;background:#E3F2FD"><strong>Why it matters on a CER test</strong></td><td style="text-align:left">If–then–because is the same thinking as Claim + Reasoning. Practicing it makes your CER claims sharper.</td></tr></tbody></table></div><div class="tablewrap"><table id="e-e7"><colgroup><col style="width:20.6%"><col style="width:79.4%"></colgroup><tbody><tr><td style="text-align:center;background:#E65100;color:#FFFFFF"><span style="font-size:1.18em"><strong>E7</strong></span></td><td style="text-align:left;background:#FFF3E0"><p><strong>Part III table: the 100 % per-minute value is off by 10×</strong></p><p style="color:#607D8B;font-size:0.82em">[P2] p.2, Part III table · Math / data · <strong>Medium priority</strong></p></td></tr><tr><td style="text-align:left;background:#FFF8E1"><strong>You wrote</strong></td><td style="text-align:left">O<sub>2</sub> production per minute at 100 % light: <strong>0.001</strong></td></tr><tr><td style="text-align:left;background:#FFEBEE"><strong>What's off</strong></td><td style="text-align:left">0.5976 ÷ 60 = 0.00996 ≈ <strong>0.0100</strong>. As written, the table says 100 % light made <em>less</em> O<sub>2</sub> per minute than 60 % or 80 % — which isn’t true. (Your graph shows about 0.0097 at 100 %, so you clearly knew the right value; it’s a copying slip.)</td></tr><tr><td style="text-align:left;background:#E8F5E9"><strong>Full-credit version</strong></td><td style="text-align:left">100 % light → <strong>0.0100 mg/L per minute</strong>.</td></tr><tr><td style="text-align:left;background:#E3F2FD"><strong>Why it matters on a CER test</strong></td><td style="text-align:left">Evidence must be accurate. One misplaced decimal can make your evidence contradict your own claim.</td></tr></tbody></table></div><div class="tablewrap"><table id="e-e8"><colgroup><col style="width:20.6%"><col style="width:79.4%"></colgroup><tbody><tr><td style="text-align:center;background:#E65100;color:#FFFFFF"><span style="font-size:1.18em"><strong>E8</strong></span></td><td style="text-align:left;background:#FFF3E0"><p><strong>Part III table: the 40 % O</strong><strong><sub>2</sub></strong><strong> production</strong></p><p style="color:#607D8B;font-size:0.82em">[P2] p.2, Part III table · Math / data (sign trap) · <strong>Medium priority</strong></p></td></tr><tr><td style="text-align:left;background:#FFF8E1"><strong>You wrote</strong></td><td style="text-align:left">At 40 %: O<sub>2</sub> production <strong>0.0102</strong>; per minute <strong>0.0002</strong>.</td></tr><tr><td style="text-align:left;background:#FFEBEE"><strong>What's off</strong></td><td style="text-align:left">O<sub>2</sub> production = DO difference − respiration = −0.1937 − (−0.1939) = −0.1937 + 0.1939 = <strong>0.0002</strong> mg/L per hour, not 0.0102. The per-minute value is then 0.0002 ÷ 60 ≈ <strong>0.000003</strong> (essentially 0). Your 0.0002 per minute came from carrying the wrong 0.0102 forward.</td></tr><tr><td style="text-align:left;background:#E8F5E9"><strong>Full-credit version</strong></td><td style="text-align:left">40 % → O<sub>2</sub> production <strong>0.0002 mg/L per hour</strong> → <strong>about 0.000003 mg/L per minute (≈ 0)</strong>. Your other O<sub>2</sub>-production (per-hour) values — 100 %, 80 %, 60 % and 20 % — are correct; see the corrected table below.</td></tr><tr><td style="text-align:left;background:#E3F2FD"><strong>Why it matters on a CER test</strong></td><td style="text-align:left">The “minus a negative” step is a classic trap. Write the signs out every time: −(−0.1939) = +0.1939.</td></tr></tbody></table></div><div class="tablewrap"><table><colgroup><col style="width:16.7%"><col style="width:25.0%"><col style="width:26.7%"><col style="width:31.7%"></colgroup><thead><tr><th style="background:#BF360C;text-align:center">Light (%)</th><th style="background:#BF360C;text-align:center">DO difference (mg/L per hour)</th><th style="background:#BF360C;text-align:center">O<sub>2</sub> production (mg/L per hour)</th><th style="background:#BF360C;text-align:center">O<sub>2</sub> production per minute</th></tr></thead><tbody><tr><td style="text-align:center">100</td><td style="text-align:center">+0.4037</td><td style="text-align:center">0.5976</td><td style="text-align:center;background:#E8F5E9"><strong>0.0100</strong> (you wrote 0.001)</td></tr><tr><td style="text-align:center">80</td><td style="text-align:center">+0.2084</td><td style="text-align:center">0.4023</td><td style="text-align:center">0.0067</td></tr><tr><td style="text-align:center">60</td><td style="text-align:center">+0.0046</td><td style="text-align:center">0.1985</td><td style="text-align:center">0.0033</td></tr><tr><td style="text-align:center">40</td><td style="text-align:center">−0.1937</td><td style="text-align:center;background:#E8F5E9"><strong>0.0002</strong> (you wrote 0.0102)</td><td style="text-align:center;background:#E8F5E9"><strong>≈ 0.000003</strong> (you wrote 0.0002)</td></tr><tr><td style="text-align:center">20</td><td style="text-align:center">−0.1928</td><td style="text-align:center">0.0011</td><td style="text-align:center">0.00002</td></tr></tbody></table></div><p class="tcap">Your Part III table, corrected (green cells = fixed). Respiration used: −0.1939 mg/L per hour, as on your sheet.</p><div class="tablewrap"><table id="e-e9"><colgroup><col style="width:20.6%"><col style="width:79.4%"></colgroup><tbody><tr><td style="text-align:center;background:#C62828;color:#FFFFFF"><span style="font-size:1.18em"><strong>E9</strong></span></td><td style="text-align:left;background:#FFEBEE"><p><strong>Part III graph: it doesn’t match your table</strong></p><p style="color:#607D8B;font-size:0.82em">[P2] p.2, Part III Q7 graph · Graph · <strong>High priority</strong></p></td></tr><tr><td style="text-align:left;background:#FFF8E1"><strong>You wrote</strong></td><td style="text-align:left">A line that stays at 0 from 0–40 %, <strong>dips below zero (about −0.0055) near 60 %</strong>, then rises to about 0.0069 at 80 % and 0.0097 at 100 %.</td></tr><tr><td style="text-align:left;background:#FFEBEE"><strong>What's off</strong></td><td style="text-align:left">Every O<sub>2</sub>-production value in your table is positive — at 60 % it is +0.0033 — so the dip below zero isn’t in your data. Other fixes: mark each data point; don’t draw the line back to 0 % (there’s no data there); keep the y-axis spacing even; put the x-axis at 0; add a title. Good news: both axes have titles <strong>and units</strong>, and your 80 % and 100 % points are right.</td></tr><tr><td style="text-align:left;background:#E8F5E9"><strong>Full-credit version</strong></td><td style="text-align:left">Plot (20, ≈0), (40, ≈0), (60, 0.0033), (80, 0.0067), (100, 0.0100): flat near zero, then a steady straight-line rise — never below zero (<a class="figref" href="#fig-correct">Figure 5</a>).</td></tr><tr><td style="text-align:left;background:#E3F2FD"><strong>Why it matters on a CER test</strong></td><td style="text-align:left">Graphs are evidence. A graph that disagrees with its own table makes your evidence look unreliable.</td></tr></tbody></table></div><figure id="fig-yours" class="fig"><div class="svgwrap" style="max-width:753px" title="Click to enlarge" tabindex="0" role="button" aria-label="Enlarge figure 4"><svg role="img" aria-label="Your Q7 graph, traced from the worksheet. Spot the dip below zero near 60 %." preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 672 300">
+  
+  <rect x="0" y="0" width="672" height="300" fill="#FFFFFF"/>
+  <g font-family="Calibri, Carlito, Arial, sans-serif">
+    <rect x="8.0" y="3.0" width="190" height="18.0" rx="3" fill="#BF360C"/>
+    <text x="13.0" y="17.0" font-size="12" fill="#FFFFFF" font-weight="bold">YOUR GRAPH (REDRAWN)</text>
+    <text x="210.0" y="16.0" font-size="12" fill="#607D8B" font-style="italic">redrawn from a Part III worksheet: find what is wrong</text>
+    <rect x="8.0" y="28.0" width="656.0" height="266.0" rx="6" fill="#FFFDF5" stroke="#E0E0E0" stroke-width="1"/>
+    <polyline points="131.8,248.5 132.2,241.4 132.0,235.5 132.1,229.9 131.7,222.5 132.2,216.9 132.2,210.1 132.0,205.0 131.8,199.2 132.3,191.6 131.7,186.2 132.3,179.8 131.8,173.7 131.7,167.2 132.0,161.4 131.8,154.8 131.8,149.0 131.9,142.1 132.2,136.8 132.1,130.1 132.3,125.0 131.8,117.9 132.1,112.4 132.3,105.7 132.2,99.9 131.9,93.6 132.2,87.9 132.0,81.3 131.7,74.6 132.2,68.7 131.8,62.7 132.1,56.7 131.9,50.2 132.0,44.1" fill="none" stroke="#455A64" stroke-width="2" stroke-linejoin="round"/>
+    <polyline points="127.3,244.7 132.7,243.3 139.2,244.4 145.1,243.7 151.1,244.2 157.1,243.5 163.0,243.8 169.2,244.8 175.4,244.1 181.1,243.6 186.8,243.2 193.1,243.7 199.1,244.6 205.2,244.1 211.0,243.2 217.1,243.4 223.2,244.8 229.3,243.5 235.5,244.5 241.4,244.7 247.4,244.5 253.2,244.8 259.6,243.5 265.4,244.3 271.3,244.0 277.3,244.7 283.3,244.5 289.2,244.6 295.6,243.9 301.4,244.7 307.5,244.0 313.2,243.7 319.5,243.5 325.7,243.6 331.7,243.7 337.7,244.3 343.4,244.0 349.5,244.1 355.3,243.5 361.5,244.7 367.6,243.3 373.7,244.4 379.8,243.5 385.7,243.3 391.6,243.6 397.4,244.6 403.3,244.0 409.8,243.6 415.4,244.6 421.5,244.3 427.3,243.8 433.4,244.3 439.4,244.7 445.3,244.4 451.3,243.6 457.9,243.5 463.5,244.3 469.6,243.3 476.0,243.4 481.4,243.8 487.8,244.4 493.5,243.7 499.4,243.9 505.9,244.4 512.0,244.4 518.0,244.3 523.8,243.6 529.9,243.7 535.6,243.9 542.1,243.4 547.9,243.8 553.9,243.4 560.2,243.6 565.9,243.9 571.6,244.1 577.7,243.3 583.6,243.5 589.7,244.2 595.9,244.8 602.2,244.8 607.8,243.9 613.8,244.1 620.1,244.5 626.1,243.6 632.0,244.0" fill="none" stroke="#455A64" stroke-width="2" stroke-linejoin="round"/>
+    <line x1="127.0" y1="61.7" x2="137.0" y2="61.7" stroke="#455A64" stroke-width="1.8"/>
+    <text x="123.0" y="66.7" font-size="13.5" fill="#455A64" text-anchor="end" font-style="italic">0.01</text>
+    <line x1="127.0" y1="99.0" x2="137.0" y2="99.0" stroke="#455A64" stroke-width="1.8"/>
+    <text x="123.0" y="104.0" font-size="13.5" fill="#455A64" text-anchor="end" font-style="italic">0.005</text>
+    <line x1="127.0" y1="140.1" x2="137.0" y2="140.1" stroke="#455A64" stroke-width="1.8"/>
+    <text x="123.0" y="145.1" font-size="13.5" fill="#455A64" text-anchor="end" font-style="italic">0</text>
+    <line x1="127.0" y1="197.0" x2="137.0" y2="197.0" stroke="#455A64" stroke-width="1.8"/>
+    <text x="123.0" y="202.0" font-size="13.5" fill="#455A64" text-anchor="end" font-style="italic">−0.005</text>
+    <line x1="127.0" y1="238.1" x2="137.0" y2="238.1" stroke="#455A64" stroke-width="1.8"/>
+    <text x="123.0" y="243.1" font-size="13.5" fill="#455A64" text-anchor="end" font-style="italic">−0.01</text>
+    <line x1="232.0" y1="240.0" x2="232.0" y2="248.0" stroke="#455A64" stroke-width="1.8"/>
+    <text x="232.0" y="264.0" font-size="13.5" fill="#455A64" text-anchor="middle" font-style="italic">20</text>
+    <line x1="332.0" y1="240.0" x2="332.0" y2="248.0" stroke="#455A64" stroke-width="1.8"/>
+    <text x="332.0" y="264.0" font-size="13.5" fill="#455A64" text-anchor="middle" font-style="italic">40</text>
+    <line x1="427.0" y1="240.0" x2="427.0" y2="248.0" stroke="#455A64" stroke-width="1.8"/>
+    <text x="427.0" y="264.0" font-size="13.5" fill="#455A64" text-anchor="middle" font-style="italic">60</text>
+    <line x1="517.0" y1="240.0" x2="517.0" y2="248.0" stroke="#455A64" stroke-width="1.8"/>
+    <text x="517.0" y="264.0" font-size="13.5" fill="#455A64" text-anchor="middle" font-style="italic">80</text>
+    <line x1="607.0" y1="240.0" x2="607.0" y2="248.0" stroke="#455A64" stroke-width="1.8"/>
+    <text x="607.0" y="264.0" font-size="13.5" fill="#455A64" text-anchor="middle" font-style="italic">100</text>
+    <text x="74.0" y="146.0" font-size="13.5" fill="#455A64" text-anchor="middle" font-style="italic" transform="rotate(-90 74.0 146.0)">Oxygen production (mg/L) per min</text>
+    <text x="407.0" y="284.0" font-size="13.5" fill="#455A64" text-anchor="middle" font-style="italic">Light intensity (%)</text>
+    <polyline points="131.9,139.4 138.4,139.3 144.5,139.9 150.4,140.1 156.6,140.0 162.9,139.3 169.4,140.8 175.4,139.6 182.1,141.0 188.3,139.9 194.9,139.2 201.0,139.7 206.7,139.4 213.1,140.8 219.2,140.3 225.9,139.9 232.0,139.2 237.9,139.7 244.6,140.2 250.6,140.7 257.0,140.2 263.5,141.1 269.3,141.0 275.8,141.7 282.2,140.7 288.6,140.5 294.4,141.9 300.5,141.4 306.6,141.9 313.5,141.9 319.8,141.5 325.9,142.1 332.1,142.0 337.5,146.2 342.5,148.9 347.5,152.3 353.2,156.1 358.6,158.0 363.6,162.0 368.6,164.9 374.0,167.4 379.1,172.0 384.5,174.2 390.0,178.8 395.0,181.2 400.7,185.3 406.1,188.5 411.0,190.9 416.3,195.1 422.1,196.9 426.7,200.3 430.5,196.0 434.6,190.8 437.9,186.3 441.9,181.7 446.1,177.2 449.5,172.2 453.4,166.3 457.3,162.9 461.0,158.1 464.4,152.5 467.9,148.1 471.6,142.2 475.5,137.6 479.4,132.5 482.9,127.9 486.7,123.5 490.4,119.7 494.6,113.4 498.1,109.0 501.9,103.8 506.0,100.7 509.5,94.8 512.9,89.3 516.9,84.8 523.3,83.3 528.6,83.5 535.0,80.6 541.0,79.1 547.0,79.7 553.3,77.8 558.8,75.8 564.7,75.3 571.0,74.0 576.9,71.6 583.2,71.8 589.3,70.2 595.3,68.7 600.8,67.0 607.0,65.6" fill="none" stroke="#455A64" stroke-width="2.4" stroke-linejoin="round"/>
+  </g>
+</svg></div><figcaption><strong>Figure 4.</strong> Your Q7 graph, traced from the worksheet. Spot the dip below zero near 60 %.</figcaption></figure><figure id="fig-correct" class="fig"><div class="svgwrap" style="max-width:753px" title="Click to enlarge" tabindex="0" role="button" aria-label="Enlarge figure 5"><svg role="img" aria-label="The correct graph of your own Part III data (O2 production per minute)." preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 672 340">
+<rect x="0" y="0" width="672" height="340" fill="#FFFFFF"/>
+<g font-family="Calibri, Carlito, Arial, sans-serif">
+<text x="362.0" y="18.0" font-size="15" fill="#263238" text-anchor="middle" font-weight="bold">O₂ production vs. light intensity [P2 Part III]</text>
+<g transform="translate(0,24)">
+<line x1="84" y1="262.0" x2="640" y2="262.0" stroke="#CFD8DC" stroke-width="1"/>
+<text x="76.0" y="266.0" font-size="12" fill="#455A64" text-anchor="end">0</text>
+<line x1="84" y1="223.3" x2="640" y2="223.3" stroke="#CFD8DC" stroke-width="1"/>
+<text x="76.0" y="227.3" font-size="12" fill="#455A64" text-anchor="end">0.002</text>
+<line x1="84" y1="184.7" x2="640" y2="184.7" stroke="#CFD8DC" stroke-width="1"/>
+<text x="76.0" y="188.7" font-size="12" fill="#455A64" text-anchor="end">0.004</text>
+<line x1="84" y1="146.0" x2="640" y2="146.0" stroke="#CFD8DC" stroke-width="1"/>
+<text x="76.0" y="150.0" font-size="12" fill="#455A64" text-anchor="end">0.006</text>
+<line x1="84" y1="107.3" x2="640" y2="107.3" stroke="#CFD8DC" stroke-width="1"/>
+<text x="76.0" y="111.3" font-size="12" fill="#455A64" text-anchor="end">0.008</text>
+<line x1="84" y1="68.7" x2="640" y2="68.7" stroke="#CFD8DC" stroke-width="1"/>
+<text x="76.0" y="72.7" font-size="12" fill="#455A64" text-anchor="end">0.010</text>
+<line x1="84" y1="30.0" x2="640" y2="30.0" stroke="#CFD8DC" stroke-width="1"/>
+<text x="76.0" y="34.0" font-size="12" fill="#455A64" text-anchor="end">0.012</text>
+<line x1="84.0" y1="30" x2="84.0" y2="262" stroke="#ECEFF1" stroke-width="1"/>
+<text x="84.0" y="280.0" font-size="12" fill="#455A64" text-anchor="middle">0</text>
+<line x1="191.2" y1="30" x2="191.2" y2="262" stroke="#ECEFF1" stroke-width="1"/>
+<text x="191.2" y="280.0" font-size="12" fill="#455A64" text-anchor="middle">20</text>
+<line x1="298.4" y1="30" x2="298.4" y2="262" stroke="#ECEFF1" stroke-width="1"/>
+<text x="298.4" y="280.0" font-size="12" fill="#455A64" text-anchor="middle">40</text>
+<line x1="405.6" y1="30" x2="405.6" y2="262" stroke="#ECEFF1" stroke-width="1"/>
+<text x="405.6" y="280.0" font-size="12" fill="#455A64" text-anchor="middle">60</text>
+<line x1="512.8" y1="30" x2="512.8" y2="262" stroke="#ECEFF1" stroke-width="1"/>
+<text x="512.8" y="280.0" font-size="12" fill="#455A64" text-anchor="middle">80</text>
+<line x1="620.0" y1="30" x2="620.0" y2="262" stroke="#ECEFF1" stroke-width="1"/>
+<text x="620.0" y="280.0" font-size="12" fill="#455A64" text-anchor="middle">100</text>
+<line x1="84" y1="262" x2="640" y2="262" stroke="#263238" stroke-width="2"/>
+<line x1="84" y1="262" x2="84" y2="22" stroke="#263238" stroke-width="2"/>
+<text x="352.0" y="302.0" font-size="14" fill="#263238" text-anchor="middle" font-weight="bold">Light intensity (%)</text>
+<text x="20" y="146" font-size="14" font-weight="bold" fill="#263238" text-anchor="middle" transform="rotate(-90 20 146)">O₂ production (mg/L per minute)</text>
+<rect x="153.7" y="242.7" width="182.2" height="18.3" rx="6" fill="#F5F7F8" stroke="#B0BEC5" stroke-width="1" stroke-dasharray="4 3"/>
+<text x="244.8" y="236.7" font-size="11" fill="#455A64" text-anchor="middle" font-weight="bold">20–40 %: too small to detect (≈ 0)</text>
+<line x1="84" y1="199.5" x2="640" y2="199.5" stroke="#E65100" stroke-width="2" stroke-dasharray="7 4"/>
+<rect x="87" y="181" width="226" height="16" fill="#FFFFFF"/>
+<text x="90.0" y="192.5" font-size="12" fill="#E65100" font-weight="bold">O₂ used by respiration ≈ 0.0032 per minute</text>
+<text x="90.0" y="216.5" font-size="11" fill="#1565C0" font-weight="bold">blue below orange: water LOSES O₂</text>
+<text x="577.1" y="161.5" font-size="11" fill="#1565C0" text-anchor="middle" font-weight="bold">blue above orange:</text>
+<text x="577.1" y="175.5" font-size="11" fill="#1565C0" text-anchor="middle" font-weight="bold">water GAINS O₂</text>
+<path d="M191.2,261.6 L298.4,261.9 L405.6,198.0 L512.8,132.4 L620.0,69.4" fill="none" stroke="#1E88E5" stroke-width="3" stroke-linejoin="round"/>
+<circle cx="191.2" cy="261.6" r="5.5" fill="#1E88E5" stroke="#FFFFFF" stroke-width="1.5"/>
+<circle cx="298.4" cy="261.9" r="5.5" fill="#1E88E5" stroke="#FFFFFF" stroke-width="1.5"/>
+<circle cx="405.6" cy="198.0" r="5.5" fill="#1E88E5" stroke="#FFFFFF" stroke-width="1.5"/>
+<circle cx="512.8" cy="132.4" r="5.5" fill="#1E88E5" stroke="#FFFFFF" stroke-width="1.5"/>
+<circle cx="620.0" cy="69.4" r="5.5" fill="#1E88E5" stroke="#FFFFFF" stroke-width="1.5"/>
+<text x="375.6" y="188.0" font-size="13" fill="#1565C0" text-anchor="middle" font-weight="bold">0.0033</text>
+<text x="482.8" y="124.4" font-size="13" fill="#1565C0" text-anchor="middle" font-weight="bold">0.0067</text>
+<text x="588.0" y="63.4" font-size="13" fill="#1565C0" text-anchor="middle" font-weight="bold">0.0100</text>
+<text x="191.2" y="251.6" font-size="12" fill="#1565C0" text-anchor="middle" font-weight="bold">0.00002</text>
+<text x="298.4" y="251.9" font-size="12" fill="#1565C0" text-anchor="middle" font-weight="bold">≈ 0</text>
+<circle cx="405.6" cy="199.5" r="11" fill="none" stroke="#C62828" stroke-width="2"/>
+<line x1="471.6" y1="229.5" x2="424.0" y2="209.3" stroke="#C62828" stroke-width="2"/><polygon points="417.6,206.5 427.8,205.4 423.9,214.6" fill="#C62828"/>
+<text x="475.6" y="235.5" font-size="12" fill="#C62828" font-weight="bold">≈ 60 %: break-even</text>
+<text x="475.6" y="249.5" font-size="11" fill="#C62828">O₂ made ≈ O₂ used (one trial)</text>
+<text x="94.0" y="46.0" font-size="12" fill="#607D8B" font-style="italic">Data from your Part III table · 1 trial per light level</text>
+<text x="94.0" y="62.0" font-size="11" fill="#607D8B" font-style="italic">(points joined only where there are data — no point at 0 %)</text>
+</g>
+</g>
+</svg></div><figcaption><strong>Figure 5.</strong> The correct graph of your own Part III data (O<sub>2</sub> production per minute).</figcaption></figure><div class="tablewrap"><table id="e-e10"><colgroup><col style="width:20.6%"><col style="width:79.4%"></colgroup><tbody><tr><td style="text-align:center;background:#E65100;color:#FFFFFF"><span style="font-size:1.18em"><strong>E10</strong></span></td><td style="text-align:left;background:#FFF3E0"><p><strong>Board meeting: enzymes don’t denature just above 20 °C</strong></p><p style="color:#607D8B;font-size:0.82em">[P2] p.5, Part VI table (temperature) · Science · <strong>Medium priority</strong></p></td></tr><tr><td style="text-align:left;background:#FFF8E1"><strong>You wrote</strong></td><td style="text-align:left">“~20 °C … At higher temps (&gt;20 °C), enzymes, proteins to speed up chemical reactions, are denatured.”</td></tr><tr><td style="text-align:left;background:#FFEBEE"><strong>What's off</strong></td><td style="text-align:left">Enzymes don’t fall apart just above 20 °C. Above the best temperature they work <strong>less efficiently</strong> (they start to lose their shape), and the plant’s <strong>respiration speeds up</strong>, using more O<sub>2</sub> — so the net oxygen drops. True denaturing of most plant enzymes needs much higher temperatures (roughly 40 °C or more). Also, only 15, 20, 25, 30 and 35 °C were tested, so 20 °C is the <em>best tested</em> temperature.</td></tr><tr><td style="text-align:left;background:#E8F5E9"><strong>Full-credit version</strong></td><td style="text-align:left">“About 20 °C gave the most O<sub>2</sub> of the temperatures tested. Colder: molecules move and collide more slowly, so enzyme reactions are slow. Warmer: enzymes work less well and the plant’s respiration uses more O<sub>2</sub>. Very hot (about 40 °C or more): enzymes denature.”</td></tr><tr><td style="text-align:left;background:#E3F2FD"><strong>Why it matters on a CER test</strong></td><td style="text-align:left">“Denature” is a strong word; using it at the wrong temperature is a science error that can cost the reasoning point.</td></tr></tbody></table></div><div class="tablewrap"><table id="e-e11"><colgroup><col style="width:20.6%"><col style="width:79.4%"></colgroup><tbody><tr><td style="text-align:center;background:#E65100;color:#FFFFFF"><span style="font-size:1.18em"><strong>E11</strong></span></td><td style="text-align:left;background:#FFF3E0"><p><strong>The productivity question was left blank</strong></p><p style="color:#607D8B;font-size:0.82em">[P2] p.5, Part VI Q2 · Unanswered · <strong>Medium priority</strong></p></td></tr><tr><td style="text-align:left;background:#FFF8E1"><strong>You wrote</strong></td><td style="text-align:left">(blank) — “Why do we use dissolved oxygen as a measure of productivity? Does productivity include more than oxygen?”</td></tr><tr><td style="text-align:left;background:#FFEBEE"><strong>What's off</strong></td><td style="text-align:left">Worth knowing, because it explains <em>why the whole lab works</em>. (The worksheet’s definition is a little garbled: productivity is the rate at which producers <strong>make</strong> organic compounds.)</td></tr><tr><td style="text-align:left;background:#E8F5E9"><strong>Full-credit version</strong></td><td style="text-align:left">“Plants release O<sub>2</sub> as they make glucose — 6 O<sub>2</sub> for every glucose — so the O<sub>2</sub> added to the water tracks how fast the plant is making food, and dissolved oxygen is easy to measure. Yes, productivity includes more than oxygen: it really means making organic compounds like glucose, starch and new plant material. O<sub>2</sub> is just the easiest product to measure.”</td></tr><tr><td style="text-align:left;background:#E3F2FD"><strong>Why it matters on a CER test</strong></td><td style="text-align:left">Expect a reasoning question like “Why does more O<sub>2</sub> mean more photosynthesis?” This is the answer.</td></tr></tbody></table></div><div class="tablewrap"><table id="e-e12"><colgroup><col style="width:20.6%"><col style="width:79.4%"></colgroup><tbody><tr><td style="text-align:center;background:#C62828;color:#FFFFFF"><span style="font-size:1.18em"><strong>E12</strong></span></td><td style="text-align:left;background:#FFEBEE"><p><strong>Part VII: the CER task isn’t done yet</strong></p><p style="color:#607D8B;font-size:0.82em">[P2] p.6, Part VII · Not done yet · <strong>High priority</strong></p></td></tr><tr><td style="text-align:left;background:#FFF8E1"><strong>You wrote</strong></td><td style="text-align:left">(blank) — predict the best conditions and how many fish the tank can support, test it, then write a claim, evidence (numbers) and reasoning, color-coded or labeled.</td></tr><tr><td style="text-align:left;background:#FFEBEE"><strong>What's off</strong></td><td style="text-align:left">It may not have been assigned yet — but it is the exact format of a CER test question, so practice it now.</td></tr><tr><td style="text-align:left;background:#E8F5E9"><strong>Full-credit version</strong></td><td style="text-align:left">Best conditions from the class: <strong>100 % light, white light, about 20 °C (best tested)</strong>. Fish only respire, so fish can be added only while the DO difference stays ≥ 0. One plant at 100 % white light (25 °C) made a surplus of <strong>+0.4037 mg/L per hour</strong>, so all the fish together can use no more than about 0.40 mg/L per hour. Add fish one at a time and keep the last number with a DO difference ≥ 0. Get the real Part IV (color) and Part V (temperature) numbers from classmates before the test.</td></tr><tr><td style="text-align:left;background:#E3F2FD"><strong>Why it matters on a CER test</strong></td><td style="text-align:left">Practice it with Mock Question Q10 in Guide 3 (Mock CER Questions) and worked example C in Guide 2 (CER Prep Guide).</td></tr></tbody></table></div><h3 class="h2" id="p3-notes-mauna-loa-the-rise-of-co2" style="color:#BF360C;border-color:#BF360C">[P3] Notes: Mauna Loa &amp; the Rise of CO<sub>2</sub></h3><div class="tablewrap"><table id="e-e13"><colgroup><col style="width:20.6%"><col style="width:79.4%"></colgroup><tbody><tr><td style="text-align:center;background:#E65100;color:#FFFFFF"><span style="font-size:1.18em"><strong>E13</strong></span></td><td style="text-align:left;background:#FFF3E0"><p><strong>Notes: “photosynthesis is a delayed reaction”</strong></p><p style="color:#607D8B;font-size:0.82em">[P3] p.1 (starred note) · Science (partly right) · <strong>Medium priority</strong></p></td></tr><tr><td style="text-align:left;background:#FFF8E1"><strong>You wrote</strong></td><td style="text-align:left">“Photosynthesis takes time to take CO<sub>2</sub> from the atmosphere, which is why … there is more CO<sub>2</sub> in the atmosphere in the spring than in the fall. Photosynthesis is a delayed reaction.”</td></tr><tr><td style="text-align:left;background:#FFEBEE"><strong>What's off</strong></td><td style="text-align:left">Partly right! CO<sub>2</sub> really is higher in spring (peak in <strong>May</strong>) than in fall (low in <strong>September–October</strong>), and the CO<sub>2</sub> <em>level</em> does lag behind the seasons. But photosynthesis itself isn’t delayed — it starts within seconds of light. The lag happens because the CO<sub>2</sub> level is a <strong>running total</strong>, like water in a bathtub (<a class="figref" href="#fig-keeling">Figure 6</a>).</td></tr><tr><td style="text-align:left;background:#E8F5E9"><strong>Full-credit version</strong></td><td style="text-align:left">“All fall and winter, respiration and decay add more CO<sub>2</sub> than photosynthesis removes, so CO<sub>2</sub> keeps rising until the leaves come back — it peaks in May. Then months of strong photosynthesis remove more than respiration adds, so CO<sub>2</sub> falls until its low point in September–October.”</td></tr><tr><td style="text-align:left;background:#E3F2FD"><strong>Why it matters on a CER test</strong></td><td style="text-align:left">Keeling-curve questions are a favorite “explain the pattern” CER. The running-total idea is the reasoning teachers look for.</td></tr></tbody></table></div><figure id="fig-keeling" class="fig"><div class="svgwrap" style="max-width:753px" title="Click to enlarge" tabindex="0" role="button" aria-label="Enlarge figure 6"><svg role="img" aria-label="One year at Mauna Loa (illustrative shape; peak ≈432 ppm in May 2026, ≈426 ppm in September 2026, NOAA). The level rises while CO2 in &gt; CO2 out, and falls while out &gt; in." preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 672 236">
+<rect x="0" y="0" width="672" height="236" fill="#FFFFFF"/>
+<g font-family="Calibri, Carlito, Arial, sans-serif">
+<rect x="64.0" y="10" width="186.7" height="180" fill="#FFF3E0"/>
+<rect x="250.7" y="10" width="200.7" height="180" fill="#E8F5E9"/>
+<rect x="451.3" y="10" width="172.7" height="180" fill="#FFF3E0"/>
+<text x="157.3" y="24.0" font-size="12" fill="#E65100" text-anchor="middle" font-weight="bold">CO₂ RISING</text>
+<text x="157.3" y="37.0" font-size="11" fill="#E65100" text-anchor="middle">respiration + decay &gt; photosynthesis</text>
+<text x="351.0" y="24.0" font-size="12" fill="#2E7D32" text-anchor="middle" font-weight="bold">CO₂ FALLING</text>
+<text x="351.0" y="37.0" font-size="11" fill="#2E7D32" text-anchor="middle">photosynthesis &gt; respiration + decay</text>
+<text x="537.7" y="24.0" font-size="12" fill="#E65100" text-anchor="middle" font-weight="bold">RISING again</text>
+<text x="537.7" y="37.0" font-size="11" fill="#E65100" text-anchor="middle">leaves fall, decay goes on</text>
+<line x1="64" y1="190.0" x2="624" y2="190.0" stroke="#CFD8DC" stroke-width="1"/>
+<text x="56.0" y="194.0" font-size="12" fill="#455A64" text-anchor="end">424</text>
+<line x1="64" y1="160.0" x2="624" y2="160.0" stroke="#CFD8DC" stroke-width="1"/>
+<text x="56.0" y="164.0" font-size="12" fill="#455A64" text-anchor="end">426</text>
+<line x1="64" y1="130.0" x2="624" y2="130.0" stroke="#CFD8DC" stroke-width="1"/>
+<text x="56.0" y="134.0" font-size="12" fill="#455A64" text-anchor="end">428</text>
+<line x1="64" y1="100.0" x2="624" y2="100.0" stroke="#CFD8DC" stroke-width="1"/>
+<text x="56.0" y="104.0" font-size="12" fill="#455A64" text-anchor="end">430</text>
+<line x1="64" y1="70.0" x2="624" y2="70.0" stroke="#CFD8DC" stroke-width="1"/>
+<text x="56.0" y="74.0" font-size="12" fill="#455A64" text-anchor="end">432</text>
+<line x1="64" y1="40.0" x2="624" y2="40.0" stroke="#CFD8DC" stroke-width="1"/>
+<text x="56.0" y="44.0" font-size="12" fill="#455A64" text-anchor="end">434</text>
+<text x="64.0" y="208.0" font-size="12" fill="#455A64" text-anchor="middle">Jan</text>
+<text x="110.7" y="208.0" font-size="12" fill="#455A64" text-anchor="middle">Feb</text>
+<text x="157.3" y="208.0" font-size="12" fill="#455A64" text-anchor="middle">Mar</text>
+<text x="204.0" y="208.0" font-size="12" fill="#455A64" text-anchor="middle">Apr</text>
+<text x="250.7" y="208.0" font-size="12" fill="#455A64" text-anchor="middle">May</text>
+<text x="297.3" y="208.0" font-size="12" fill="#455A64" text-anchor="middle">Jun</text>
+<text x="344.0" y="208.0" font-size="12" fill="#455A64" text-anchor="middle">Jul</text>
+<text x="390.7" y="208.0" font-size="12" fill="#455A64" text-anchor="middle">Aug</text>
+<text x="437.3" y="208.0" font-size="12" fill="#455A64" text-anchor="middle">Sep</text>
+<text x="484.0" y="208.0" font-size="12" fill="#455A64" text-anchor="middle">Oct</text>
+<text x="530.7" y="208.0" font-size="12" fill="#455A64" text-anchor="middle">Nov</text>
+<text x="577.3" y="208.0" font-size="12" fill="#455A64" text-anchor="middle">Dec</text>
+<text x="624.0" y="208.0" font-size="12" fill="#455A64" text-anchor="middle">Jan</text>
+<line x1="64" y1="190" x2="624" y2="190" stroke="#263238" stroke-width="2"/>
+<line x1="64" y1="190" x2="64" y2="10" stroke="#263238" stroke-width="2"/>
+<text x="20" y="115" font-size="13" font-weight="bold" fill="#263238" text-anchor="middle" transform="rotate(-90 20 115)">CO₂ (ppm)</text>
+<text x="344.0" y="228.0" font-size="12.5" fill="#263238" text-anchor="middle" font-weight="bold">Month — illustrative sketch; anchors: May 2026 ≈ 432, Sept 2026 ≈ 426 (NOAA); other months sketched</text>
+<line x1="64.0" y1="121.0" x2="640.0" y2="121.0" stroke="#90A4AE" stroke-width="1" stroke-dasharray="2 3"/>
+<path d="M64.0,121.0 L110.7,109.0 L157.3,95.5 L204.0,77.5 L250.7,65.5 L297.3,76.0 L344.0,101.5 L390.7,136.0 L437.3,158.5 L484.0,155.5 L530.7,136.0 L577.3,115.0 L624.0,92.5" fill="none" stroke="#546E7A" stroke-width="3" stroke-linejoin="round"/>
+<circle cx="64.0" cy="121.0" r="3.5" fill="#FFFFFF" stroke="#546E7A" stroke-width="2"/>
+<circle cx="110.7" cy="109.0" r="3.5" fill="#FFFFFF" stroke="#546E7A" stroke-width="2"/>
+<circle cx="157.3" cy="95.5" r="3.5" fill="#FFFFFF" stroke="#546E7A" stroke-width="2"/>
+<circle cx="204.0" cy="77.5" r="3.5" fill="#FFFFFF" stroke="#546E7A" stroke-width="2"/>
+<circle cx="250.7" cy="65.5" r="5" fill="#C62828" stroke="#C62828" stroke-width="2"/>
+<circle cx="297.3" cy="76.0" r="3.5" fill="#FFFFFF" stroke="#546E7A" stroke-width="2"/>
+<circle cx="344.0" cy="101.5" r="3.5" fill="#FFFFFF" stroke="#546E7A" stroke-width="2"/>
+<circle cx="390.7" cy="136.0" r="3.5" fill="#FFFFFF" stroke="#546E7A" stroke-width="2"/>
+<circle cx="437.3" cy="158.5" r="5" fill="#37474F" stroke="#37474F" stroke-width="2"/>
+<circle cx="484.0" cy="155.5" r="3.5" fill="#FFFFFF" stroke="#546E7A" stroke-width="2"/>
+<circle cx="530.7" cy="136.0" r="3.5" fill="#FFFFFF" stroke="#546E7A" stroke-width="2"/>
+<circle cx="577.3" cy="115.0" r="3.5" fill="#FFFFFF" stroke="#546E7A" stroke-width="2"/>
+<circle cx="624.0" cy="92.5" r="3.5" fill="#FFFFFF" stroke="#546E7A" stroke-width="2"/>
+<text x="250.7" y="55.5" font-size="12" fill="#C62828" text-anchor="middle" font-weight="bold">record peak in May ≈ 432</text>
+<text x="460.7" y="178.5" font-size="12" fill="#263238" text-anchor="middle" font-weight="bold">low in Sept/Oct ≈ 426</text>
+<text x="72.0" y="137.0" font-size="11" fill="#455A64">Jan 2026 ≈ 428.6</text>
+<line x1="258.7" y1="65.5" x2="654.0" y2="65.5" stroke="#607D8B" stroke-width="1.2" stroke-dasharray="4 3"/>
+<line x1="445.3" y1="158.5" x2="654.0" y2="158.5" stroke="#607D8B" stroke-width="1.2" stroke-dasharray="4 3"/>
+<line x1="648.0" y1="112.0" x2="648.0" y2="73.5" stroke="#455A64" stroke-width="2"/><polygon points="648.0,67.5 652.5,75.5 643.5,75.5" fill="#455A64"/>
+<line x1="648.0" y1="112.0" x2="648.0" y2="150.5" stroke="#455A64" stroke-width="2"/><polygon points="648.0,156.5 643.5,148.5 652.5,148.5" fill="#455A64"/>
+<text x="664" y="112.0" font-size="12" font-weight="bold" fill="#263238" text-anchor="middle" transform="rotate(-90 664 112.0)">≈ 6 ppm swing</text>
+<path d="M630,121.0 L634,121.0 L634,92.5 L630,92.5" fill="none" stroke="#37474F" stroke-width="1.6"/>
+<text x="612.0" y="84.0" font-size="11" fill="#37474F" text-anchor="end" font-weight="bold">next Jan ≈ 2–2.5 ppm higher</text>
+</g>
+</svg></div><figcaption><strong>Figure 6.</strong> One year at Mauna Loa (illustrative shape; peak ≈432 ppm in May 2026, ≈426 ppm in September 2026, NOAA). The level rises while CO<sub>2</sub> in &gt; CO<sub>2</sub> out, and falls while out &gt; in.</figcaption></figure><div class="tablewrap"><table id="e-e14"><colgroup><col style="width:20.6%"><col style="width:79.4%"></colgroup><tbody><tr><td style="text-align:center;background:#C62828;color:#FFFFFF"><span style="font-size:1.18em"><strong>E14</strong></span></td><td style="text-align:left;background:#FFEBEE"><p><strong>Notes: respiration is NOT negligible</strong></p><p style="color:#607D8B;font-size:0.82em">[P3] p.1 · Science · <strong>High priority</strong></p></td></tr><tr><td style="text-align:left;background:#FFF8E1"><strong>You wrote</strong></td><td style="text-align:left">“Cellular respiration is a constant factor, so it’s happening all the time, which is why it has a negligible effect on CO<sub>2</sub> in the atmosphere.”</td></tr><tr><td style="text-align:left;background:#FFEBEE"><strong>What's off</strong></td><td style="text-align:left">Respiration by plants, animals and especially decomposers releases a <strong>huge</strong> amount of CO<sub>2</sub> — about as much as photosynthesis removes in a year. That is exactly the balance you described in POGIL Q18. It is what makes CO<sub>2</sub> rise every fall and winter. Something that happens all the time still adds CO<sub>2</sub> all the time. (The lesson probably meant: because respiration goes on all year, the big <em>season-to-season change</em> comes mostly from photosynthesis turning up and down.)</td></tr><tr><td style="text-align:left;background:#E8F5E9"><strong>Full-credit version</strong></td><td style="text-align:left">“Respiration happens all year and releases about as much CO<sub>2</sub> as photosynthesis removes. When photosynthesis slows in fall and winter, respiration and decay keep going, so CO<sub>2</sub> rises. The seasonal zig-zag comes mainly from photosynthesis changing with the seasons.”</td></tr><tr><td style="text-align:left;background:#E3F2FD"><strong>Why it matters on a CER test</strong></td><td style="text-align:left">This note contradicts your own Q15 (decomposers respire) and Q18 (balance). Mock Question Q11 asks you to rebut exactly this claim.</td></tr></tbody></table></div><div class="tablewrap"><table id="e-e15"><colgroup><col style="width:20.6%"><col style="width:79.4%"></colgroup><tbody><tr><td style="text-align:center;background:#B26A00;color:#FFFFFF"><span style="font-size:1.18em"><strong>E15</strong></span></td><td style="text-align:left;background:#FFF8E1"><p><strong>Notes: when the CO</strong><strong><sub>2</sub></strong><strong> rise started</strong></p><p style="color:#607D8B;font-size:0.82em">[P3] p.2 · Nuance · <strong>Low priority</strong></p></td></tr><tr><td style="text-align:left;background:#FFF8E1"><strong>You wrote</strong></td><td style="text-align:left">“The increase of rampant CO<sub>2</sub> started after WW2.”</td></tr><tr><td style="text-align:left;background:#FFEBEE"><strong>What's off</strong></td><td style="text-align:left">The human-caused rise began with the <strong>Industrial Revolution</strong> (1800s), when CO<sub>2</sub> was about 280 ppm. After WWII the rise <strong>sped up a lot</strong>, because far more fossil fuel was burned from the 1950s on.</td></tr><tr><td style="text-align:left;background:#E8F5E9"><strong>Full-credit version</strong></td><td style="text-align:left">“CO<sub>2</sub> started rising with the Industrial Revolution and sped up sharply after WWII.”</td></tr><tr><td style="text-align:left;background:#E3F2FD"><strong>Why it matters on a CER test</strong></td><td style="text-align:left">Background facts aren’t usually the CER focus, but accurate facts make your reasoning more convincing.</td></tr></tbody></table></div><h2 class="band" id="part-b-polish-right-idea-make-it-sharper" style="background:#BF360C">Part B · Polish: right idea, make it sharper</h2><p>These answers are basically correct. Each upgrade below makes them more precise — exactly the kind of detail that turns a 4/6 CER into a 6/6.</p><div class="tablewrap"><table><colgroup><col style="width:21.3%"><col style="width:78.7%"></colgroup><thead><tr><th style="background:#BF360C;text-align:left">Where</th><th style="background:#BF360C;text-align:left">Quick upgrade</th></tr></thead><tbody><tr><td style="text-align:left">[P1] Q5</td><td style="text-align:left">Chloroplasts are mainly in leaf and green-stem cells; root cells (no light) have none.</td></tr><tr><td style="text-align:left">[P1] Q6</td><td style="text-align:left">Say <em>why</em> plants need mitochondria: plant cells do cellular respiration to turn the glucose they made into ATP. (“All cells” is too broad: bacteria have none.)</td></tr><tr><td style="text-align:left">[P1] Q7</td><td style="text-align:left">Give the reason: animals can’t photosynthesize, so they get glucose by eating.</td></tr><tr><td style="text-align:left">[P1] Q11</td><td style="text-align:left">Trace a second food too, e.g., pizza crust = wheat; cheese = milk from cows that ate grass.</td></tr><tr><td style="text-align:left">[P1] Q12</td><td style="text-align:left"><strong>Important for CER:</strong> add the two missing links — photosynthesis stores light energy as <strong>chemical energy in glucose/starch</strong> (in the seed), and the athlete’s <strong>cells release it by cellular respiration in mitochondria as ATP</strong>, which powers the muscles.</td></tr><tr><td style="text-align:left">[P1] Q14</td><td style="text-align:left">“Write and label” = name every substance (glucose, oxygen, carbon dioxide, water, energy).</td></tr><tr><td style="text-align:left">[P1] Q16</td><td style="text-align:left">You already have combustion, fossil-fuel formation and feeding/wastes. Add <strong>decay (decomposition)</strong>. “Metabolism” is too vague (it includes respiration) — say feeding/digestion and excretion. Fossil fuels form by burial + heat + pressure over millions of years.</td></tr><tr><td style="text-align:left">[P1] Q19</td><td style="text-align:left">Fossil fuels store <strong>carbon</strong>; burning combines it with O<sub>2</sub> to make CO<sub>2</sub>. Grammar: “levels … increase”.</td></tr><tr><td style="text-align:left">[P1] Q21</td><td style="text-align:left">Connect your own pro and con: because farm machines burn fossil fuels, ethanol is <em>close to</em> carbon-neutral, not exactly zero. (The corn is regrown; the ethanol is burned.)</td></tr><tr><td style="text-align:left">[P1] Q22</td><td style="text-align:left">Batteries <em>store</em> solar power for night (they don’t collect it). Geothermal heat makes steam, and the steam spins the turbines.</td></tr><tr><td style="text-align:left">[P2] Part III table</td><td style="text-align:left">Record every value to the same 4 decimals (80 % start: 7.0380) and write units in the headings (mg/L, mg/L per hour).</td></tr><tr><td style="text-align:left">[P2] Part III Q8</td><td style="text-align:left">Add numbers: “O<sub>2</sub> production rose from about 0 at 20–40 % light to 0.0100 mg/L per minute at 100 %.” Drop “generally” once your graph is fixed.</td></tr><tr><td style="text-align:left">[P2] Part III Q9</td><td style="text-align:left">Name the 3 factors (light intensity, CO<sub>2</sub>, temperature); say O<sub>2</sub> is a <strong>product</strong> of photosynthesis, so faster photosynthesis = more O<sub>2</sub>; explain why DO <em>fell</em> at low light (respiration &gt; photosynthesis); fix the fragment “Photosynthesis 3 main factors”.</td></tr><tr><td style="text-align:left">[P2] Part VI (light color)</td><td style="text-align:left">Add the key idea: chlorophyll absorbs mostly <strong>red and blue</strong> light and reflects green, so green light gives the least O<sub>2</sub>; white light contains red and blue.</td></tr><tr><td style="text-align:left">[P3] respiration note</td><td style="text-align:left">“Respiration <em>breaks down</em> glucose (with O<sub>2</sub>) to make ATP; CO<sub>2</sub> and H<sub>2</sub>O are released.” (It doesn’t make glucose.)</td></tr><tr><td style="text-align:left">[P3] “regular” / “rampant” CO<sub>2</sub></td><td style="text-align:left">Keep the class words, but add the standard ones: CO<sub>2</sub> from <strong>natural</strong> sources vs <strong>human-caused</strong> (anthropogenic) CO<sub>2</sub>. It’s the same molecule; only the source differs.</td></tr><tr><td style="text-align:left">[P3] “the opposite is true”</td><td style="text-align:left">Spell it out: in fall and winter, leaves drop and photosynthesis slows, while respiration and decay keep releasing CO<sub>2</sub> — so CO<sub>2</sub> rises.</td></tr><tr><td style="text-align:left">[P3] Southern Hemisphere</td><td style="text-align:left">Its cycle is weaker because it has less <strong>land</strong>, so fewer land plants (most of it is ocean).</td></tr><tr><td style="text-align:left">[P3] human sources</td><td style="text-align:left">Add deforestation (cutting and burning forests) as a second human source — you explained it well in POGIL Q20.</td></tr><tr><td style="text-align:left">[P3] Keeling Curve</td><td style="text-align:left">The Keeling Curve is the <em>graph</em> of the measurements (started 1958 at about 313 ppm): a yearly zig-zag on a steadily rising trend (about 432 ppm at the May 2026 peak).</td></tr></tbody></table></div><h2 class="band" id="part-c-what-you-nailed" style="background:#BF360C">Part C · What you nailed</h2><p>Plenty of your work is already full-credit. Keep doing these things:</p><ul><li><strong>Model 1 basics are all correct</strong> [P1 Q1–4]: organelles, reactants, products, the four recycled substances, and sunlight as the one input that isn’t recycled.</li><li><strong>Food-chain tracing</strong> [P1 Q11–12]: clear, logical steps from your meal back to the sun.</li><li><strong>Carbon-cycle reasoning</strong> [P1 Q17–20]: your Q18 balance statement (CO<sub>2</sub> taken in by plants = CO<sub>2</sub> returned by respiration) is exactly right; Q19 correctly says the problem is the <em>rate</em> of release; Q20 covers both effects of deforestation.</li><li><strong>Ethanol pros and cons</strong> [P1 Q21]: balanced and thoughtful, including the hidden fossil-fuel use of farm machines and the effect on food prices.</li><li><strong>Model 2 stars at D, C and A</strong> [P1 Q13, Q15]: right, with sound reasoning that decomposers respire.</li><li><strong>Lab math</strong> [P2 Parts II–III]: every trial DO difference is correct, and you handled the tricky “DO difference − (negative respiration)” formula correctly in four of five rows.</li><li><strong>Graph basics</strong> [P2 Part III]: both axes have titles and units; the 80 % and 100 % points are correct.</li><li><strong>Board-meeting reasons</strong> [P2 Part VI]: you explained light intensity and color in terms of chlorophyll absorbing light energy.</li><li><strong>Mauna Loa notes</strong> [P3]: correct facts on the observatory (about 3,400 m up), spring leaf-out drawing CO<sub>2</sub> down, the weaker Southern-Hemisphere cycle, and extra CO<sub>2</sub> trapping more heat.</li></ul><aside class="callout k-key" style="border-left-color:#2E7D32;background:#E8F5E9"><div class="clabel" style="color:#2E7D32">● Key idea — The big picture</div><p>Your understanding is solid. Most fixes are about <strong>precision</strong> — the right energy label, the right organelle, the right sign in a calculation, a graph that matches its table. Those are exactly the details a CER grader checks, so fixing them now is the fastest way to raise your score.</p><p>Next: use <strong>Guide 3 (Mock CER Questions)</strong> — Q4, Q10, Q11 and Q12 practice the exact skills from this list.</p></aside><div class="siblings"><a href="Start_Here.html">⌂ Start here</a><a href="1_Photosynthesis_Learning_Guide.html">1 · Learning Guide</a><a href="2_CER_Prep_Guide.html">2 · CER Prep Guide</a><a href="3_Mock_CER_Questions.html">3 · Mock CER Questions</a><a href="4_Cheat_Sheet.html">4 · Cheat Sheet</a><a href="5_Detected_Errors_in_Worksheets.html">5 · Detected Errors</a></div></main></div>
+<div id="lightbox" role="dialog" aria-modal="true" aria-label="Enlarged figure" aria-hidden="true"></div><button id="totop" title="Back to top">↑</button>
+<script>
+(function(){
+  var $=function(s,r){return (r||document).querySelectorAll(s)};
+  var root=document.documentElement, bar=document.querySelector('.topbar'), nav=document.getElementById('toc');
+  function tb(){ root.style.setProperty('--tb', bar.offsetHeight+'px'); }
+  function syncInert(){ var mobile=window.matchMedia('(max-width:1000px)').matches; var hide=mobile && !nav.classList.contains('open');
+    if(hide) nav.setAttribute('inert',''); else nav.removeAttribute('inert'); }
+  tb(); syncInert(); window.addEventListener('resize',function(){ tb(); syncInert(); });
+  if(!$('details.reveal').length){ $('.rv-btn').forEach(function(b){ b.style.display='none'; }); }
+  var saved=null;
+  function setAll(open){ $('details.reveal').forEach(function(d){ d.open=open; }); }
+  function openForPrint(){ if(saved===null){ saved=[]; $('details.reveal').forEach(function(d){ saved.push(d.open); }); } setAll(true); }
+  function restoreAfterPrint(){ if(saved){ var i=0; $('details.reveal').forEach(function(d){ d.open=saved[i++]; }); saved=null; } }
+  document.addEventListener('click',function(e){
+    var b=e.target.closest('[data-act]'); if(!b) return;
+    var a=b.getAttribute('data-act');
+    if(a==='expand') setAll(true); else if(a==='collapse') setAll(false);
+    else if(a==='print'){ openForPrint(); setTimeout(function(){window.print();},60); }
+    else if(a==='font+'||a==='font-'){ var cur=parseFloat(getComputedStyle(root).getPropertyValue('--fs'))||17; cur=Math.min(24,Math.max(13,cur+(a==='font+'?1:-1))); root.style.setProperty('--fs',cur+'px'); tb(); }
+    else if(a==='nav'){ nav.classList.toggle('open'); syncInert(); }
+  });
+  window.addEventListener('beforeprint',openForPrint);
+  window.addEventListener('afterprint',restoreAfterPrint);
+  $('nav#toc a').forEach(function(a){ a.addEventListener('click',function(){ nav.classList.remove('open'); syncInert(); }); });
+  // lightbox
+  var lb=document.getElementById('lightbox'), lastFocus=null;
+  function openLb(w){ var fig=w.closest('figure'); var cap=fig.querySelector('figcaption'); var svg=w.querySelector('svg');
+    var capHtml=cap?cap.innerHTML:(svg&&svg.getAttribute('aria-label')?svg.getAttribute('aria-label'):'');
+    lastFocus=w; lb.innerHTML='<div class="lbin" tabindex="-1">'+w.innerHTML+(capHtml?'<div class="lbcap">'+capHtml+'</div>':'')+'</div>';
+    lb.classList.add('on'); lb.setAttribute('aria-hidden','false'); lb.querySelector('.lbin').focus(); }
+  function closeLb(){ if(!lb.classList.contains('on')) return; lb.classList.remove('on'); lb.setAttribute('aria-hidden','true'); lb.innerHTML=''; if(lastFocus) lastFocus.focus(); }
+  $('.svgwrap').forEach(function(w){ w.addEventListener('click',function(){ openLb(w); });
+    w.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); openLb(w); } }); });
+  lb.addEventListener('click',closeLb);
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') closeLb(); });
+  // checklists
+  $('.checklist').forEach(function(cl){ var sc=cl.querySelector('.sc'); if(!sc) return;
+    cl.addEventListener('change',function(){ var t=0; cl.querySelectorAll('input:checked').forEach(function(i){ t+=parseFloat(i.getAttribute('data-pts'))||0; }); sc.textContent=t; }); });
+  // scroll spy
+  var links={}; $('nav#toc a').forEach(function(a){ links[a.getAttribute('href').slice(1)]=a; });
+  var heads=[].slice.call($('h2.band[id],h3.h2[id],.qhead[id]')).filter(function(h){ return links[h.id]; });
+  var last=null;
+  function spy(){ var y=window.scrollY+bar.offsetHeight+30, cur=null; heads.forEach(function(h){ if(h.getBoundingClientRect().top+window.scrollY<=y) cur=h.id; });
+    if(cur!==last){ Object.keys(links).forEach(function(k){ links[k].classList.toggle('active',k===cur); });
+      if(cur&&links[cur]&&nav.scrollHeight>nav.clientHeight){ var r=links[cur].getBoundingClientRect(), n=nav.getBoundingClientRect();
+        if(r.top<n.top||r.bottom>n.bottom) nav.scrollTop+= (r.top-n.top) - nav.clientHeight/3; }
+      last=cur; }
+    document.getElementById('totop').classList.toggle('on',window.scrollY>600); }
+  window.addEventListener('scroll',spy,{passive:true}); spy();
+  document.getElementById('totop').addEventListener('click',function(){ window.scrollTo({top:0}); });
+})();
+</script>
+</body></html>
